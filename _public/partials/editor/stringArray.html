@@ -1,0 +1,12 @@
+
+<div class="well well-sm">
+  <div id="editor-array-item" ng-repeat="v in model track by $index" class="form-group">
+    <select ng-show="definition.options" ng-model="v" ng-change="updateArrayValue($index, v)" title="{{ definition.description }}" ng-options="optionValue.value as optionKey for (optionKey, optionValue) in definition.options" class="form-control">
+      <option value=""></option>
+    </select>
+    <input ng-hide="definition.options" ng-model="v" ng-change="updateArrayValue($index, v)" placeholder="{{ definition.placeholder }}" class="form-control"/><i id="editor-array-remove" ng-click="removeArrayValue($index)" title="Remove this value" class="inline-delete-icon fa fa-times"></i>
+  </div>
+  <div class="horizontal-add button-group">
+    <button id="editor-array-add" type="button" ng-click="addArrayValue()" title="Add {{ label }}" class="btn btn-default"> <i class="fa fa-plus"></i><span> Add {{ label }}</span></button>
+  </div>
+</div>

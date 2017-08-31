@@ -1,0 +1,30 @@
+
+<div ng-switch="parameter.editorType" class="parameter">
+  <div ng-switch-when="dropdown">
+    <label>{{ parameter.displayName }}: 
+      <select ng-hide="loading" ng-model="parameter.value" ng-change="updateParameter()" ng-options="item.value as item.name for item in dataSourceData"></select><i ng-show="loading" class="fa fa-cog fa-spin"></i>
+    </label>
+  </div>
+  <div ng-switch-when="links" class="links">
+    <label>{{ parameter.displayName }}: </label><a ng-hide="loading" ng-repeat="item in dataSourceData" ng-click="selectValue(item.value)" ng-class="{selected: parameter.value == item.value}" class="btn btn-link">{{ item.name }}</a><i ng-show="loading" class="fa fa-cog fa-spin"></i>
+  </div>
+  <div ng-switch-when="checkbox">
+    <label> 
+      <input type="checkbox" ng-model="parameter.value" ng-change="updateParameter()"/> {{ parameter.displayName }}
+    </label>
+  </div>
+  <div ng-switch-when="datetime">
+    <label>{{ parameter.displayName }}: <span datetimepicker="datetimepicker" options="parameter.datetimeOptions" ng-model="parameter.value" ng-change="updateParameter()"></span></label>
+  </div>
+  <div ng-switch-when="date">
+    <label>{{ parameter.displayName }}: <span datetimepicker="datetimepicker" options="parameter.datetimeOptions" ng-model="parameter.value" ng-change="updateParameter()"></span></label>
+  </div>
+  <div ng-switch-when="time">
+    <label>{{ parameter.displayName }}: <span datetimepicker="datetimepicker" options="parameter.datetimeOptions" ng-model="parameter.value" ng-change="updateParameter()"></span></label>
+  </div>
+  <div ng-switch-default="ng-switch-default">
+    <label>{{ parameter.displayName }}: 
+      <input type="text" ng-model="parameter.value" ng-blur="updateParameter()"/>
+    </label>
+  </div>
+</div>

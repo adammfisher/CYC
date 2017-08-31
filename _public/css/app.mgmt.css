@@ -1,0 +1,1388 @@
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/* Customize scrollbar (webkit) */
+/* Restyle links */
+/* Dashboard Sidebar */
+.analytics-page {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: .9rem;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.analytics-page * {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.analytics-page *:before,
+.analytics-page *:after {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.analytics-page h1 {
+  margin-bottom: 2rem;
+}
+.analytics-page .header .dashboard-well {
+  min-height: 2rem;
+  margin-bottom: 20px;
+  background-color: #F5F5F5;
+  padding: 20px 15px 15px;
+  border-bottom: 1px solid #aaa;
+}
+.analytics-page .header .button-bar {
+  float: right;
+}
+.analytics-page .header .button-bar .btn {
+  margin-left: .8rem;
+}
+.analytics-page .header h1,
+.analytics-page .header span.dates {
+  display: inline-block;
+  margin-top: 0;
+}
+.analytics-page .header h1 {
+  margin-right: 4rem;
+  margin-bottom: 0;
+}
+.analytics-page .header span.dates {
+  color: #999;
+  font-size: 1rem;
+}
+.analytics-page .row {
+  margin-bottom: 1.5rem;
+}
+.analytics-page .overview {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #999;
+}
+.analytics-page .overview dt,
+.analytics-page .overview dd {
+  font-size: 1.2rem;
+}
+.analytics-page .sidebar {
+  padding-bottom: 1rem;
+  border-right: 1px solid #999;
+  float: left;
+  position: absolute;
+  width: 13rem;
+}
+.analytics-page .sidebar h2 {
+  display: block;
+  font-variant: small-caps;
+  padding-bottom: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px dotted #999;
+}
+.analytics-page .sidebar h2:first-child {
+  margin-top: 1rem;
+}
+.analytics-page .sidebar dl {
+  margin-bottom: 0.8rem;
+}
+.analytics-page .content {
+  margin-left: 13rem;
+}
+.analytics-page .content .right-border {
+  border-right: 1px solid #aaa;
+}
+.analytics-page dt,
+.analytics-page dd {
+  display: inline;
+  font-size: 0.8rem;
+}
+.analytics-page dd {
+  margin-right: 1rem;
+}
+.analytics-page h2 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: .5rem;
+}
+.analytics-page table.table {
+  margin-bottom: 1rem;
+}
+.analytics-page table.table td,
+.analytics-page table.table th {
+  font-size: .85rem;
+}
+.analytics-page .time-controls {
+  float: right;
+}
+.analytics-page span.more {
+  float: right;
+  margin-top: 1rem;
+  cursor: pointer;
+  color: #999;
+}
+.analytics-page .tablesort-asc,
+.analytics-page .tablesort-desc {
+  background-color: #dae6f0;
+}
+.analytics-page .metrics-graphics {
+  margin-bottom: 2rem;
+}
+.analytics-page .metrics-graphics h2.mg-chart-title {
+  font-size: 0.9rem;
+  color: #333;
+}
+.analytics-page .metrics-graphics h2.mg-chart-title i.fa {
+  font-size: 0.9rem;
+}
+.analytics-page .metrics-graphics .mg-active-datapoint {
+  font-size: 0.75rem;
+  fill: #777;
+}
+.analytics-page .metrics-graphics .mg-line1-color {
+  stroke: steelblue;
+}
+.analytics-page .metrics-graphics .mg-area1-color,
+.analytics-page .metrics-graphics .mg-hover-line1-color {
+  fill: steelblue;
+}
+.analytics-page .metrics-graphics .mg-line1-legend-color {
+  color: steelblue;
+}
+.analytics-page .metrics-graphics .mg-year-marker text {
+  font-size: 0.6rem;
+}
+.analytics-page .metrics-graphics .popover {
+  font-size: 0.75rem;
+}
+
+/*
+ * Copyright (c) 2013-2016 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/* Customize scrollbar (webkit) */
+/* Restyle links */
+/* Dashboard Sidebar */
+.dashboard-history-page {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: .9rem;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.dashboard-history-page * {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.dashboard-history-page *:before,
+.dashboard-history-page *:after {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.dashboard-history-page h1 {
+  margin-bottom: 2rem;
+}
+.dashboard-history-page h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+.dashboard-history-page .header .dashboard-well {
+  min-height: 2rem;
+  margin-bottom: 20px;
+  background-color: #F5F5F5;
+  padding: 20px 15px 15px;
+  border-bottom: 1px solid #aaa;
+}
+.dashboard-history-page .header .button-bar {
+  float: right;
+}
+.dashboard-history-page .header .button-bar .btn {
+  margin-left: .8rem;
+}
+.dashboard-history-page .header h1 {
+  display: inline-block;
+  margin-top: 0;
+  margin-right: 4rem;
+  margin-bottom: 0;
+}
+.dashboard-history-page .row {
+  margin-bottom: 1.5rem;
+}
+.dashboard-history-page td a {
+  margin-right: 1.4rem;
+}
+.dashboard-history-page td a > i {
+  margin-left: .7rem;
+}
+.dashboard-history-page .overview {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #999;
+}
+.dashboard-history-page .overview dt,
+.dashboard-history-page .overview dd {
+  font-size: 1.2rem;
+}
+.revisionDiff-modal .revision-controls select,
+.revisionDiff-modal .revision-controls label {
+  display: inline-block;
+}
+.revisionDiff-modal .revision-controls i.fa {
+  padding: 0.5rem;
+  display: inline-block;
+}
+.revisionDiff-modal .revision-controls .fa-angle-double-right {
+  margin-left: 0.5rem;
+}
+.revisionDiff-modal .diff {
+  overflow-x: auto;
+}
+.revisionDiff-modal .jsondiffpatch-delta .jsondiffpatch-unchanged {
+  display: none;
+}
+.revisionDiff-modal .jsondiffpatch-delta .jsondiffpatch-textdiff-line {
+  white-space: pre;
+}
+
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+.error {
+  position: absolute;
+  overflow: hidden;
+  top: 40px;
+  left: 40px;
+  margin: 4px 20px;
+  color: White;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 2.5em;
+  text-align: left;
+}
+@media only screen and (max-width: 500px) {
+  .error {
+    font-size: 1.3em;
+  }
+}
+.error p {
+  background-color: Black;
+  padding: 4px;
+}
+.error a {
+  color: White;
+  text-decoration: none;
+}
+
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/* Customize scrollbar (webkit) */
+/* Restyle links */
+/* Dashboard Sidebar */
+.export-page {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: .9rem;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.export-page * {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.export-page *:before,
+.export-page *:after {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.export-page .header .well {
+  padding: 15px;
+  padding-top: 20px;
+}
+.export-page .header .button-bar {
+  float: right;
+}
+.export-page .header h1 {
+  display: inline-block;
+  margin-top: 0;
+  margin-right: 4rem;
+}
+.export-page h5 {
+  font-weight: bold;
+  font-size: 1rem;
+  clear: both;
+  padding-top: 2rem;
+}
+.export-page form.row .form-control {
+  width: 90%;
+  padding: 6px;
+  display: inline-block;
+}
+.export-page form.row input.form-control {
+  height: 2.1rem;
+}
+.export-page form.row input.form-control.inline {
+  width: 43.6%;
+}
+.export-page form.row .fa-times {
+  color: #999;
+}
+.export-page form.row .inline-delete-icon {
+  display: inline-block;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: 4px;
+}
+.export-page form.row .inline-delete-icon:focus,
+.export-page form.row .inline-delete-icon:hover {
+  color: #000;
+  cursor: pointer;
+  opacity: .5;
+  filter: alpha(opacity=50);
+}
+.export-page .resultType {
+  float: left;
+  display: inline-block;
+  width: 3.5rem;
+}
+.export-page .resultType i {
+  font-size: 3rem;
+}
+.export-page .resultType span {
+  display: block;
+  font-size: 80%;
+}
+.export-page .footer {
+  margin-top: 20px;
+}
+.export-page .form-control {
+  height: 2.2rem;
+  width: 10rem;
+  margin-right: 1rem;
+}
+
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/* Customize scrollbar (webkit) */
+/* Restyle links */
+/* Dashboard Sidebar */
+.editor-gui {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: .9rem;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  /* Editor Form Controls */
+}
+.editor-gui * {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.editor-gui *:before,
+.editor-gui *:after {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.editor-gui .header .dashboard-well {
+  min-height: 2rem;
+  margin-bottom: 20px;
+  background-color: #F5F5F5;
+  padding: 20px 15px 15px;
+  border-bottom: 1px solid #aaa;
+}
+.editor-gui .header .button-bar {
+  float: right;
+}
+.editor-gui .header .button-bar .btn,
+.editor-gui .header .button-bar .btn-group {
+  margin-left: .8rem;
+}
+.editor-gui .header .button-bar .btn-group .btn {
+  margin: 0;
+}
+.editor-gui .header h1,
+.editor-gui .header h2 {
+  display: inline-block;
+  margin-top: 0;
+}
+.editor-gui .header h1 {
+  margin-right: 4rem;
+}
+.editor-gui .header .revision-control {
+  margin: 1px 3px;
+  margin-right: 1.5rem;
+  text-align: center;
+}
+.editor-gui .header .revision-control .fa-angle-double-left,
+.editor-gui .header .revision-control .fa-angle-double-right {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.5em;
+  -moz-transition-duration: 0.25s;
+  -webkit-transition-duration: 0.25s;
+  -o-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+}
+.editor-gui .header .revision-control .fa-angle-double-left:hover,
+.editor-gui .header .revision-control .fa-angle-double-right:hover {
+  -webkit-box-shadow: inset 0 0 5px #440;
+  -moz-box-shadow: inset 0 0 5px #440;
+  box-shadow: inset 0 0 5px #440;
+  border: 0;
+}
+.editor-gui .header .revision-control .fa-angle-double-left {
+  margin-right: 1rem;
+}
+.editor-gui .header .revision-control .fa-angle-double-right {
+  margin-left: 1rem;
+}
+.editor-gui .header .revision-control:hover {
+  cursor: pointer;
+}
+.editor-gui .header .analytics-control {
+  margin: 1px 3px;
+  margin-right: 1.5rem;
+  text-align: center;
+}
+.editor-gui .header .analytics-control:hover {
+  cursor: pointer;
+}
+.editor-gui .sidebar .nav-stacked.nav > li > a {
+  padding: 8px 15px;
+}
+.editor-gui .sidebar .nav-stacked.nav > li > a i.right-hand-icon {
+  float: right;
+  line-height: 20px;
+}
+.editor-gui .sidebar .nav-stacked .divider {
+  padding-top: .9rem;
+  border-bottom: 1px solid #aaa;
+  margin-bottom: .9rem;
+}
+.editor-gui .sidebar .nav-stacked .indent {
+  padding-left: 1rem;
+}
+.editor-gui .sidebar a:hover {
+  border-bottom: 1px solid transparent;
+}
+.editor-gui .sidebar .push-dashboard {
+  line-height: 2rem;
+}
+.editor-gui .sidebar .push-dashboard button {
+  float: right;
+}
+.editor-gui .footer {
+  margin-top: 20px;
+}
+.editor-gui .editor-view-header {
+  margin-bottom: 1rem;
+}
+.editor-gui .editor-view-header h3 {
+  display: inline-block;
+  margin-top: 0;
+}
+.editor-gui .editor-view-header .editor-view-header-buttons {
+  display: inline-block;
+  float: right;
+  margin-right: 6px;
+}
+.editor-gui .editor-contents .well-sm {
+  width: 90%;
+}
+.editor-gui .editor-contents .ui-select-prefix-icon {
+  padding-right: .5rem;
+}
+.editor-gui .editor-contents .bg-info,
+.editor-gui .editor-contents .bg-danger {
+  width: 90%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.editor-gui .editor-contents .editor-property-set {
+  margin-bottom: 2rem;
+}
+.editor-gui .editor-contents .horizontal-add {
+  margin-top: 16px;
+}
+.editor-gui .editor-contents .form-group {
+  width: 100%;
+}
+.editor-gui .editor-contents .form-group .text-danger {
+  font-size: 80%;
+  font-style: italic;
+}
+.editor-gui .editor-contents .form-group .select2-container {
+  width: 90%;
+}
+.editor-gui .editor-contents .form-group .select2-container .select2-choices {
+  height: 20px;
+  padding: 2px;
+}
+.editor-gui .editor-contents .list-group {
+  list-style: none;
+  position: relative;
+}
+.editor-gui .editor-contents .list-group span.icon {
+  cursor: move;
+  padding: 0 0.5rem;
+}
+.editor-gui .editor-contents .list-group .label {
+  font-weight: normal;
+  margin-right: 8px;
+  display: inline-block;
+}
+.editor-gui .editor-contents .list-group .drilldown {
+  font-size: 36px;
+  cursor: pointer;
+  color: #444;
+}
+.editor-gui .editor-contents .list-group > li {
+  position: relative;
+}
+.editor-gui .editor-contents .list-group .dndDraggingSource {
+  display: none;
+}
+.editor-gui .editor-contents .list-group .dndPlaceholder {
+  display: block;
+  background-color: #ddd;
+  min-height: 50px;
+}
+.editor-gui .editor-contents label {
+  display: block;
+}
+.editor-gui .editor-contents .form-control {
+  width: 90%;
+  padding: 6px;
+  display: inline-block;
+}
+.editor-gui .editor-contents .radio-group {
+  display: inline-block;
+  margin: 0 1.5rem;
+}
+.editor-gui .editor-contents .radio-group label {
+  display: inline-block;
+}
+.editor-gui .editor-contents input.form-control {
+  height: 2.1rem;
+}
+.editor-gui .editor-contents input.form-control.inline {
+  width: 44.6%;
+}
+.editor-gui .editor-contents select.form-control {
+  height: 2.2rem;
+}
+.editor-gui .editor-contents textarea.form-control {
+  height: 12rem;
+}
+.editor-gui .editor-contents input[type=radio] {
+  display: inline-block;
+  margin-right: 1.5rem;
+}
+.editor-gui .editor-contents .ace_editor {
+  width: 90%;
+}
+.editor-gui .editor-contents .inline-js-icon,
+.editor-gui .editor-contents .inline-encrypt-icon {
+  color: #bbb;
+  margin-left: .5rem;
+}
+.editor-gui .editor-contents .fa-times {
+  color: #999;
+}
+.editor-gui .editor-contents .inline-delete-icon {
+  display: inline-block;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: 4px;
+}
+.editor-gui .editor-contents .inline-delete-icon:focus,
+.editor-gui .editor-contents .inline-delete-icon:hover {
+  color: #000;
+  cursor: pointer;
+  opacity: .5;
+  filter: alpha(opacity=50);
+}
+.editor-gui .editor-contents .object-array-name {
+  line-height: 36px;
+}
+.editor-gui .editor-contents .object-array-name:hover,
+.editor-gui .editor-contents .object-array-name:focus {
+  color: #888;
+  cursor: pointer;
+}
+.editor-gui .editor-contents .panel-title {
+  font-size: 1rem;
+}
+.editor-gui .editor-contents input.ng-invalid,
+.editor-gui .editor-contents textarea.ng-invalid {
+  border: 1px solid red;
+}
+.editor-gui .editor-contents .permission-selector small.category {
+  margin-right: .6rem;
+}
+
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/* Customize scrollbar (webkit) */
+/* Restyle links */
+/* Dashboard Sidebar */
+.cyclotron-header {
+  padding: 8px 19px;
+  border-bottom: 1px solid #aaa;
+  color: #333;
+}
+.cyclotron-header .logo {
+  height: 32px;
+  vertical-align: top;
+  margin-right: .4rem;
+}
+.cyclotron-header h1 {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 300;
+  font-size: 1.5rem;
+  line-height: 34px;
+  margin: 0rem;
+  display: inline-block;
+  cursor: pointer;
+}
+.cyclotron-header .links {
+  display: block;
+  float: right;
+  text-align: right;
+  line-height: 34px;
+  font-size: 1.5rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.cyclotron-header .links a {
+  color: #333;
+  margin: 0 .6rem;
+}
+.cyclotron-header .links i.fa-key {
+  color: #51cbee;
+}
+.cyclotron-header .links a:not(.disabled):hover i {
+  color: #51cbee;
+  -moz-transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+.cyclotron-header .links a.disabled {
+  color: #999;
+}
+.cyclotron-header .links .dropdown-menu {
+  left: auto;
+  right: 0;
+  text-align: left;
+}
+.cyclotron-header .links .dropdown-menu .divider {
+  margin: auto;
+}
+.cyclotron-header .links .dropdown-menu .dropdown-header {
+  text-align: left;
+  padding: 0;
+  font-variant: small-caps;
+  background-color: #eee;
+  margin-bottom: .25rem;
+}
+.cyclotron-header .links .dropdown-menu .dropdown-header a:hover {
+  border-bottom-color: transparent;
+  background-color: #eee;
+}
+
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/* Customize scrollbar (webkit) */
+/* Restyle links */
+/* Dashboard Sidebar */
+.help-page {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #555;
+}
+.help-page * {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.help-page *:before,
+.help-page *:after {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.help-page h3 {
+  font-weight: normal;
+  font-size: 1.6rem;
+  margin-top: 1.7rem;
+}
+.help-page h4 {
+  font-weight: normal;
+  font-size: 1.4rem;
+  margin-top: 2.4rem;
+  margin-bottom: 0.8rem;
+}
+.help-page h5 {
+  font-weight: normal;
+  text-decoration: underline;
+  font-size: 1.3rem;
+  margin-top: 1.2rem;
+  font-variant: small-caps;
+}
+.help-page .form-control {
+  height: 2.1rem;
+}
+.help-page .sidebar {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.help-page .sidebar .nav-stacked.nav > li > a {
+  padding: 8px 15px;
+}
+.help-page .sidebar .nav-stacked .indent {
+  padding-left: 1rem;
+}
+.help-page .sidebar a:hover {
+  border-bottom: 1px solid transparent;
+}
+.help-page .sidebar h2 {
+  font-weight: bold;
+}
+.help-page .footer {
+  margin-top: 20px;
+}
+.help-page .help-content {
+  font-size: .9rem;
+}
+.help-page .help-content em {
+  color: #000;
+}
+.help-page .help-content pre.code {
+  margin: 1rem 0;
+}
+@media only screen and (min-width: 400px) {
+  .help-page .help-content {
+    padding-left: 2rem;
+    padding-right: 1rem;
+    padding-bottom: 2rem;
+  }
+  .help-page .help-content p,
+  .help-page .help-content ul,
+  .help-page .help-content pre {
+    max-width: 700px;
+  }
+  .help-page .help-content .dl-horizontal dt {
+    clear: none;
+  }
+  .help-page .help-content table {
+    max-width: 90%;
+  }
+}
+.help-page .help-content p {
+  margin: 1rem 0;
+}
+.help-page .help-content p a {
+  font-style: italic;
+  color: #000;
+}
+.help-page .help-content p a:after {
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  content: "\f08e";
+  margin-left: .4rem;
+}
+.help-page .help-content .no-help {
+  padding-top: 32px;
+}
+.help-page .help-content .no-wrap {
+  white-space: nowrap;
+}
+.help-page .help-content .bg-info,
+.help-page .help-content .bg-warning {
+  margin: 1rem 0;
+  padding: .5rem;
+  border-radius: 6px;
+  max-width: 700px;
+}
+.help-page .help-content .bg-info i,
+.help-page .help-content .bg-warning i {
+  float: left;
+}
+.help-page .help-content .bg-info a,
+.help-page .help-content .bg-warning a {
+  color: #000;
+}
+.help-page .help-content .bg-info .inner,
+.help-page .help-content .bg-warning .inner {
+  margin-left: 1.5rem;
+}
+.help-page .help-content table th {
+  padding: 10px 8px;
+  border-bottom: 1px dashed #999;
+}
+.help-page .help-content table td {
+  padding: 9px 8px 0px 8px;
+}
+.help-page .help-content table tr:hover {
+  background-color: #efefef;
+}
+
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/* Customize scrollbar (webkit) */
+/* Restyle links */
+/* Dashboard Sidebar */
+.home-page {
+  /* Mobile view overrides */
+  /* Desktop view overrides */
+}
+.home-page .ui-select-multiple input.ui-select-search {
+  width: 100% !important;
+  position: absolute;
+}
+@media only screen and (min-width: 656px) {
+  .home-page {
+    overflow-y: hidden;
+  }
+}
+.home-page header {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.home-page header h1 {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 2rem;
+  font-weight: normal;
+}
+.home-page .new-user-message {
+  max-width: 520px;
+  margin: auto;
+  margin-top: 1.7rem;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  color: #777;
+  background-color: #f8f8f8;
+  font-size: 1.0rem;
+}
+.home-page .new-user-message .inner {
+  margin: 0 2rem;
+}
+.home-page .new-user-message .inner > p {
+  margin: 0;
+  display: inline-block;
+}
+.home-page .new-user-message i.left {
+  float: left;
+}
+.home-page .new-user-message i.right {
+  float: right;
+}
+.home-page .new-user-message i.right:hover {
+  color: black;
+}
+.home-page.with-results .new-user-message {
+  max-width: unset;
+  width: 90%;
+}
+.home-page section.search {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.home-page section.search .ui-select-multiple {
+  text-align: left;
+}
+.home-page section.search .ui-select-container {
+  width: 90%;
+}
+.home-page section.search .ui-select-container .ui-select-match-item {
+  height: 14px;
+}
+.home-page section.search .ui-select-container .ui-select-match-item i {
+  line-height: inherit;
+  height: 14px;
+}
+.home-page section.search.active {
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+.home-page section.search.active h1 {
+  margin-top: 1rem;
+  display: inline-block;
+}
+.home-page section.search p {
+  margin: 2rem;
+}
+.home-page section.main-links {
+  text-align: center;
+}
+.home-page section.main-links a {
+  display: inline-block;
+  height: 6.5rem;
+  width: 8rem;
+  margin: 0 1rem;
+  vertical-align: top;
+  margin-bottom: 0.5rem;
+}
+.home-page section.main-links a i {
+  display: block;
+  font-size: 3.5rem;
+  margin-bottom: .5rem;
+}
+.home-page section.main-links a span {
+  display: block;
+  height: 3rem;
+}
+.home-page .results {
+  width: 90%;
+  margin: auto;
+  min-height: 300px;
+}
+.home-page .results .loading {
+  margin-left: 50%;
+  margin-top: 10rem;
+}
+.home-page .results thead th {
+  font-weight: normal;
+}
+.home-page .results thead th a.selected {
+  text-decoration: underline;
+}
+.home-page .results thead th.dashboard-analytics {
+  text-align: right;
+}
+.home-page .results .dashboard-item {
+  margin-bottom: 0.75rem;
+}
+.home-page .results .dashboard-item td {
+  border: 0;
+  padding: 0.75rem;
+}
+.home-page .results .dashboard-item td.like {
+  font-size: 80%;
+  line-height: 1.4rem;
+}
+.home-page .results .dashboard-item td.like i.fa {
+  color: #777;
+}
+.home-page .results .dashboard-item:hover {
+  background-color: #f7f7f7;
+}
+.home-page .results .dashboard-item:hover .dashboard-links a {
+  opacity: 1;
+}
+.home-page .results .dashboard-item.dashboard-item-unviewable,
+.home-page .results .dashboard-item.dashboard-item-deleted {
+  background-color: #efefef;
+  color: #aaa;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+}
+.home-page .results .dashboard-item .name {
+  display: inline-block;
+  font-weight: bold;
+}
+.home-page .results .dashboard-item .name > i {
+  margin-left: .7rem;
+}
+.home-page .results .dashboard-item .name > i.fa-external-link {
+  display: none;
+}
+.home-page .results .dashboard-item .name:hover > i.fa-external-link {
+  display: inline;
+}
+.home-page .results .dashboard-item .description,
+.home-page .results .dashboard-item .info {
+  color: #777;
+  font-size: 80%;
+}
+.home-page .results .dashboard-item .description a,
+.home-page .results .dashboard-item .info a {
+  color: #777;
+}
+.home-page .results .dashboard-item .description a:hover,
+.home-page .results .dashboard-item .info a:hover {
+  color: #222;
+}
+.home-page .results .dashboard-item .description i.fa {
+  font-size: 70%;
+  color: #999;
+}
+.home-page .results .dashboard-item .dashboard-analytics {
+  text-align: right;
+}
+.home-page .results .dashboard-item .dashboard-links {
+  text-align: right;
+  white-space: nowrap;
+}
+.home-page .results .dashboard-item .dashboard-links a {
+  margin-right: .75rem;
+}
+.home-page .results .dashboard-item .dashboard-links a.text-muted {
+  margin-top: .5rem;
+  font-size: 80%;
+}
+.home-page .results .dashboard-item .label {
+  font-weight: normal;
+  margin-right: .2rem;
+  cursor: pointer;
+}
+.home-page .results .paging {
+  text-align: center;
+}
+.home-page .results .paging .pagination {
+  margin-bottom: 0;
+}
+.home-page .results .paging li a {
+  color: #777 !important;
+}
+.home-page .results .paging li.active a {
+  background: none;
+  border-color: #51cbee;
+  -webkit-box-shadow: inset 0 0 5px #51cbee;
+  -moz-box-shadow: inset 0 0 5px #51cbee;
+  box-shadow: inset 0 0 5px #51cbee;
+}
+.home-page .footer {
+  width: 40%;
+  min-width: 200px;
+  margin: auto;
+  border-top: 1px solid #eee;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  text-align: center;
+}
+.home-page .footer .separator {
+  margin: 0 1rem;
+}
+@media only screen and (max-width: 656px) {
+  .home-page .results thead {
+    display: none;
+  }
+  .home-page .results .dashboard-item td {
+    display: block;
+    padding: 0 0.5rem;
+  }
+  .home-page .results .dashboard-item td:first-child,
+  .home-page .results .dashboard-item td:last-child {
+    padding: 0.5rem;
+  }
+  .home-page .results .dashboard-item .dashboard-links div {
+    display: inline-block;
+  }
+}
+@media only screen and (min-width: 656px) {
+  .home-page header {
+    margin-top: 8rem;
+    margin-bottom: 2rem;
+  }
+  .home-page header h1 {
+    text-align: center;
+    font-size: 3.5em;
+  }
+  .home-page.with-results .new-user-message {
+    width: 80%;
+  }
+  .home-page section.search {
+    margin-bottom: 3rem;
+  }
+  .home-page section.search .ui-select-container {
+    width: 56%;
+  }
+  .home-page section.search.active .ui-select-container {
+    width: 80%;
+  }
+  .home-page .results {
+    width: 80%;
+  }
+  .home-page .results .dashboard-item {
+    padding: 1rem;
+  }
+  .home-page .results .dashboard-item .dashboard-links a {
+    opacity: 0;
+  }
+  .home-page .footer {
+    margin-top: 4rem;
+  }
+}

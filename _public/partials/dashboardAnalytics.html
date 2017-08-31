@@ -1,0 +1,117 @@
+
+<div class="analytics-page container-fluid">
+  <div class="row cyclotron-header">
+    <h1 ui-sref="home" ui-sref-opts="{reload: true}"><img src="/img/favicon64.png" alt="Logo" class="logo"/>Cyclotron</h1>
+    <div class="links"><a ui-sref="home" title="Return to Home" class="home"><i class="fa fa-home"></i></a><a ng-href="/edit/" target="_self" title="Create a new Dashboard" class="new"><i class="fa fa-file-o"></i></a><a ui-sref="help" target="_blank" title="Documentation for Cyclotron" class="documentation"><i class="fa fa-question-circle"></i></a><a ng-if="analyticsEnabled()" ui-sref="analytics" title="Analytics for Cyclotron" class="analytics"><i class="fa fa-bar-chart"></i></a><a requires-auth="requires-auth" ng-click="login()" ng-if="!isLoggedIn()" title="Login" class="login"><i class="fa fa-unlock"></i></a><span requires-auth="requires-auth" ng-if="isLoggedIn()" class="dropdown"><a title="{{ userTooltip() }}" data-toggle="dropdown" class="user dropdown-toggle"><i ng-if="!currentUser().emailHash" class="fa fa-user"></i><img ng-if="currentUser().emailHash" ng-src="{{ userGravatar() }}"/></a>
+        <ul role="menu" class="dropdown-menu">
+          <li role="presentation" class="dropdown-header"><a>{{ currentUser().name }}</a></li>
+          <li ng-if="isAdmin()"><a title="Admin" class="admin">Is Admin <i class="fa fa-key"></i></a></li>
+          <li ng-if="isAdmin()" role="presentation" class="divider"><a></a></li>
+          <li><a ng-click="logout()" title="Logout" class="logout">Logout <i class="fa fa-lock"></i></a></li>
+        </ul></span></div>
+  </div>
+  <div class="row header">
+    <div class="dashboard-well">
+      <div class="button-bar"><a ui-sref="edit.details({ dashboardName: dashboard.name })" title="Edit this Dashboard" class="btn btn-default"><i class="fa fa-edit"></i> Edit Dashboard</a></div>
+      <h1>{{ dashboard.name }}</h1><span class="dates"><i class="fa fa-clock-o"></i><span title="Created on {{ longCreatedDate }}"> Created {{ createdDate }}</span> &mdash;<span title="Last modified on {{ longModifiedDate }}"> Last Modified {{ lastModifiedDate }}</span></span>
+      <h4 ng-show="dashboard.dashboard.description" class="small text-muted"><i class="fa fa-quote-left"></i> {{ dashboard.dashboard.description }} <i class="fa fa-quote-right"></i></h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="time-controls btn-group">
+        <div ng-model="selectedTimespan" uib-btn-radio="&quot;year&quot;" class="btn btn-default">Year</div>
+        <div ng-model="selectedTimespan" uib-btn-radio="&quot;month&quot;" class="btn btn-default">Month</div>
+        <div ng-model="selectedTimespan" uib-btn-radio="&quot;3_day&quot;" class="btn btn-default">3-Days</div>
+        <div ng-model="selectedTimespan" uib-btn-radio="&quot;day&quot;" class="btn btn-default">Day</div>
+        <div ng-model="selectedTimespan" uib-btn-radio="&quot;hour&quot;" class="btn btn-default">Hour</div>
+      </div>
+      <div class="overview">
+        <dl title="Total number of times this Dashboard was visited" class="inline">
+          <dt>{{ dashboard.visits }} </dt>
+          <dd>total 
+            <ng-pluralize count="dashboard.visits" when="{&quot;one&quot;: &quot;visit&quot;, &quot;other&quot;: &quot;visits&quot;}"></ng-pluralize>
+          </dd>
+        </dl>
+        <dl title="Total number of times a Page in this Dashboard was viewed" class="inline">
+          <dt>{{ dashboard.pageViews}} </dt>
+          <dd>total page 
+            <ng-pluralize count="dashboard.pageViews" when="{&quot;one&quot;: &quot;view&quot;, &quot;other&quot;: &quot;views&quot;}"></ng-pluralize>
+          </dd>
+        </dl>
+        <dl title="Number of unique visitors that viewed this Dashboard" class="inline">
+          <dt>{{ uniqueVisitorCount }}</dt>
+          <dd>unique 
+            <ng-pluralize count="uniqueVisitorCount" when="{&quot;one&quot;: &quot;visitor&quot;, &quot;other&quot;: &quot;visitors&quot;}"></ng-pluralize>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>Active Visits Over Time</h2>
+      <div data="visits" options="visitsOptions" class="metrics-graphics"></div>
+    </div>
+    <div class="col-sm-6">
+      <h2>Page Views Over Time</h2>
+      <div data="pageViews" options="pageViewsOptions" class="metrics-graphics"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>Data Sources </h2>
+      <table ts-wrapper="ts-wrapper" class="table">
+        <thead>
+          <tr>
+            <th ts-criteria="dataSourceName|lowercase">Name</th>
+            <th ts-criteria="dataSourceType|lowercase">Type</th>
+            <th ts-criteria="count|parseInt" ts-default="descending">Executions</th>
+            <th ts-criteria="successRate|parseFloat">Success Rate</th>
+            <th ts-criteria="avgDuration|parseFloat">Duration (ms)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="dataSource in dataSources | tablesort | limitTo:20" ts-repeat="ts-repeat">
+            <td>{{ dataSource.dataSourceName }}</td>
+            <td>{{ dataSource.dataSourceType }}</td>
+            <td>{{ dataSource.count }}</td>
+            <td>{{ dataSource.successRate | numeraljs:'0.0%' }}</td>
+            <td>{{ dataSource.avgDuration | numeraljs:'0.0' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-4">
+      <h2>Top Unique Visitors </h2>
+      <table ts-wrapper="ts-wrapper" class="table">
+        <thead>
+          <tr>
+            <th ts-criteria="user.name|lowercase">User</th>
+            <th ts-criteria="pageViews|parseInt" ts-default="descending">Page views</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="visitor in uniqueVisitors | tablesort | limitTo:20" ts-repeat="ts-repeat">
+            <td>{{ visitor.user.name || 'Anonymous' }}</td>
+            <td>{{ visitor.pageViews }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <h2>Browser Usage </h2>
+      <div data="browsers" options="browserOptions" class="c3chart"></div>
+    </div>
+    <div class="col-sm-4">
+      <h2>Widgets Viewed </h2>
+      <div data="widgets" options="widgetOptions" class="c3chart"></div>
+    </div>
+    <div class="col-sm-4">
+      <h2>Views Per Page</h2>
+      <div data="viewsPerPage" options="viewsPerPageOptions" class="c3chart"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+
+<div class="editor-view-header">
+  <h3>{{ getPageName(editor.selectedPage, editor.selectedPageIndex) }}</h3>
+  <div class="editor-view-header-buttons">
+    <button id="editor-widgets-add" type="button" ng-click="newWidget(null, editor.selectedPageIndex)" title="Add New Widget" class="btn btn-primary"><i class="fa fa-plus"></i><span> Add Widget</span></button>
+    <button id="editor-page-remove" type="button" ng-click="removePage(editor.selectedPageIndex); goToSubState(&quot;edit.pages&quot;, editor.dashboard.pages)" title="Remove" class="btn btn-default"> <i class="fa fa-times"></i><span> Remove Page</span></button>
+  </div>
+</div>
+<div>
+  <div class="form-group">
+    <label>Widgets</label>
+    <editor-view-object-array model="editor.selectedPage.widgets" label="Widget" substate="edit.widget" headingfn="getWidgetName(item, index)"></editor-view-object-array>
+  </div>
+  <div model="editor.selectedPage" excludes="pageExcludes" definition="dashboardProperties.pages.properties" class="editor-property-set"></div>
+</div>

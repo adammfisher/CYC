@@ -1,0 +1,9 @@
+
+<div ng-controller="TableauWidget" class="tableau-widget">
+  <script src="http://public.tableau.com/javascripts/api/viz_v1.js"></script>
+  <div style="height: {{ actualHeight }}, width: {{ actualWidth }}" class="tableauPlaceholder">
+    <object height="{{ actualHeight }}" width="{{ actualWidth }}" style="display:none;" class="tableauViz">
+      <param ng-repeat="param in params" name="{{ param.name }}" value="{{ param.value }}"/>
+    </object>
+  </div>
+</div>

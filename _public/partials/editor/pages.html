@@ -1,0 +1,10 @@
+
+<div class="editor-view-header">
+  <h3>Pages</h3>
+  <div class="editor-view-header-buttons">
+    <button id="editor-pages-add" type="button" ng-click="newPage()" title="Add New Page" class="btn btn-primary"> <i class="fa fa-plus"></i><span> Add Page</span></button>
+  </div>
+</div>
+<editor-view-object-array model="editor.dashboard.pages" label="Page" substate="edit.page" headingfn="getPageName(item, index)">
+  <div><span ng-repeat="widget in item.widgets" class="label label-default">{{ widget.widget }}</span><span ng-hide="item.widgets" class="label label-warning">No Widgets</span></div>
+</editor-view-object-array>

@@ -1,0 +1,14 @@
+{
+  "name": "perfnow",
+  "homepage": "https://github.com/daniellmb/perfnow.js",
+  "version": "0.0.1",
+  "_release": "0.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.1",
+    "commit": "48c1d9f52f83ca388a1cd2ae6a382b0fac2a2c02"
+  },
+  "_source": "https://github.com/daniellmb/perfnow.js.git",
+  "_target": "~0.0.1",
+  "_originalSource": "perfnow"
+}

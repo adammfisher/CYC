@@ -1,0 +1,8 @@
+
+<div ng-controller="ImageWidget" class="image-widget">
+  <h1 ng-if="::widget.title" class="title">{{ widgetTitle() }}</h1>
+  <div class="widget-body"><a ng-if="link" ng-href="{{ link }}" target="{{ linkTarget() }}">
+      <div fancy-image="fancy-image" image="currentImage" title="{{ currentImage.tooltip }}"></div></a>
+    <div ng-if="!link" fancy-image="fancy-image" image="currentImage" title="{{ currentImage.tooltip }}"></div>
+  </div>
+</div>

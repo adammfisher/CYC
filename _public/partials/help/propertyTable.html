@@ -1,0 +1,15 @@
+
+<table> 
+  <tr>
+    <th>Property</th>
+    <th>Description</th>
+    <th>Type</th>
+    <th>Required</th>
+  </tr>
+  <tr ng-repeat="(key, property) in properties">
+    <td>{{ key }}</td>
+    <td>{{ property.description }}</td>
+    <td>{{ property.editorMode || property.type }}</td>
+    <td><i ng-show="property.required" class="fa fa-check"></i></td>
+  </tr>
+</table>

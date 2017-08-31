@@ -1,0 +1,33 @@
+
+<div ng-controller="TableWidget" class="table-widget">
+  <h1 ng-if="::widget.title" class="title">{{ widgetTitle() }}</h1>
+  <div class="widget-body">
+    <div spinjs="spinjs" ng-if="isLoading()" class="widget-loading"></div>
+    <div ng-if="widgetContext.dataSourceError == true &amp;&amp; !isLoading()" class="widget-error"></div>
+    <div ng-if="widgetContext.nodata &amp;&amp; !isLoading()" class="widget-nodata">
+      <div class="fa fa-exclamation-triangle"></div><span> {{ widgetContext.nodata }}</span>
+    </div>
+    <div ng-if="sortedRows &amp;&amp; !noDataOrError()" class="results">
+      <table table-fixed-header="widget.freezeHeaders">
+        <thead ng-if="widget.omitHeaders != true">
+          <tr ng-if="columnGroups.length &gt; 0" table-row="table-row">
+            <th ng-repeat="group in columnGroups" colspan="{{ group.length }}" ng-class="{ empty: group.name === null }" class="group">{{ group.name }}</th>
+          </tr>
+          <tr table-row="table-row">
+            <th ng-repeat="column in columns" ng-class="{ empty: column.label === &quot;&quot; }" title="{{ ::column.headerTooltip }}"><a ng-if="widget.enableSort != false" ng-click="selectSort(column.name)">{{ ::column.label }}</a><span ng-if="widget.enableSort == false">{{ ::column.label }}</span><i ng-show="isSorted(column.name, true)" class="fa fa-sort-up"></i><i ng-show="isSorted(column.name, false)" class="fa fa-sort-down"></i><i ng-show="!isSorted(column.name, false) &amp;&amp; !isSorted(column.name, true)" class="fa fa-sort-down invisible"></i></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in sortedRows | limitTo:paging.itemsPerPage:(paging.currentPage-1)*paging.itemsPerPage" table-rule="table-rule" table-row="table-row">
+            <td ng-repeat="column in ::columns" table-rule="table-rule" table-column="table-column" title="{{ getCellProperty(row, column, &quot;tooltip&quot;) }}" ng-class="{hidden: isCellHidden(row, column, $parent.$index), aLink: getCellProperty(row, column, &quot;link&quot;), actionable: column.onClick}" rowspan="{{ getRowSpan(row, column, $parent.$index) }}" ng-click="onClickEvent(row, column)"> <img ng-if="::getCellProperty(row, column, &quot;image&quot;)" ng-src="{{ ::getCellProperty(row, column, &quot;image&quot;) }}" style="height: {{ ::getCellProperty(row, column, &quot;imageHeight&quot;, &quot;1em&quot;) }};"/><i ng-if="::getCellProperty(row, column, &quot;icon&quot;)" ng-style="{color: getCellProperty(row, column, &quot;iconColor&quot;)}" class="fa {{ ::getCellProperty(row, column, &quot;icon&quot;) }}"></i><span ng-if="::!getCellProperty(row, column, &quot;link&quot;)"> {{ ::getText(row, column) }}</span><a ng-if="getCellProperty(row, column, &quot;link&quot;)" target="{{ ::linkTarget(column) }}" ng-href="{{ ::getCellProperty(row, column, &quot;link&quot;) }}">{{ ::getText(row, column) }}<i class="fa fa-external-link"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div ng-if="widget.pagination.enabled" class="paging">
+        <uib-pagination total-items="paging.totalItems" ng-model="paging.currentPage" items-per-page="paging.itemsPerPage" max-size="paging.maxSize" boundary-links="paging.boundaryLinks" class="pagination-sm"></uib-pagination>
+        <p ng-if="widget.pagination.belowPagerMessage" class="below-pager-message">{{ getBelowPagerMessage() }}</p>
+      </div>
+    </div>
+  </div>
+</div>

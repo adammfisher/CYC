@@ -1,0 +1,51 @@
+
+<h3>About</h3>
+<p>
+  Cyclotron is a browser-based platform for creating dashboards.  
+  It provides standard boilerplate and plumbing, allowing non-programmers to easily create 
+  and edit dashboards using customizable components.  It has a built-in dashboard editor, 
+  and hosts the dashboards directly.
+</p>
+<p>
+  Dashboards are defined declaratively as a JSON document, which contains all the properties 
+  required to render the Dashboard. 
+</p>
+<div ng-repeat="message in selectedItem.messages" class="bg-{{ message.type || info }}"><i ng-class="message.icon || fa-info-circle" class="fa"></i>
+  <div data-ng-bind-html="message.html" class="inner"></div>
+</div>
+<h4>Terminology</h4>
+<ul>
+  <li><strong>Dashboard</strong>: a series of Pages, as well as Data Sources, Scripts, Styles, and other configurations; stored as a JSON document, it contains all the properties required to render itself</li>
+  <li><strong>Page</strong>: one or more Widgets combined in various sizes and layout; one Page is displayed at a time</li>
+  <li><strong>Widget</strong>: reusable component that displays on the Dashboard; different types are available</li>
+  <li><strong>Data Source</strong>: reusable component that retrieves data for use by Widgets; different types are available</li>
+</ul>
+<h4>Features</h4>
+<ul>
+  <li>Declarative definition of Dashboards, requiring no HTML or JavaScript (although it's optionally available)</li>
+  <li>Included Widgets: Annotation Chart, Chart, Header, HTML, iFrame, Image, Javascript, Number, QRCode, Stoplight, Treemap, Youtube</li>
+  <li>Included Data Sources: CyclotronData, Elasticsearch, Graphite, InfluxDB, JavaScript, JSON, Splunk</li>
+  <li>Built-in data loading, filtering, and sorting</li>
+  <li>LDAP/Active Directory Integration</li>
+  <li>Permissions for viewing and editing Dashboards</li>
+  <li>Built-in analytics for Dashboards</li>
+  <li>Mobile support</li>
+  <li>REST API access</li>
+</ul>
+<h4>When Should I Use Cyclotron?</h4>
+<p>
+  Cyclotron is best thought of as an alternative to custom, light-weight websites that visualize data.  It provides the web hosting,
+  page layout, data loading, and assorted widgets&mdash;all without writing code.  In contrast, building a comparable website 
+  from scratch would require provisioning a server/VM, choosing the appropriate web frameworks and libraries, and writing 
+  the code for the site.  Using Cyclotron simplifies this process dramatically, making it ideal for rapid development and prototyping.
+</p>
+<p>
+  However, Cyclotron implements a limited set of widgets, although the HTML and Javascript widgets do allow for a wide degree
+  of customization with some coding.  Cyclotron works best with minimally-interactive dashboards, as it lacks more robust 
+  interaction features like dependent widgets and triggers.
+</p>
+<p>Through various Data Sources, Cyclotron can pull data from databases, web services, etc. It's possible to do light data processing and massaging in Cyclotron, but it is not a replacement for ETL processes or SQL queries. In this regard, Cyclotron is ideal as a front-end for an existing database or web service. Cyclotron does have a very lightweight data backend for storing Dashboard data, but this is not a replacement for databases as it is limited in storage space and lacks any kind of processing.</p>
+<p>
+  Finally, Cyclotron has automatic page rotation and data-refreshing features, making it well-suited to hosting status boards and monitoring dashboards.  It is less suitable for generating 
+  reports (although PDF export is available).
+</p>

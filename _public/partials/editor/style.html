@@ -1,0 +1,8 @@
+
+<div class="editor-view-header">
+  <h3>{{ getScriptOrStyleName(editor.selectedItem, editor.selectedItemIndex, 'Style') }}</h3>
+  <div class="editor-view-header-buttons">
+    <button id="editor-style-remove" type="button" ng-click="removeStyle(editor.selectedItemIndex); goToSubState(&quot;edit.styles&quot;, editor.dashboard.styles)" title="Remove" class="btn btn-default"> <i class="fa fa-times"></i><span> Remove Style</span></button>
+  </div>
+</div>
+<editor-property-set model="editor.selectedItem" definition="dashboardProperties.styles.properties"></editor-property-set>

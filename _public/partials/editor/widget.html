@@ -1,0 +1,12 @@
+
+<div class="editor-view-header">
+  <h3>{{ getWidgetName(editor.selectedItem, editor.selectedItemIndex) }}</h3>
+  <div class="editor-view-header-buttons">
+    <button id="editor-widget-remove" type="button" ng-click="removeWidget(editor.selectedItemIndex); goToSubState(&quot;edit.page&quot;, editor.selectedPage, editor.selectedPageIndex)" title="Remove" class="btn btn-default"> <i class="fa fa-times"></i><span> Remove Widget</span></button>
+  </div>
+</div>
+<div class="form-group">
+  <label title="{{ dashboardProperties.pages.properties.widgets.properties.widget.description }}">Widget Type</label>
+  <select ng-model="editor.selectedItem.widget" ng-change="selectWidget()" title="{{ dashboardProperties.pages.properties.widgets.properties.widget }}" ng-options="optionKey as (optionValue.label || optionKey) for (optionKey, optionValue) in widgets" class="form-control"></select>
+</div>
+<div dashboard="editor.dashboard" model="editor.selectedItem" definition="combinedWidgetProperties(editor.selectedItem)" class="editor-property-set"></div>

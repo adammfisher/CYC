@@ -1,0 +1,10 @@
+
+<div ng-controller="HeaderWidget" class="header-widget">
+  <div ng-if="showTitle" class="title"><a ng-href="{{ headerTitle.link }}" ng-class="{ actionable: headerTitle.link }" class="logo"><img ng-src="{{ headerTitle.logoUrl }}" ng-show="headerTitle.logoUrl" ng-style="{ &quot;height&quot;: headerTitle.logoSize }"/></a><a ng-href="{{ headerTitle.link }}" ng-class="{ actionable: headerTitle.link }" class="title">
+      <h1 ng-style="{ &quot;font-size&quot;: headerTitle.titleSize }"><span>{{ title }}</span><span ng-if="headerTitle.showPageName" class="page-name separator">{{ headerTitle.pageNameSeparator }}</span><span ng-if="headerTitle.showPageName" class="page-name">{{ page.name }}</span></h1></a></div>
+  <div ng-if="showParameters &amp;&amp; parameters.length &gt; 0" class="parameters">
+    <div ng-repeat="parameter in parameters" dashboard="dashboard" parameter-definition="parameter" class="header-parameter"></div>
+    <button ng-if="showUpdateButton" ng-click="updateButtonClick()" class="btn btn-link">{{ updateButtonLabel }}</button>
+  </div>
+  <div ng-show="showCustomHtml" ng-bind-html="customHtml()" class="custom-box"></div>
+</div>

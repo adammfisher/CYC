@@ -1,0 +1,43 @@
+
+<div ng-class="{ &quot;has-sidebar&quot;: dashboard.sidebar.showDashboardSidebar }" class="dashboard dashboard-page-background">
+  <div class="click-cover"></div>
+  <div ng-if="dashboard.sidebar.showDashboardSidebar" class="dashboard-sidebar collapsed dashboard-page-background">
+    <div class="sidebar-expander-hitbox">
+      <div class="sidebar-expander"><i class="fa fa-caret-right"></i></div>
+    </div>
+    <div class="sidebar-header">
+      <h1 ng-if="dashboard.sidebar.showDashboardTitle == true">{{ dashboardDisplayName }}</h1>
+      <table ng-if="dashboard.sidebar.showToolbar == true" class="iconbar">
+        <tr>
+          <td><a ng-href="/edit/{{ dashboard.name }}" title="Edit this Dashboard" target="_blank"><i class="fa fa-edit"></i></a></td>
+          <td ng-if="analyticsEnabled()"><a ng-href="/analytics/{{ dashboard.name }}" title="View Analytics for this Dashboard" target="_blank"><i class="fa fa-bar-chart"></i></a></td>
+          <td><a ng-href="{{ exportUrl }}" title="Export this Dashboard" target="_blank"><i class="fa fa-download"></i></a></td>
+          <td requires-auth="requires-auth"><i ng-if="!isLiked" ng-click="toggleLike()" title="Like this Dashboard" class="fa fa-thumbs-o-up"></i><i ng-if="isLiked" ng-click="toggleLike()" title="Unlike this Dashboard" class="fa fa-thumbs-up">   </i></td>
+        </tr>
+      </table>
+    </div>
+    <div class="sidebar-accordion">
+      <accordion-group ng-repeat="content in sidebarContent track by $index" heading="{{ content.heading }}" is-open="content.isOpen">
+        <div ng-bind-html="trustHtml(content.html)"></div>
+      </accordion-group>
+      <accordion-group heading="Show/Hide Widgets" ng-if="dashboard.sidebar.showHideWidgets == true" is-open="isShowHideWidgetsOpen" class="show-hide-widgets">
+        <ul dnd-list="calculatedWidgets" class="widget-list">
+          <li ng-repeat="widget in calculatedWidgets" dnd-draggable="widget" dnd-effect-allowed="move" dnd-moved="moveWidget($index)"><span class="icon"><i class="fa fa-bars"></i></span><span class="title">{{ widget.label }}</span><span class="swtch">
+              <switch ng-model="widget.visible" ng-change="changeVisibility(widget, $index)"></switch></span></li>
+        </ul>
+        <ul class="widget-list final">
+          <li><span class="icon"></span><span class="title">All Widgets</span><span class="swtch">
+              <switch ng-model="allWidgetsVisible" ng-change="toggleAllWidgets()"></switch></span></li>
+        </ul>
+        <p class="centered"><a ng-click="resetDashboardOverrides()" title="Reset to default"><i class="fa fa-refresh"></i> Reset to default</a></p>
+      </accordion-group>
+    </div>
+    <div class="sidebar-footer">
+      <div class="logos"><a ng-repeat="logo in ::footerLogos" title="{{ ::logo.title }}" ng-href="{{ ::logo.href }}" target="_self" class="logo"><img ng-src="{{ ::logo.src }}" alt="{{ ::logo.title }}"/></a></div>
+    </div>
+  </div>
+  <div ng-hide="dashboard.showDashboardControls == false" class="dashboard-controls"><i ng-click="moveBack()" ng-class="{ disabled: !canMoveBack() }" title="Go to the previous page" class="fa fa-chevron-left"></i><i ng-click="pause()" ng-show="!paused" title="Pause Dashboard page rotation" class="fa fa-pause"></i><i ng-click="play()" ng-show="paused" ng-class="{ disabled: !canMoveForward() }" title="Start Dashboard page rotation" class="fa fa-play"></i><a ng-href="{{ exportUrl }}" target="_blank" title="Export the Dashboard" class="fa fa-download"></a><i requires-auth="requires-auth" ng-if="!isLiked" ng-click="toggleLike()" title="Like this Dashboard" class="fa fa-thumbs-o-up"></i><i requires-auth="requires-auth" ng-if="isLiked" ng-click="toggleLike()" title="Unlike this Dashboard" class="fa fa-thumbs-up">   </i><i ng-click="moveForward()" ng-class="{ disabled: !canMoveForward() }" title="Go to the next page" class="fa fa-chevron-right"></i></div>
+  <div class="dashboard-pages">
+    <dashboard-page ng-repeat="page in currentPage" dashboard="dashboard" page="page" page-number="{{ currentPageIndex }}" page-overrides="dashboardOverrides.pages[currentPageIndex]"></dashboard-page>
+  </div>
+</div>

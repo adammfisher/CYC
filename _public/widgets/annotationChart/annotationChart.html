@@ -1,0 +1,15 @@
+
+<div ng-controller="AnnotationChartWidget" class="annotation-chart-widget">
+  <h1 ng-if="::widget.title" class="title">{{ widgetTitle() }}</h1>
+  <div ng-if="selectedPoint" class="annotation-editor">
+    <button type="button" uib-popover-template="&quot;/widgets/annotationChart/addAnnotation.html&quot;" popover-title="Annotations" popover-placement="auto bottom" popover-is-open="annotations.popoverOpen" class="btn btn-link">{{ annotations.verb }} Annotation</button>
+  </div>
+  <div class="widget-body">
+    <div spinjs="spinjs" ng-if="isLoading()" class="widget-loading"></div>
+    <div ng-if="widgetContext.dataSourceError == true &amp;&amp; !isLoading()" class="widget-error"></div>
+    <div ng-if="widgetContext.nodata &amp;&amp; !isLoading()" class="widget-nodata">
+      <div class="fa fa-exclamation-triangle"></div><span> {{ widgetContext.nodata }}</span>
+    </div>
+    <div google-chart="google-chart" chart="chartObject" agc-on-error="handleError(message)" agc-on-select="selectItem(selectedItem)" agc-on-range-change="rangeChange(start, end)" ng-if="!noDataOrError() &amp;&amp; chartObject.data" class="the-chart"></div>
+  </div>
+</div>

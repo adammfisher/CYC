@@ -1,0 +1,18 @@
+
+<div class="revisionDiff-modal">
+  <div class="modal-header">
+    <h3 class="modal-title">Diff Rev {{ rev1 }} to Rev {{ rev2 }}</h3>
+  </div>
+  <div class="modal-body">
+    <div class="revision-controls"><i ng-if="rev1 &gt; 1" ng-click="previous()" title="Compare Previous Revision" class="fa fa-angle-double-left btn-link"></i>
+      <label>From rev</label>
+      <select ng-model="rev1" ng-options="revision.rev as revision.rev for revision in revisions"></select>
+      <label> to rev</label>
+      <select ng-model="rev2" ng-options="revision.rev as revision.rev for revision in revisions"></select><i ng-if="rev2 &lt; dashboard.rev" ng-click="next()" title="Compare Next Revision" class="fa fa-angle-double-right btn-link"></i>
+    </div>
+    <div ng-bind-html="diff" class="diff"></div>
+  </div>
+  <div class="modal-footer">
+    <button ng-click="$dismiss(&quot;ok&quot;)" class="btn">OK</button>
+  </div>
+</div>

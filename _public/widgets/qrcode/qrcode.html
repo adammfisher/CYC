@@ -1,0 +1,9 @@
+
+<div ng-controller="QRCodeWidget" class="qrcode-widget">
+  <div spinjs="spinjs" ng-if="isLoading()" class="widget-loading"></div>
+  <div ng-if="widgetContext.dataSourceError == true &amp;&amp; !isLoading()" class="widget-error"></div>
+  <div ng-if="widgetContext.nodata &amp;&amp; !isLoading()" class="widget-nodata">
+    <div class="fa fa-exclamation-triangle"></div><span> {{ widgetContext.nodata }}</span>
+  </div>
+  <div ng-if="!noDataOrError() &amp;&amp; !isLoading()" options="options" class="qrcode"></div>
+</div>

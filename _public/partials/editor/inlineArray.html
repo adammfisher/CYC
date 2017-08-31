@@ -1,0 +1,13 @@
+
+<uib-accordion close-others="true">
+  <uib-accordion-group ng-repeat="item in model" heading="{{ definition.singleLabel }} {{ $index }}">
+    <div ng-transclude="parent"></div>
+    <div class="button-group">
+      <button id="editor-list-remove" type="button" ng-click="removeItem($index)" title="Remove" class="btn btn-default"> <i class="fa fa-times"></i><span> Remove {{ definition.singleLabel }}</span></button>
+    </div>
+  </uib-accordion-group>
+</uib-accordion>
+<p ng-if="model.length == 0" class="text-muted">There are no {{ definition.singleLabel }}s</p>
+<div class="horizontal-add button-group">
+  <button id="editor-list-add" type="button" ng-click="addNewObject()" title="Add New {{ definition.singleLabel }}" class="btn btn-default"> <i class="fa fa-plus"></i><span> Add {{ definition.singleLabel }}</span></button>
+</div>

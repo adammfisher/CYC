@@ -1,0 +1,27 @@
+
+<div class="modal-header">
+  <h3 class="modal-title">Encrypt String</h3>
+</div>
+<div class="modal-body">
+  <p>This dialog encrypts a plaintext string.  The encrypted form can be copied and used in certain Data Source properties.</p>
+  <p></p>
+  <p>This encryption is one-way, and the original value cannot be retrieved from Cyclotron. Store it externally if needed.</p>
+  <p></p>
+  <form ng-submit="encrypt()">
+    <p>
+      <input type="value" ng-model="fields.value" placeholder="Original String" class="superwide"/>
+    </p>
+    <div class="centered">
+      <p>
+        <button id="editor-encrypt-encrypt" ng-click="encrypt()" class="btn btn-primary">Encrypt</button>
+      </p>
+    </div>
+    <p>
+      <input type="value" ng-model="fields.encryptedValue" placeholder="Encrypted String" class="superwide"/>
+    </p>
+    <input type="submit" style="position: absolute; left: -9999px"/>
+  </form>
+</div>
+<div class="modal-footer">
+  <button id="editor-encrypt-cancel" ng-click="cancel()" class="btn">Close</button>
+</div>

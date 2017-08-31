@@ -1,0 +1,24 @@
+
+<h3>CloudWatch Data Source</h3>
+<p>The CloudWatch Data Source is a thin wrapper around the Amazon CloudWatch API, making it easier to submit queries and retrieve the results. For more fine-tuned control around the requests, it may be preferable to use the JSON Data Source instead.</p>
+<P>Please note that it may be necessary to set the optional <em>proxy </em>property in the Data Source in order to access web sites or services in other domains.  
+  This property lists other Cyclotron servers which may have the required connectivity. 
+  By default, this Data Source uses the current Cyclotron environment to proxy the request.
+</P>
+<property-table properties="config.dashboard.properties.dataSources.options.cloudwatch.properties"></property-table>
+<h4>AWS Endpoint</h4>
+<p>Amazon Web Services offer various regional endpoints, and the correct endpoint must be used to retrieve the correct CloudWatch metrics.  Reger to the list of  <a href="http://docs.aws.amazon.com/general/latest/gr/rande.html#cw_region" target="_blank">AWS Regions and Endpoints</a>.  The desired Endpoint should be set as the <em> url</em> property of the Data Source.</p>
+<h4>Authentication</h4>
+<p>The Amazon CloudWatch API requires authentication using AWS IAM credentials, and signs the HTTP requests using Signature Version 4.  The <em> accessKeyId</em> and<em> secretAccessKey</em> properties are required for this purpose.</p>
+<h4>CloudWatch Parameters</h4>
+<p>The CloudWatch Data Source is configured with one or more CloudWatch API parameters.<em> Action</em> is required, but other parameters may be optional depending on the chosen action. Please refer to the <a href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/Welcome.html" target="_blank">Amazon CloudWatch API Reference</a> for more information about the available parameters and their useage.</p>
+<h4>Pre-Processor</h4>
+<p>
+  The CloudWatch Data Source supports an optional pre-processor function that will be called before
+  the Data Source executes.  For more details, see the main Data Sources page.
+</p>
+<h4>Post-Processor</h4>
+<p>
+  The CloudWatch Data Source supports an optional post-processor function that will be called after
+  data is loaded.  For more details, see the main Data Sources page.
+</p>

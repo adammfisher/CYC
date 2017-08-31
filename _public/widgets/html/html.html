@@ -1,0 +1,12 @@
+
+<div ng-controller="HtmlWidget" class="html-widget">
+  <h1 ng-if="::widget.title" class="title">{{ widgetTitle() }}</h1>
+  <div class="widget-body">
+    <div spinjs="spinjs" ng-if="isLoading()" class="widget-loading"></div>
+    <div ng-if="widgetContext.dataSourceError == true &amp;&amp; !isLoading()" class="widget-error"></div>
+    <div ng-if="widgetContext.nodata &amp;&amp; !isLoading()" class="widget-nodata">
+      <div class="fa fa-exclamation-triangle"></div><span> {{ widgetContext.nodata }}</span>
+    </div>
+    <div ng-if="!noDataOrError()" html-repeater="htmlStrings"></div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+
+<div ng-controller="NumberWidget" class="number-widget">
+  <h1 ng-if="::widget.title" class="title">{{ widgetTitle() }}</h1>
+  <div class="widget-body">
+    <div spinjs="spinjs" ng-if="isLoading()" class="widget-loading"></div>
+    <div ng-if="widgetContext.dataSourceError == true &amp;&amp; !isLoading()" class="widget-error"></div>
+    <div ng-if="widgetContext.nodata &amp;&amp; !isLoading()" class="widget-nodata">
+      <div class="fa fa-exclamation-triangle"></div><span> {{ widgetContext.nodata }}</span>
+    </div>
+    <div ng-if="!noDataOrError()" ng-repeat="number in numbers" number-count="numberCount" index="$index" auto-size="widget.autoSize" is-horizontal="isHorizontal" ng-click="onClickEvent(number)" class="the-number {{ getClass(number) }}"><span ng-if="number.prefix">{{ number.prefix }}              </span>
+      <h1 title="{{ number.tooltip }}" ng-style="{color: number.color || &quot;inherit&quot;}" class="big">{{ number.number }}<i ng-if="number.icon" title="{{ number.iconTooltip }}" ng-style="{color: number.iconColor || &quot;inherit&quot;}" class="fa {{ number.icon }}"></i></h1><span ng-if="number.suffix"> {{ number.suffix }}</span>
+    </div>
+  </div>
+  <div ng-if="widget.link" class="widget-footer"><a ng-href="{{ getUrl() }}" target="{{ linkTarget() }}" class="link"><i class="fa fa-external-link"> </i> {{ widget.link }}</a></div>
+</div>

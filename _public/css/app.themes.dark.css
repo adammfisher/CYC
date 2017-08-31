@@ -1,0 +1,1091 @@
+/*
+ * Copyright (c) 2013-2016 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/* Theme: dark */
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/* Customize scrollbar (webkit) */
+/* Restyle links */
+/* Dashboard Sidebar */
+/* Variables */
+/* Dashboard Styles */
+.dashboard.dashboard-dark {
+  background-color: #2f2f2f;
+  /* Dashboard elements */
+  /*
+ * Copyright (c) 2016 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+}
+.dashboard.dashboard-dark .dashboard-page-background {
+  background-color: #2f2f2f;
+}
+.dashboard.dashboard-dark.has-sidebar {
+  /* Add a special margin on the left side of the dashboard for the sidebar */
+  margin-left: 12px;
+}
+.dashboard.dashboard-dark .dashboard-sidebar {
+  width: 300px;
+  border-right: 12px solid #666;
+  transition: margin-left 0.5s, border-right 0.5s;
+}
+.dashboard.dashboard-dark .dashboard-sidebar.collapsed {
+  margin-left: -300px;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-expander-hitbox {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 18px;
+  margin-right: -18px;
+  z-index: 9001;
+  cursor: pointer;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-expander {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -10px;
+  height: 20px;
+  width: 12px;
+  color: #ddd;
+  line-height: 20px;
+  text-align: center;
+  font-size: 20px;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-header {
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid #666;
+  color: #D1D1D1;
+  background-color: #323232;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-header h1 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-header table.iconbar {
+  border-top: 1px solid #666;
+  width: 100%;
+  color: #ebebeb;
+  background-color: #202020;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-header table.iconbar td {
+  text-align: center;
+  padding: 10px 15px 5px 15px;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-header table.iconbar td a {
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 0;
+  color: #ebebeb;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-header table.iconbar td a:hover {
+  color: unset;
+  border-bottom: 0;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-header table.iconbar td i.fa {
+  font-size: 2rem;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-accordion {
+  display: block;
+  width: 100%;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-accordion .panel-group {
+  margin-bottom: 0;
+  height: 100%;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-accordion .panel-body {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-accordion .panel-group .panel-heading + .panel-collapse .panel-body {
+  border-top: 0;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-accordion .panel {
+  border: 0;
+  color: #202020;
+  background-color: #e2e2e2;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-accordion .panel-group .panel {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-accordion .panel-group .panel + .panel {
+  margin-top: 0;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-accordion .panel-heading {
+  cursor: pointer;
+  padding: 10px 15px;
+  border-bottom: 1px solid #202020;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  color: #D1D1D1;
+  background-color: #555555;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-accordion .panel-heading .panel-title {
+  font-size: 1.5rem;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-accordion .show-hide-widgets p.centered {
+  margin-bottom: 1rem;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-accordion .show-hide-widgets .widget-list {
+  position: relative;
+  padding-left: 0;
+  list-style: none;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-accordion .show-hide-widgets .widget-list li {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  position: relative;
+  min-height: 50px;
+  padding-left: 0;
+  list-style: none;
+  border-bottom: 1px solid #ddd;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-accordion .show-hide-widgets .widget-list li > span.icon {
+  display: inline-block;
+  min-width: 30px;
+  color: #777;
+  cursor: move;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-accordion .show-hide-widgets .widget-list li > span.title {
+  flex-grow: 1;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-accordion .show-hide-widgets .widget-list li > span.swtch {
+  display: inline-block;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-accordion .show-hide-widgets .widget-list .dndDraggingSource {
+  display: none;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-accordion .show-hide-widgets .widget-list .dndPlaceholder {
+  display: block;
+  background-color: #ddd;
+  min-height: 50px;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-accordion .show-hide-widgets .widget-list.final {
+  margin-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-footer {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 67px;
+  padding: 1rem;
+  border-top: 1px solid #666;
+  color: #D1D1D1;
+  background-color: #323232;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-footer .logos {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: center;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-footer .logos a {
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 0;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-footer .logos a:hover {
+  color: unset;
+  border-bottom: 0;
+}
+.dashboard.dashboard-dark .dashboard-sidebar .sidebar-footer .logos img {
+  height: 32px;
+  vertical-align: top;
+  margin-right: .4rem;
+  cursor: pointer;
+}
+.dashboard-page {
+  /* Well style, normal only */
+  /* Page styles */
+}
+.dashboard-page.normal .dashboard-dark.dashboard-widgetwrapper > .dashboard-widget {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding: 10px;
+  -moz-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 6px 0px inset;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 6px 0px inset;
+  -o-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 6px 0px inset;
+  box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 6px 0px inset;
+}
+.dashboard-page.dashboard-dark {
+  color: #D1D1D1;
+  background-color: #2f2f2f;
+}
+/* Widget styles */
+.dashboard-widgetwrapper.dashboard-dark {
+  color: #D1D1D1;
+  /* Import widget styles, using the theme variables */
+  /* Import all Widget styles */
+  /*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+  /*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+  /*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+  /*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+  /*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+  /*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+  /*
+ * Copyright (c) 2013-2016 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+  /*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+  /*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+  /*
+ * Copyright (c) 2013-2016 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+  /*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+  /*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+  /*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+  /*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+  /*
+ * Copyright (c) 2013-2016 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+  /* Extra styles */
+}
+.dashboard-widgetwrapper.dashboard-dark > .tooltip .tooltip-inner {
+  background-color: #2f2f2f;
+  color: #D1D1D1;
+}
+.dashboard-widgetwrapper.dashboard-dark > .tooltip .tooltip-arrow {
+  border-top-color: #2f2f2f;
+  border-bottom-color: #2f2f2f;
+}
+.dashboard-widgetwrapper.dashboard-dark > .dashboard-widget {
+  background-color: #202020;
+}
+.dashboard-widgetwrapper.dashboard-dark > .dashboard-widget h1,
+.dashboard-widgetwrapper.dashboard-dark > .dashboard-widget h2,
+.dashboard-widgetwrapper.dashboard-dark > .dashboard-widget h3,
+.dashboard-widgetwrapper.dashboard-dark > .dashboard-widget h4,
+.dashboard-widgetwrapper.dashboard-dark > .dashboard-widget h5,
+.dashboard-widgetwrapper.dashboard-dark > .dashboard-widget h6 {
+  color: White;
+}
+.dashboard-widgetwrapper.dashboard-dark > .dashboard-widget button,
+.dashboard-widgetwrapper.dashboard-dark > .dashboard-widget input,
+.dashboard-widgetwrapper.dashboard-dark > .dashboard-widget optgroup,
+.dashboard-widgetwrapper.dashboard-dark > .dashboard-widget select,
+.dashboard-widgetwrapper.dashboard-dark > .dashboard-widget textarea {
+  color: black;
+}
+.dashboard-widgetwrapper.dashboard-dark > .dashboard-widget a {
+  color: #f7f7f7;
+  text-decoration: none;
+  border-bottom: 1px dotted #888;
+}
+.dashboard-widgetwrapper.dashboard-dark > .dashboard-widget a:hover {
+  color: #ffffff;
+}
+.dashboard-widgetwrapper.dashboard-dark .annotation-chart-widget {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  height: 100%;
+  box-sizing: border-box;
+  /* Overrides to Google styles */
+}
+.dashboard-widgetwrapper.dashboard-dark .annotation-chart-widget * {
+  user-select: none;
+  outline: none;
+  box-sizing: border-box;
+}
+.dashboard-widgetwrapper.dashboard-dark .annotation-chart-widget .the-chart {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.dashboard-widgetwrapper.dashboard-dark .annotation-chart-widget .google-visualization-atl .border {
+  border: none;
+}
+.dashboard-widgetwrapper.dashboard-dark .annotation-chart-widget .google-visualization-atl .annotationsTdContainer {
+  border-left: 0px;
+}
+.dashboard-widgetwrapper.dashboard-dark .annotation-chart-widget .google-visualization-atl .border {
+  background-color: #202020;
+}
+.dashboard-widgetwrapper.dashboard-dark .annotation-chart-widget .annotation-editor {
+  position: absolute;
+  top: 0;
+  right: 10px;
+}
+.dashboard-widgetwrapper.dashboard-dark .annotation-chart-widget .annotation-editor .popover.bottom > .arrow {
+  left: unset;
+  right: 3.5rem !important;
+}
+.dashboard-widgetwrapper.dashboard-dark .chart-widget {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  height: 100%;
+}
+.dashboard-widgetwrapper.dashboard-dark .clock-widget {
+  font-size: 24pt;
+  font-weight: 300;
+  text-align: center;
+  padding: 14px;
+  overflow: auto;
+  height: 100%;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget {
+  overflow: auto;
+  height: 100%;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .title {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .title a {
+  color: unset;
+  text-decoration: none;
+  border-bottom: none;
+  cursor: unset;
+  word-wrap: break-word;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .title a.actionable {
+  cursor: pointer;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .title a.logo {
+  flex: 0 0 auto;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .title a.logo img {
+  margin-right: 0.75rem;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .title a.title {
+  flex: 1 1 25rem;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .title a.title h1 {
+  display: inline-block;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .title a.title .separator {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .title a.title .page-name {
+  color: #777;
+  font-size: 80%;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .parameters:first-child {
+  margin-top: -0.5rem;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .parameters .header-parameter {
+  float: left;
+  display: inline-block;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  background-color: #2f2f2f;
+  border: 1px solid #494949;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .parameters .header-parameter i.fa.fa-cog {
+  margin-left: 0.5rem;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .parameters .header-parameter label {
+  font-weight: 400;
+  margin-bottom: 0;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .parameters .header-parameter input {
+  margin: 0;
+  padding: 0;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .parameters .header-parameter input[type="checkbox"] {
+  margin: 5px 0;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .parameters .header-parameter select {
+  margin: 2px 0;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .parameters .header-parameter .links a.btn {
+  padding: 0;
+  margin-left: 0.5rem;
+  color: #D1D1D1;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .parameters .header-parameter .links a.btn.selected {
+  color: #4A89DC;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .parameters button {
+  float: left;
+  display: inline-block;
+  color: #D1D1D1;
+  margin: 12px 0;
+  height: 36px;
+  border: 1px solid #494949;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .custom-box {
+  clear: both;
+}
+.dashboard-widgetwrapper.dashboard-dark .widget-noscroll .header-widget {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+.dashboard-widgetwrapper.dashboard-dark.widget-skinny .header-widget .parameters .header-parameter {
+  display: block;
+  float: none;
+}
+.dashboard-widgetwrapper.dashboard-dark .html-widget {
+  overflow-y: auto;
+  overflow-x: auto;
+  height: 100%;
+}
+.dashboard-widgetwrapper.dashboard-dark .widget-noscroll .html-widget {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+.dashboard-widgetwrapper.dashboard-dark .iframe-widget {
+  height: 100%;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.dashboard-widgetwrapper.dashboard-dark .iframe-widget > iframe {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0px;
+}
+.dashboard-widgetwrapper.dashboard-dark .widget-noscroll .iframe-widget > iframe {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+.dashboard-widgetwrapper.dashboard-dark .widget-noscroll .iframe-widget > iframe::-webkit-scrollbar {
+  display: none;
+}
+.dashboard-widgetwrapper.dashboard-dark .image-widget {
+  height: 100%;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.dashboard-widgetwrapper.dashboard-dark .image-widget a,
+.dashboard-widgetwrapper.dashboard-dark .image-widget div {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.dashboard-widgetwrapper.dashboard-dark .image-widget a {
+  border-bottom: 0;
+}
+.dashboard-widgetwrapper.dashboard-dark .image-widget a > div {
+  cursor: pointer;
+}
+.dashboard-widgetwrapper.dashboard-dark .javascript-widget {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  height: 100%;
+}
+.dashboard-widgetwrapper.dashboard-dark .javascript-widget h1 {
+  margin-bottom: 10px;
+}
+.dashboard-widgetwrapper.dashboard-dark .number-widget {
+  /* Padding messes up the auto-sizing calculations */
+  padding: 0 !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.dashboard-widgetwrapper.dashboard-dark .number-widget .the-number > h1 {
+  color: #D1D1D1;
+}
+.dashboard-widgetwrapper.dashboard-dark .number-widget .the-number > span {
+  white-space: nowrap;
+}
+.dashboard-widgetwrapper.dashboard-dark .number-widget .the-number.orientation-vertical > h1 {
+  display: inline;
+}
+.dashboard-widgetwrapper.dashboard-dark .number-widget .the-number.orientation-horizontal {
+  float: left;
+  display: block;
+  padding: 6px;
+  min-width: 5rem;
+}
+.dashboard-widgetwrapper.dashboard-dark .number-widget .the-number.auto-sized {
+  box-sizing: border-box;
+  text-align: center;
+  float: left;
+}
+.dashboard-widgetwrapper.dashboard-dark .number-widget .the-number.auto-sized.orientation-horizontal {
+  padding: 0;
+}
+.dashboard-widgetwrapper.dashboard-dark .number-widget img {
+  height: 2em;
+  vertical-align: baseline;
+}
+.dashboard-widgetwrapper.dashboard-dark .number-widget .widget-footer {
+  height: 1.4rem;
+  white-space: nowrap;
+}
+.dashboard-widgetwrapper.dashboard-dark .number-widget .widget-footer {
+  z-index: 10;
+  background: #202020;
+}
+.dashboard-widgetwrapper.dashboard-dark .widget-noscroll .number-widget {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+.dashboard-widgetwrapper.dashboard-dark .qrcode-widget {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.dashboard-widgetwrapper.dashboard-dark .qrcode-widget .qrcode {
+  margin: auto;
+}
+.dashboard-widgetwrapper.dashboard-dark .stoplight-widget {
+  overflow: hidden;
+  height: 100%;
+  box-sizing: border-box;
+}
+.dashboard-widgetwrapper.dashboard-dark .stoplight-widget * {
+  user-select: none;
+  outline: none;
+  box-sizing: border-box;
+}
+.dashboard-widgetwrapper.dashboard-dark .stoplight-widget .transparent {
+  opacity: .3;
+}
+.dashboard-widgetwrapper.dashboard-dark .stoplight-widget .trafficlight {
+  height: 100%;
+  margin: auto;
+  position: relative;
+}
+.dashboard-widgetwrapper.dashboard-dark .stoplight-widget .trafficlight-inner {
+  background-color: #333;
+  border: solid 5px #000;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 100;
+}
+.dashboard-widgetwrapper.dashboard-dark .stoplight-widget .protector {
+  background: transparent;
+  position: absolute;
+  width: 180px;
+  height: 0;
+  top: 20px;
+  left: -35px;
+  border-right: solid 30px transparent;
+  border-left: solid 30px transparent;
+  border-top: solid 90px #111;
+  border-radius: 10px;
+}
+.dashboard-widgetwrapper.dashboard-dark .stoplight-widget .light {
+  background-size: 5px 5px;
+  border-radius: 50%;
+  border: dotted 2px;
+  margin: auto;
+  opacity: .20;
+}
+.dashboard-widgetwrapper.dashboard-dark .stoplight-widget .light.active {
+  opacity: 1;
+}
+.dashboard-widgetwrapper.dashboard-dark .stoplight-widget .red {
+  background-color: red;
+  background-image: radial-gradient(brown, transparent);
+  border-color: red;
+  box-shadow: 0 0 20px #111 inset,
+            0 0 10px red;
+}
+.dashboard-widgetwrapper.dashboard-dark .stoplight-widget .yellow {
+  background-color: #CCCC00;
+  background-image: radial-gradient(yellow, transparent);
+  border-color: yellow;
+  box-shadow: 0 0 20px #111 inset,
+            0 0 10px yellow;
+}
+.dashboard-widgetwrapper.dashboard-dark .stoplight-widget .green {
+  background-color: green;
+  background-image: radial-gradient(lime, transparent);
+  border-color: lime;
+  box-shadow: 0 0 20px #111 inset,
+            0 0 10px lime;
+}
+.dashboard-widgetwrapper.dashboard-dark .stoplight-widget.widget-noscroll {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget {
+  overflow-y: auto;
+  overflow-x: auto;
+  height: 100%;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget .widget-body {
+  overflow-y: auto;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget table th {
+  border-bottom: 1px dashed #999;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget table th {
+  padding: 10px 8px;
+  text-align: left;
+  font-weight: 400;
+  background-color: #202020;
+  color: white;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget table th a {
+  color: white !important;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget table th i {
+  display: inline;
+  margin-left: 0.24rem;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget table th.group {
+  text-align: center;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget table th.empty {
+  background-color: #202020;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget table td {
+  padding: 6px 8px;
+  border: 0px dashed #ccc;
+  vertical-align: top;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget table td > a > i {
+  opacity: 0;
+  float: right;
+  padding-top: 3px;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget table td > a:hover > i {
+  opacity: 1;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget table td.aLink {
+  color: #D1D1D1;
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget table td.aLink:hover {
+  color: #525252;
+  text-decoration: none;
+  border-bottom: 1px dotted #888;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget table tbody > tr:hover {
+  background-color: #535353;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget .paging {
+  text-align: center;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget .paging * {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget .paging *:before,
+.dashboard-widgetwrapper.dashboard-dark .table-widget .paging *:after {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget .paging .pagination {
+  margin-bottom: 0.25rem;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget .paging .pagination a {
+  background-color: #202020;
+  color: white;
+  border-bottom: 1px solid;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget .paging .below-pager-message {
+  font-style: italic;
+  font-size: 90%;
+}
+.dashboard-widgetwrapper.dashboard-dark .widget-noscroll .table-widget {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+.dashboard-widgetwrapper.dashboard-dark .tableau-widget {
+  overflow-y: auto;
+  overflow-x: auto;
+  height: 100%;
+}
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  height: 100%;
+}
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap {
+  /* Overrides for color-less widget */
+}
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap text {
+  pointer-events: none;
+}
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap rect {
+  stroke: #fff;
+  stroke-width: 1px;
+}
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap rect.parent {
+  stroke-width: 2px;
+}
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap .grandparent:hover rect {
+  fill: darkgrey;
+}
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap .grandparent text {
+  font-weight: bold;
+}
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap .grandparent rect {
+  stroke-width: 2px;
+  cursor: pointer;
+}
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap .grandparent .icon {
+  font-family: FontAwesome;
+}
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap .legend rect {
+  stroke-width: 0px;
+}
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap .legend text {
+  text-anchor: middle;
+  pointer-events: auto;
+  font-size: 12px;
+  font-family: sans-serif;
+  fill: black;
+}
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap .children rect.parent {
+  opacity: 1;
+  cursor: pointer;
+}
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap .children rect.child {
+  opacity: 0;
+}
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap .children:hover rect.child {
+  opacity: 1;
+  stroke-width: 1px;
+}
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap .children:hover rect.parent {
+  opacity: 0;
+}
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap svg.monochrome .children:hover rect.child {
+  fill: #aaa;
+}
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap svg.monochrome rect.parent,
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap svg.monochrome rect.child {
+  fill: #ddd;
+}
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap svg.monochrome rect.parent:hover,
+.dashboard-widgetwrapper.dashboard-dark .treemap-widget .treemap svg.monochrome rect.child:hover {
+  fill: #aaa;
+}
+.dashboard-widgetwrapper.dashboard-dark .widget-noscroll .treemap-widget {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+.dashboard-widgetwrapper.dashboard-dark .youtube-widget {
+  height: 100%;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.dashboard-widgetwrapper.dashboard-dark h1.title > .tooltip .tooltip-inner {
+  background-color: #2f2f2f;
+  color: #D1D1D1;
+}
+.dashboard-widgetwrapper.dashboard-dark h1.title > .tooltip .tooltip-arrow {
+  border-top-color: #2f2f2f;
+  border-bottom-color: #2f2f2f;
+}
+.dashboard-widgetwrapper.dashboard-dark .table-widget table th {
+  font-style: italic;
+}
+.dashboard-widgetwrapper.dashboard-dark .header-widget .parameters .header-parameter,
+.dashboard-widgetwrapper.dashboard-dark .header-widget .parameters button {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+/* Transparent Variant */
+.dashboard-widgetwrapper.dashboard-dark.theme-variant-transparent > .dashboard-widget {
+  background-color: transparent;
+  box-shadow: none !important;
+  color: #ddd;
+}
+/* Transparent-Unpadded Variant */
+.dashboard-widgetwrapper.dashboard-dark.theme-variant-transparent-unpadded > .dashboard-widget {
+  padding: 0 !important;
+  background-color: transparent;
+  box-shadow: none !important;
+  color: #ddd;
+}
+.dashboard-dark.dashboard-controls {
+  color: #D1D1D1;
+  background-color: #2f2f2f;
+  border: 1px dotted #D1D1D1;
+}
+.dashboard-dark.dashboard-controls a {
+  color: #D1D1D1;
+}

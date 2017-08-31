@@ -1,0 +1,8 @@
+
+<div class="editor-view-header">
+  <h3>{{ getParameterName(editor.selectedItem, editor.selectedItemIndex) }}</h3>
+  <div class="editor-view-header-buttons">
+    <button type="button" ng-click="removeParameter(editor.selectedItemIndex); goToSubState(&quot;edit.parameters&quot;, editor.dashboard.parameters)" title="Remove" class="btn btn-default"> <i class="fa fa-times"></i><span> Remove Parameter</span></button>
+  </div>
+</div>
+<div dashboard="editor.dashboard" model="editor.selectedItem" definition="dashboardProperties.parameters.properties" class="editor-property-set"></div>

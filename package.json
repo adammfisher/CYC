@@ -1,0 +1,62 @@
+{
+  "name": "cyclotron-site",
+  "description": "Cyclotron: website",
+  "version": "1.48.0",
+  "author": "Dave Bauman <dbauman@expedia.com>",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">= 0.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ExpediaInceCommercePlatform/cyclotron"
+  },
+  "bugs": {
+    "url": "https://github.com/ExpediaInceCommercePlatform/cyclotron/issues"
+  },
+  "scripts": {
+    "start": "gulp server",
+    "build": "gulp build",
+    "test": "gulp test"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.7",
+    "del": "~2.2.2",
+    "gulp": "~3.9.1",
+    "gulp-bower": "0.0.10",
+    "gulp-clean-css": "~2.3.2",
+    "gulp-coffee": "~2.3.1",
+    "gulp-coffeelint": "~0.4.0",
+    "gulp-concat": "~2.5.2",
+    "gulp-concat-css": "~2.3.0",
+    "gulp-css-url-adjuster": "~0.2.3",
+    "gulp-filter": "~2.0.2",
+    "gulp-flatten": "~0.0.4",
+    "gulp-jade": "~1.0.0",
+    "gulp-less": "~3.3.0",
+    "gulp-ng-annotate": "~0.5.2",
+    "gulp-order2": "^2.0.5",
+    "gulp-output": "~0.0.1",
+    "gulp-plumber": "~1.0.0",
+    "gulp-rename": "~1.2.0",
+    "gulp-sequence": "~0.3.2",
+    "gulp-uglify": "~1.1.0",
+    "gulp-watch": "^4.3.5",
+    "gulp-webserver": "~0.9.0",
+    "jasmine-core": "~2.5.2",
+    "karma": "~1.3.0",
+    "karma-chrome-launcher": "~2.0",
+    "karma-coffee-preprocessor": "~1.0.1",
+    "karma-coverage": "~1.1.1",
+    "karma-firefox-launcher": "~1.0",
+    "karma-jasmine": "~1.0.2",
+    "karma-jasmine-matchers": "~3.0.1",
+    "karma-nested-reporter": "~0.1.4",
+    "karma-phantomjs-launcher": "1.0.0",
+    "lodash": "~3.9.3",
+    "main-bower-files": "~2.13.1",
+    "merge-stream": "~0.1.7",
+    "phantomjs-prebuilt": "~2.1.13"
+  }
+}

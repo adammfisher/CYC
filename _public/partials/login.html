@@ -1,0 +1,19 @@
+
+<div class="login-modal">
+  <div class="modal-header">
+    <h3 class="modal-title">Login</h3>
+  </div>
+  <div class="modal-body">
+    <div ng-if="loginMessage" class="login-message">{{ loginMessage }}</div>
+    <form ng-submit="login()">
+      <input type="text" ng-model="credentials.username" required="required" focus-on="focusUsername" placeholder="Username"/>
+      <input type="password" ng-model="credentials.password" required="required" focus-on="focusPassword" placeholder="Password"/>
+      <input type="submit" style="position: absolute; left: -9999px"/>
+    </form>
+    <p ng-if="loginError" class="modal-error bg-danger"><i class="fa fa-exclamation"></i><span> Invalid username or password.  Please try again.</span></p>
+  </div>
+  <div class="modal-footer">
+    <button ng-click="cancel()" class="btn">Cancel</button>
+    <button ng-click="login()" ng-disabled="!canLogin()" class="btn btn-primary">Login</button>
+  </div>
+</div>

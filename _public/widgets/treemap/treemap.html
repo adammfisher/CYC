@@ -1,0 +1,12 @@
+
+<div ng-controller="TreemapWidget" class="treemap-widget">
+  <h1 ng-if="::widget.title" class="title">{{ widgetTitle() }}</h1>
+  <div class="widget-body">
+    <div spinjs="spinjs" ng-if="isLoading()" class="widget-loading"></div>
+    <div ng-if="widgetContext.dataSourceError == true &amp;&amp; !isLoading()" class="widget-error"></div>
+    <div ng-if="widgetContext.nodata &amp;&amp; !isLoading()" class="widget-nodata">
+      <div class="fa fa-exclamation-triangle"></div><span> {{ widgetContext.nodata }}</span>
+    </div>
+    <div ng-if="!noDataOrError() &amp;&amp; treeData" data="treeData" label-property="labelProperty" value-property="valueProperty" value-description="valueDescription" value-format="valueFormat" color-property="colorProperty" color-description="colorDescription" color-format="colorFormat" color-stops="colorStops" show-legend="showLegend" legend-height="legendHeight" class="treemap"></div>
+  </div>
+</div>

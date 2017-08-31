@@ -1,0 +1,24 @@
+
+<h3>Elasticsearch Data Source</h3>
+<p>The Elasticsearch Data Source is a thin wrapper around the Elasticsearch API, making it easier to submit searches and process the results. For more fine-tuned control around the requests, it may be preferable to use the JSON Data Source instead.</p>
+<P>Please note that it may be necessary to set the optional <em>proxy </em>property in the Data Source in order to access web sites or services in other domains.  
+  This property lists other Cyclotron servers which may have the required connectivity. 
+  By default, this Data Source uses the current Cyclotron environment to proxy the request.
+</P>
+<p>Examples of the Elasticsearch Data Source are available on the <a href="/example-datasource-elasticsearch">example-datasource-elasticsearch</a> dashboard</p>
+<property-table properties="config.dashboard.properties.dataSources.options.elasticsearch.properties"></property-table>
+<h4>API Name</h4>
+<p>The <em> method</em> property (displayed as API Name) controls which Elasticsearch endpoint to submit the request to.  By default this is "_search", but it can by changed to any valid endpoint (e.g. "_msearch", "_suggest").</p>
+<h4>Response Adapter</h4>
+<p>The <em> responseAdapter</em> property controls how Cyclotron handles the result that Elasticsearch provides.  The default value, <em> "auto"</em>, automatically selects between <em> "hits"</em> and <em> "aggregations"</em> by choosing <em> "aggregations"</em> when the response includes aggregations, otherwise<em> "hits</em>. Both <em> "hits"</em> and <em> "aggregations"</em> can be selected manually as well.  If a Elasticsearch request returns both hits and aggregations, custom processing will be needed to consume both at once.  This is possible using the <em> "raw" </em> option, which returns the original response.  In this case, the <em> postProcessor</em> option should be set to a JavaScript function that can handle the entire result.</p>
+<h4>Pre-Processor</h4>
+<p>
+  The Elasticsearch Data Source supports an optional pre-processor function that will be called before
+  the Data Source executes.  For more details, see the main Data Sources page.
+</p>
+<h4>Post-Processor</h4>
+<p>
+  The Elasticsearch Data Source supports an optional post-processor function that will be called after
+  data is loaded.  For more details, see the main Data Sources page.
+</p>
+<p>The data that is sent to the Post-Processor will depend on the setting of the <em> responseAdapter</em> property. This property controls how the Elasticsearch response is converted into Cyclotron's tabular data format. The Post-Processor receives the output of whichever <em> responseAdapter</em> has been selected.  In order to manually inspect the entire response, set <em> responseAdapter</em> to "raw".</p>

@@ -1,0 +1,44 @@
+
+<div class="dashboard-history-page container-fluid">
+  <div class="row cyclotron-header">
+    <h1 ui-sref="home" ui-sref-opts="{reload: true}"><img src="/img/favicon64.png" alt="Logo" class="logo"/>Cyclotron</h1>
+    <div class="links"><a ui-sref="home" title="Return to Home" class="home"><i class="fa fa-home"></i></a><a ng-href="/edit/" target="_self" title="Create a new Dashboard" class="new"><i class="fa fa-file-o"></i></a><a ui-sref="help" target="_blank" title="Documentation for Cyclotron" class="documentation"><i class="fa fa-question-circle"></i></a><a ng-if="analyticsEnabled()" ui-sref="analytics" title="Analytics for Cyclotron" class="analytics"><i class="fa fa-bar-chart"></i></a><a requires-auth="requires-auth" ng-click="login()" ng-if="!isLoggedIn()" title="Login" class="login"><i class="fa fa-unlock"></i></a><span requires-auth="requires-auth" ng-if="isLoggedIn()" class="dropdown"><a title="{{ userTooltip() }}" data-toggle="dropdown" class="user dropdown-toggle"><i ng-if="!currentUser().emailHash" class="fa fa-user"></i><img ng-if="currentUser().emailHash" ng-src="{{ userGravatar() }}"/></a>
+        <ul role="menu" class="dropdown-menu">
+          <li role="presentation" class="dropdown-header"><a>{{ currentUser().name }}</a></li>
+          <li ng-if="isAdmin()"><a title="Admin" class="admin">Is Admin <i class="fa fa-key"></i></a></li>
+          <li ng-if="isAdmin()" role="presentation" class="divider"><a></a></li>
+          <li><a ng-click="logout()" title="Logout" class="logout">Logout <i class="fa fa-lock"></i></a></li>
+        </ul></span></div>
+  </div>
+  <div class="row header">
+    <div class="dashboard-well">
+      <div class="button-bar"><a ui-sref="edit.details({ dashboardName: dashboardName })" title="Edit this Dashboard" class="btn btn-default"><i class="fa fa-edit"></i> Edit Dashboard</a></div>
+      <h1>{{ dashboardName }}</h1>
+      <h4 ng-show="dashboard.dashboard.description" class="small text-muted"><i class="fa fa-quote-left"></i> {{ dashboard.dashboard.description }} <i class="fa fa-quote-right"></i></h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Revision History</h2>
+      <table class="table">
+        <tr>
+          <th>Rev #</th>
+          <th></th>
+          <th>Date</th>
+          <th>Author</th>
+          <th></th>
+        </tr>
+        <tr ng-repeat="revision in revisions | orderBy:rev:false | limitTo:itemsPerPage:(currentPage-1)*itemsPerPage" class="revision"> 
+          <td> <a ng-href="/edit/{{ dashboardName }}?rev={{ revision.rev }}">{{ revision.rev }}</a><a ng-click="diffWithLatest(revision.rev)" ng-if="revision.rev &gt; 1 &amp;&amp; revision.deleted == false" title="Compare this revision to the previous revision">Diff<i class="fa fa-search"></i></a></td>
+          <td><i ng-if="revision.deleted" title="The Dashboard is deleted for this revision." class="fa fa-trash-o"></i></td>
+          <td>{{ revision.date | date:'yyyy-MM-dd HH:mm' }}</td>
+          <td><span title="{{ revision.lastUpdatedBy.email }}">{{ revision.lastUpdatedBy.name }}</span></td>
+          <td><a ng-href="/{{ dashboardName }}?rev={{ revision.rev }}" target="cyclotron-preview">View<i class="fa fa-external-link"></i></a><a ng-href="/edit/{{ dashboardName }}?rev={{ revision.rev }}" target="cyclotron-preview">Edit<i class="fa fa-edit"></i></a></td>
+        </tr>
+      </table>
+      <div class="paging">
+        <uib-pagination total-items="revisionsCount" ng-model="currentPage" items-per-page="itemsPerPage" max-size="5" boundary-links="true" class="pagination-sm"></uib-pagination>
+      </div>
+    </div>
+  </div>
+</div>

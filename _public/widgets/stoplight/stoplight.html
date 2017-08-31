@@ -1,0 +1,21 @@
+
+<div ng-controller="StoplightWidget" class="stoplight-widget">
+  <h1 ng-if="::widget.title" class="title">{{ widgetTitle() }}</h1>
+  <div class="widget-body">
+    <div spinjs="spinjs" ng-if="isLoading()" class="widget-loading"></div>
+    <div ng-if="widgetContext.dataSourceError == true &amp;&amp; !isLoading()" class="widget-error"></div>
+    <div ng-if="widgetContext.nodata &amp;&amp; !isLoading()" class="widget-nodata">
+      <div class="fa fa-exclamation-triangle"></div><span> {{ widgetContext.nodata }}</span>
+    </div>
+    <div ng-if="!widgetContext.loading &amp;&amp; !widgetContext.dataSourceError" active-color="activeColor" ng-class="{transparent: widgetContext.nodata}" title="{{ tooltip }}" class="trafficlight">
+      <div class="protector"></div>
+      <div class="protector"></div>
+      <div class="protector"></div>
+      <div class="trafficlight-inner">
+        <div class="light red"></div>
+        <div class="light yellow"></div>
+        <div class="light green"></div>
+      </div>
+    </div>
+  </div>
+</div>

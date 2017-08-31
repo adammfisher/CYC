@@ -1,0 +1,14 @@
+
+<div>
+  <ul dnd-list="model" class="list-group">
+    <li ng-repeat="item in model" dnd-draggable="item" dnd-moved="model.splice($index, 1)" dnd-effect-allowed="move" class="list-group-item"> 
+      <div class="clearfix"><span class="icon"><i class="fa fa-bars"></i></span><span ng-click="goToSubState(substate, item, $index)" title="Edit this {{ label }}" class="object-array-name">
+           
+          {{ headingfn({item: item, index: $index, label: label}) }}</span><span class="button-group pull-right">
+          <button id="clone" type="button" ng-click="cloneItem($index)" title="Clone {{ label }}" class="btn btn-default"> <i class="fa fa-copy"></i><span> Clone</span></button>
+          <button id="remove" type="button" ng-click="removeItem($index)" title="Remove {{ label }}" class="btn btn-default"> <i class="fa fa-times"></i><span> Remove</span></button></span></div>
+      <div ng-transclude="parent"></div>
+    </li>
+  </ul>
+  <p ng-if="model.length == 0" class="text-muted">There are no {{ label }}s in this Dashboard</p>
+</div>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cyclotronApp" ng-strict-di="">
+  <head>
+    <title ng-bind="$root.page_title"></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cyclotron">
+    <meta name="keywords" content="Cyclotron dashboards dashboard Expedia">
+    <meta name="author" content="Dave Bauman &lt;dbauman@expedia.com&gt;">
+    <meta http-equiv="ClearType" content="on">
+    <link rel="icon" type="image/png" href="/img/favicon16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/img/favicon32.png" sizes="32x32">
+    <link rel="stylesheet" href="/css/app.common.css">
+    <link rel="stylesheet" href="/css/vendor.css"><!--[if gte IE 9]><!-->   
+    <script src="/js/vendor.js"></script>
+    <script src="/js/app.common.js"></script>
+    <script src="/js/conf/configService.js"></script><!--<![endif]-->
+  </head>
+  <body class="ng-cloak">
+    <div id="browserError" class="hidden">
+      <h1>Incompatible Browser</h1>
+      <p>
+        Sorry, the browser you are using is not currently supported.  This website
+        uses modern web development capabilities that are not compatible with your 
+        current browser.
+      </p>
+      <p>
+        Please upgrade to the latest version of your preferred browser.
+        
+      </p>
+      <table>
+        <tr>
+          <td><a href="//www.mozilla.org/en-US/firefox/new/" title="Firefox"><img src="/img/browsers/firefox_64x64.png"></a></td>
+          <td><a href="//www.google.com/chrome/browser/" title="Chrome"><img src="/img/browsers/chrome_64x64.png"></a></td>
+          <td><a href="//www.apple.com/safari/" title="Safari"><img src="/img/browsers/safari_64x64.png"></a></td>
+          <td><a href="//microsoft.com/ie" title="Internet Explorer 11"><img src="/img/browsers/internet-explorer-tile_64x64.png"></a></td>
+        </tr>
+      </table>
+    </div><!--[if gte IE 9]><!-->
+    <section id="appcontents" ui-view></section><!--<![endif]-->
+    <!--[if lte IE 8]>
+    <script src="/js/ie8.js"></script><![endif]-->
+  </body>
+</html>

@@ -1,0 +1,14 @@
+
+<div class="modal-header">
+  <h3 class="modal-title">Permission Denied</h3>
+</div>
+<div class="modal-body">
+  <p>This Dashboard has<strong> View Permissions</strong> that prevent you from being able to view or edit it.</p>
+  <p>This is managed by the owner of this Dashboard.  Please contact:</p>
+  <ul>
+    <li ng-repeat="editor in dashboardEditors">{{ editor.displayName }} <a href="mailto:{{ editor.mail }}?subject=Cyclotron:%20Access%20to%20Dashboard:%20{{ dashboardName }}">({{ editor.mail }})</a></li>
+  </ul>
+</div>
+<div class="modal-footer">
+  <button ng-click="goHome()" class="btn btn-primary"><i class="fa fa-home"></i><span> Home</span></button>
+</div>

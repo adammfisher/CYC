@@ -1,0 +1,291 @@
+
+<div class="analytics-page">
+  <div class="row cyclotron-header">
+    <h1 ui-sref="home" ui-sref-opts="{reload: true}"><img src="/img/favicon64.png" alt="Logo" class="logo"/>Cyclotron</h1>
+    <div class="links"><a ui-sref="home" title="Return to Home" class="home"><i class="fa fa-home"></i></a><a ng-href="/edit/" target="_self" title="Create a new Dashboard" class="new"><i class="fa fa-file-o"></i></a><a ui-sref="help" target="_blank" title="Documentation for Cyclotron" class="documentation"><i class="fa fa-question-circle"></i></a><a ng-if="analyticsEnabled()" ui-sref="analytics" title="Analytics for Cyclotron" class="analytics"><i class="fa fa-bar-chart"></i></a><a requires-auth="requires-auth" ng-click="login()" ng-if="!isLoggedIn()" title="Login" class="login"><i class="fa fa-unlock"></i></a><span requires-auth="requires-auth" ng-if="isLoggedIn()" class="dropdown"><a title="{{ userTooltip() }}" data-toggle="dropdown" class="user dropdown-toggle"><i ng-if="!currentUser().emailHash" class="fa fa-user"></i><img ng-if="currentUser().emailHash" ng-src="{{ userGravatar() }}"/></a>
+        <ul role="menu" class="dropdown-menu">
+          <li role="presentation" class="dropdown-header"><a>{{ currentUser().name }}</a></li>
+          <li ng-if="isAdmin()"><a title="Admin" class="admin">Is Admin <i class="fa fa-key"></i></a></li>
+          <li ng-if="isAdmin()" role="presentation" class="divider"><a></a></li>
+          <li><a ng-click="logout()" title="Logout" class="logout">Logout <i class="fa fa-lock"></i></a></li>
+        </ul></span></div>
+  </div>
+  <h1>Cyclotron Analytics</h1>
+  <div class="sidebar">
+    <h2>Dashboards</h2>
+    <dl title="Total number of Dashboards, including deleted Dashboards">
+      <dt>{{ statistics.dashboards.total.count | numeraljs:'0,0' }} </dt>
+      <dd>total 
+        <ng-pluralize count="statistics.dashboards.total.count" when="{&quot;one&quot;: &quot;Dashboard&quot;, &quot;other&quot;: &quot;Dashboards&quot;}"></ng-pluralize>
+      </dd>
+    </dl>
+    <dl title="Number of viewed Dashboards in the last 30 days">
+      <dt>{{ statistics.dashboards.active.activePastThirtyDayCount | numeraljs:'0,0' }} </dt>
+      <dd>30-day active 
+        <ng-pluralize count="statistics.dashboards.active.activePastThirtyDayCount" when="{&quot;one&quot;: &quot;Dashboard&quot;, &quot;other&quot;: &quot;Dashboards&quot;}"></ng-pluralize>
+      </dd>
+    </dl>
+    <dl title="Total number of deleted Dashboards">
+      <dt>{{ statistics.dashboards.deletedDashboards.count | numeraljs:'0,0' }} </dt>
+      <dd>deleted 
+        <ng-pluralize count="statistics.dashboards.deletedDashboards.count" when="{&quot;one&quot;: &quot;Dashboard&quot;, &quot;other&quot;: &quot;Dashboards&quot;}"></ng-pluralize>
+      </dd>
+    </dl>
+    <dl title="Total number of Dashboards modified within the last 30 days">
+      <dt>{{ statistics.dashboards.total.editedPastThirtyDayCount | numeraljs:'0,0' }} </dt>
+      <dd>modified in the last 30 days</dd>
+    </dl>
+    <dl title="Total number of Dashboards deleted within the last 30 days">
+      <dt>{{ statistics.dashboards.deletedDashboards.editedPastThirtyDayCount | numeraljs:'0,0' }} </dt>
+      <dd>deleted in the last 30 days</dd>
+    </dl>
+    <dl title="Total number of Revisions, including those for deleted Dashboards">
+      <dt>{{ statistics.revisions.count | numeraljs:'0,0' }} </dt>
+      <dd>total 
+        <ng-pluralize count="statistics.revisions.count" when="{&quot;one&quot;: &quot;Revision&quot;, &quot;other&quot;: &quot;Revisions&quot;}"></ng-pluralize>
+      </dd>
+    </dl>
+    <dl title="Average number of Revisions per Dashboard, including those for deleted Dashboards">
+      <dt>{{ statistics.revisions.avgRevisionCount | numeraljs:'0.0' }} </dt>
+      <dd> 
+        <ng-pluralize count="statistics.revisions.avgRevisionCount" when="{&quot;one&quot;: &quot;Revision&quot;, &quot;other&quot;: &quot;Revisions&quot;}"></ng-pluralize> per Dashboard
+      </dd>
+    </dl>
+    <h2>Likes</h2>
+    <dl title="Total number of likes for all active Dashboards (currently)">
+      <dt>{{ statistics.likes.count | numeraljs:'0,0' }} </dt>
+      <dd>current Likes</dd>
+    </dl>
+    <dl title="Total number of times Dashboards have been liked (or re-liked)">
+      <dt>{{ statistics.likeEvents.count | numeraljs:'0,0' }} </dt>
+      <dd>all-time Likes (including repeats)</dd>
+    </dl>
+    <dl title="Total number of Dashboard Likes within the past day">
+      <dt>{{ statistics.likeEvents.occurredPastDayCount | numeraljs:'0,0' }} </dt>
+      <dd>Likes in the past day</dd>
+    </dl>
+    <dl title="Total number of Dashboard Likes within the last 30 days">
+      <dt>{{ statistics.likeEvents.occurredPastThirtyDayCount | numeraljs:'0,0' }} </dt>
+      <dd>Likes in the last 30 days</dd>
+    </dl>
+    <dl title="Total number of times a Dashboard was unliked">
+      <dt>{{ statistics.unlikeEvents.count | numeraljs:'0,0' }} </dt>
+      <dd>Unlikes</dd>
+    </dl>
+    <h2>Visits</h2>
+    <dl title="Total number of times any Dashboard was visited">
+      <dt>{{ statistics.pageViews.totalVisits | numeraljs:'0,0' }}</dt>
+      <dd>total Dashboard Visits</dd>
+    </dl>
+    <dl title="Total number of times a Page in any Dashboard was viewed">
+      <dt>{{ statistics.pageViews.totalPageViews | numeraljs:'0,0' }}</dt>
+      <dd>total Dashboard Page Views</dd>
+    </dl>
+    <dl title="Average number of Pages viewed during each Visit">
+      <dt>{{ statistics.pageViews.avgPageViewsPerVisit | numeraljs:'0.0' }}</dt>
+      <dd>Page Views per Visit</dd>
+    </dl>
+    <dl title="Average number of Visits by each UID">
+      <dt>{{ statistics.pageViews.avgVisitsPerUid | numeraljs:'0.0' }}</dt>
+      <dd>Visits per UID</dd>
+    </dl>
+    <dl title="Average number of Pages viewed by each UID">
+      <dt>{{ statistics.pageViews.avgPageViewsPerUid | numeraljs:'0.0' }}</dt>
+      <dd>Page Views per UID</dd>
+    </dl>
+    <h2>Users</h2>
+    <dl title="Number of unique logged-in users">
+      <dt>{{ statistics.users.count | numeraljs:'0,0' }}</dt>
+      <dd>registered 
+        <ng-pluralize count="statistics.users.count" when="{&quot;one&quot;: &quot;user&quot;, &quot;other&quot;: &quot;users&quot;}"></ng-pluralize>
+      </dd>
+    </dl>
+    <dl title="Number of users who have logged in during the past 24 hours">
+      <dt>{{ statistics.users.activePastDayCount | numeraljs:'0,0' }}</dt>
+      <dd>daily active 
+        <ng-pluralize count="statistics.users.activePastDayCount" when="{&quot;one&quot;: &quot;user&quot;, &quot;other&quot;: &quot;users&quot;}"></ng-pluralize>
+      </dd>
+    </dl>
+    <dl title="Number of users who have logged in during the last 30 days">
+      <dt>{{ statistics.users.activePastThirtyDayCount | numeraljs:'0,0' }}</dt>
+      <dd>30-day active 
+        <ng-pluralize count="statistics.users.activePastThirtyDayCount" when="{&quot;one&quot;: &quot;user&quot;, &quot;other&quot;: &quot;users&quot;}"></ng-pluralize>
+      </dd>
+    </dl>
+    <dl title="Average number of times users have logged in">
+      <dt>{{ statistics.users.avgLoginsPerUser | numeraljs: '0.0' }}</dt>
+      <dd>logins per user </dd>
+    </dl>
+    <dl title="Number of unique user cookies (may not be authenticated)">
+      <dt>{{ statistics.pageViews.uniqueUids | numeraljs:'0,0' }}</dt>
+      <dd>unique 
+        <ng-pluralize count="statistics.pageViews.uniqueUids" when="{&quot;one&quot;: &quot;UID&quot;, &quot;other&quot;: &quot;UIDs&quot;}"></ng-pluralize>
+      </dd>
+    </dl>
+    <dl title="Number of unique user cookies active over the last 30 days (may not be authenticated)">
+      <dt>{{ statistics.users.uidsPastSixMonthsCount | numeraljs:'0,0' }}</dt>
+      <dd>30-day active 
+        <ng-pluralize count="statistics.users.uidsPastSixMonthsCount" when="{&quot;one&quot;: &quot;UID&quot;, &quot;other&quot;: &quot;UIDs&quot;}"></ng-pluralize>
+      </dd>
+    </dl>
+  </div>
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="time-controls btn-group">
+            <div ng-model="selectedTimespan" uib-btn-radio="&quot;year&quot;" class="btn btn-default">Year</div>
+            <div ng-model="selectedTimespan" uib-btn-radio="&quot;month&quot;" class="btn btn-default">Month</div>
+            <div ng-model="selectedTimespan" uib-btn-radio="&quot;3_day&quot;" class="btn btn-default">3-Days</div>
+            <div ng-model="selectedTimespan" uib-btn-radio="&quot;day&quot;" class="btn btn-default">Day</div>
+            <div ng-model="selectedTimespan" uib-btn-radio="&quot;hour&quot;" class="btn btn-default">Hour</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <h2>Active Visits Over Time</h2>
+          <div data="visits" options="visitsOptions" class="metrics-graphics"></div>
+        </div>
+        <div class="col-sm-6">
+          <h2>Page Views Over Time</h2>
+          <div data="pageViews" options="pageViewsOptions" class="metrics-graphics"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 right-border"><span ng-click="toggleLimit(&quot;topDashboardsLimit&quot;)" ng-show="topDashboardsLimit == smallLimit" class="more"><i class="fa fa-plus-square-o"></i> more</span><span ng-click="toggleLimit(&quot;topDashboardsLimit&quot;)" ng-show="topDashboardsLimit == largeLimit" class="more"><i class="fa fa-minus-square-o"></i> less</span>
+          <h2>Most Visited Dashboards (All-Time)</h2>
+          <table ts-wrapper="ts-wrapper" class="table">
+            <thead>
+              <tr>
+                <th ts-criteria="name|lowercase">Name</th>
+                <th ts-criteria="visits|parseInt" ts-default="descending">Visits</th>
+                <th ts-criteria="pageViews|parseInt">Page Views</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="dashboard in topDashboards | tablesort | limitTo:topDashboardsLimit" ts-repeat="ts-repeat">
+                <td> <a href="/{{ dashboard.name }}" target="_blank" title="Open this Dashboard in a new window">{{ dashboard.name }}</a></td>
+                <td>{{ dashboard.visits | numeraljs:'0,0' }}</td>
+                <td>{{ dashboard.pageViews | numeraljs:'0,0' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-sm-6"><span ng-click="toggleLimit(&quot;uniqueVisitorLimit&quot;)" ng-show="uniqueVisitorLimit == smallLimit" class="more"><i class="fa fa-plus-square-o"></i> more</span><span ng-click="toggleLimit(&quot;uniqueVisitorLimit&quot;)" ng-show="uniqueVisitorLimit == largeLimit" class="more"><i class="fa fa-minus-square-o"></i> less</span>
+          <h2>Most Frequent Visitors</h2>
+          <table ts-wrapper="ts-wrapper" class="table">
+            <thead>
+              <tr>
+                <th ts-criteria="user.name|lowercase">User</th>
+                <th ts-criteria="pageViews|parseInt" ts-default="descending">Page Views</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="visitor in uniqueVisitors | tablesort | limitTo:uniqueVisitorLimit" ts-repeat="ts-repeat">
+                <td>{{ visitor.user.name || 'Anonymous' }}</td>
+                <td>{{ visitor.pageViews | numeraljs:'0,0' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-6">
+          <h2>Data Sources Used </h2>
+          <div data="dataSourcesPie" options="dataSourceTypesOptions" class="c3chart"></div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <h2>Widgets Used</h2>
+          <div data="widgetsPie" options="widgetOptions" class="c3chart"></div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <h2>Browser Usage</h2>
+          <div data="browsersPie" options="browserOptions" class="c3chart"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-6 right-border"><span ng-click="toggleLimit(&quot;dataSourceTypeLimit&quot;)" ng-show="dataSourceTypeLimit == smallLimit" class="more"><i class="fa fa-plus-square-o"></i> more</span><span ng-click="toggleLimit(&quot;dataSourceTypeLimit&quot;)" ng-show="dataSourceTypeLimit == largeLimit" class="more"><i class="fa fa-minus-square-o"></i> less</span>
+          <h2>Top Data Source Types Used</h2>
+          <table ts-wrapper="ts-wrapper" class="table">
+            <thead>
+              <tr>
+                <th ts-criteria="dataSourceType|lowercase">Data Source Type</th>
+                <th ts-criteria="count|parseInt" ts-default="descending">Executions</th>
+                <th ts-criteria="successRate|parseFloat">Success Rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="dataSource in dataSourcesByType | tablesort | limitTo:dataSourceTypeLimit" ts-repeat="ts-repeat">
+                <td>{{ dataSource.dataSourceType }}</td>
+                <td>{{ dataSource.count | numeraljs:'0,0' }}</td>
+                <td>{{ dataSource.successRate | numeraljs:'0.0%' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-4 col-sm-6 right-border"><span ng-click="toggleLimit(&quot;widgetTypeLimit&quot;)" ng-show="widgetTypeLimit == smallLimit" class="more"><i class="fa fa-plus-square-o"></i> more</span><span ng-click="toggleLimit(&quot;widgetTypeLimit&quot;)" ng-show="widgetTypeLimit == largeLimit" class="more"><i class="fa fa-minus-square-o"></i> less</span>
+          <h2>Top Widgets Used</h2>
+          <table ts-wrapper="ts-wrapper" class="table">
+            <thead>
+              <tr>
+                <th ts-criteria="widget|lowercase">Widget Type</th>
+                <th ts-criteria="widgetViews|parseInt" ts-default="descending">Views</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="widget in widgets | tablesort | limitTo:widgetTypeLimit" ts-repeat="ts-repeat">
+                <td>{{ widget.widget }}</td>
+                <td>{{ widget.widgetViews | numeraljs:'0,0' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-4 col-sm-6"><span ng-click="toggleLimit(&quot;browserLimit&quot;)" ng-show="browserLimit == smallLimit" class="more"><i class="fa fa-plus-square-o"></i> more</span><span ng-click="toggleLimit(&quot;browserLimit&quot;)" ng-show="browserLimit == largeLimit" class="more"><i class="fa fa-minus-square-o"></i> less</span>
+          <h2>Top Browsers Used</h2>
+          <table ts-wrapper="ts-wrapper" class="table">
+            <thead>
+              <tr>
+                <th ts-criteria="nameVersion|lowercase">Browser</th>
+                <th ts-criteria="pageViews|parseInt" ts-default="descending">Page Views</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="browser in browsers | tablesort | limitTo:browserLimit" ts-repeat="ts-repeat">
+                <td>{{ browser.nameVersion }}</td>
+                <td>{{ browser.pageViews | numeraljs:'0,0' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12"><span ng-click="toggleLimit(&quot;dataSourcesLimit&quot;)" ng-show="dataSourcesLimit == smallLimit" class="more"><i class="fa fa-plus-square-o"></i> more</span><span ng-click="toggleLimit(&quot;dataSourcesLimit&quot;)" ng-show="dataSourcesLimit == largeLimit" class="more"><i class="fa fa-minus-square-o"></i> less</span>
+          <h2>Most Executed Data Sources</h2>
+          <table ts-wrapper="ts-wrapper" class="table">
+            <thead>
+              <tr>
+                <th ts-criteria="dashboardName|lowercase">Dashboard</th>
+                <th ts-criteria="dataSourceName|lowercase">Name</th>
+                <th ts-criteria="dataSourceType|lowercase">Type</th>
+                <th ts-criteria="count|parseInt" ts-default="descending">Executions</th>
+                <th ts-criteria="successRate|parseFloat">Success Rate</th>
+                <th ts-criteria="avgDuration|parseFloat">Duration (ms)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="dataSource in dataSources | tablesort | limitTo:dataSourcesLimit" ts-repeat="ts-repeat">
+                <td> <a href="/{{ dataSource.dashboardName }}" target="_blank" title="Open this Dashboard in a new window">{{ dataSource.dashboardName }}</a></td>
+                <td>{{ dataSource.dataSourceName }}</td>
+                <td>{{ dataSource.dataSourceType }}</td>
+                <td>{{ dataSource.count | numeraljs:'0,0' }}</td>
+                <td>{{ dataSource.successRate | numeraljs:'0.0%' }}</td>
+                <td>{{ dataSource.avgDuration | numeraljs:'0.0' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

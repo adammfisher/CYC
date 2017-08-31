@@ -1,0 +1,8 @@
+
+<div class="editor-view-header">
+  <h3>Parameters</h3>
+  <div class="editor-view-header-buttons">
+    <button type="button" ng-click="newParameter()" title="Add New Parameter" class="btn btn-primary"> <i class="fa fa-plus"></i><span> Add Parameter</span></button>
+  </div>
+</div>
+<editor-view-object-array model="editor.dashboard.parameters" label="Parameter" substate="edit.parameter" headingfn="getParameterName(item, index, label)"></editor-view-object-array>

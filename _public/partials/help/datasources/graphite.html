@@ -1,0 +1,22 @@
+
+<h3>Graphite Data Source</h3>
+<p>
+  The Graphite Data Source connects to any Graphite server and uses the /render API to extract raw values.
+  It can output one or more targets, which can use the full list of <a href="http://graphite.readthedocs.org/en/latest/functions.html" target="_blank">Graphite functions</a>.
+</p>
+<P>Please note that it may be necessary to set the optional <em>proxy </em>property in the Data Source in order to access web sites or services in other domains.  
+  This property lists other Cyclotron servers which may have the required connectivity. 
+  By default, this Data Source uses the current Cyclotron environment to proxy the request.
+</P>
+<p>Examples of the Graphite Data Source are available on the <a href="/example-datasource-graphite">example-datasource-graphite</a> dashboard</p>
+<property-table properties="config.dashboard.properties.dataSources.options.graphite.properties"></property-table>
+<h4>Pre-Processor</h4>
+<p>
+  The Graphite Data Source supports an optional pre-processor function that will be called before
+  the Data Source executes.  For more details, see the main Data Sources page.
+</p>
+<h4>Post-Processor</h4>
+<p>
+  The Graphite Data Source supports an optional post-processor function that will be called after
+  data is loaded.  For more details, see the main Data Sources page.
+</p>

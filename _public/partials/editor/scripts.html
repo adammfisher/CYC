@@ -1,0 +1,8 @@
+
+<div class="editor-view-header">
+  <h3>Scripts</h3>
+  <div class="editor-view-header-buttons">
+    <button id="editor-scripts-add" type="button" ng-click="newScript()" title="Add New Script" class="btn btn-primary"> <i class="fa fa-plus"></i><span> Add Script</span></button>
+  </div>
+</div>
+<editor-view-object-array model="editor.dashboard.scripts" label="Script" substate="edit.script" headingfn="getScriptOrStyleName(item, index, label)"></editor-view-object-array>

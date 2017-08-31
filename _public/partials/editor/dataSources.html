@@ -1,0 +1,8 @@
+
+<div class="editor-view-header">
+  <h3>Data Sources</h3>
+  <div class="editor-view-header-buttons">
+    <button id="editor-dataSources-add" type="button" ng-click="newDataSource()" title="Add New Data Source" class="btn btn-primary"> <i class="fa fa-plus"></i><span> Add Data Source</span></button>
+  </div>
+</div>
+<editor-view-object-array model="editor.dashboard.dataSources" label="Data Source" substate="edit.dataSource" headingfn="getDataSourceName(item)"></editor-view-object-array>

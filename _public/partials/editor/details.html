@@ -1,0 +1,36 @@
+
+<div class="editor-view-header">
+  <h3>Dashboard Details</h3>
+</div>
+<div class="form-group">
+  <label>Name</label>
+  <p ng-hide="isValidDashboardName()" class="text-danger">Dashboard names cannot have special characters.  Allowed: A-Z, a-z, 0-9, -</p>
+  <input type="text" ng-model="editor.dashboard.name" ng-pattern="/^[A-Za-z0-9-_ ]*$/" placeholder="Dashboard Name" ng-required="ng-required" ng-disabled="!editor.isNew" class="form-control"/>
+</div>
+<div class="form-group">
+  <label>Tags</label>
+  <ui-select ng-model="editor.dashboardWrapper.tags" multiple="" tagging="" tagging-label="(new)" tagging-tokens="SPACE|ENTER">
+    <ui-select-match placeholder="Tags..."> <i class="fa fa-tag"></i><span> {{ $item }}</span></ui-select-match>
+    <ui-select-choices repeat="tag in allTags | filter:$select.search"><i class="fa fa-tag"></i><span> {{ tag }}</span></ui-select-choices>
+  </ui-select>
+</div>
+<div requires-auth="requires-auth" class="form-group">
+  <label title="Restrict who can edit this Dashboard."><span>Edit Permissions</span><i ng-if="ldapSearch.editors.searchCount != ldapSearch.editors.currentId" title="Loading..." class="inline-js-icon fa fa-cog fa-spin"></i></label>
+  <ui-select ng-model="editor.dashboardWrapper.editors" multiple="" class="permission-selector">
+    <ui-select-match placeholder="Users or Groups"> <span ng-switch="$item.category" class="ui-select-prefix-icon"><i ng-switch-when="Security Group" class="fa fa-users"></i><i ng-switch-when="Group" class="fa fa-users"></i><i ng-switch-when="Distribution List" class="fa fa-envelope"></i><i ng-switch-when="User" class="fa fa-user"></i><i ng-switch-default="ng-switch-default" class="fa fa-life-ring"></i></span><span>{{ $item.displayName || $item.givenName }}</span></ui-select-match>
+    <ui-select-choices repeat="result in ldapSearch.editors.results" refresh="searchLdap($select.search, &quot;editors&quot;)" refresh-delay="500"><span ng-switch="result.category" class="ui-select-prefix-icon"><i ng-switch-when="Security Group" class="fa fa-users"></i><i ng-switch-when="Group" class="fa fa-users"></i><i ng-switch-when="Distribution List" class="fa fa-envelope"></i><i ng-switch-when="User" class="fa fa-user"></i><i ng-switch-default="ng-switch-default" class="fa fa-life-ring"></i></span><span ng-bind-html="result.displayName | highlight: $select.search"></span>
+      <div><small class="category">{{ result.category }}</small><small class="text-muted">  {{ result.mail }}</small></div>
+    </ui-select-choices>
+  </ui-select>
+</div>
+<div requires-auth="requires-auth" class="form-group">
+  <label title="Restrict who can view this Dashboard."><span>View Permissions</span><i ng-if="ldapSearch.viewers.searchCount != ldapSearch.viewers.currentId" title="Loading..." class="inline-js-icon fa fa-cog fa-spin"></i></label>
+  <p ng-if="editor.dashboardWrapper.editors.length == 0 &amp;&amp; editor.dashboardWrapper.viewers.length &gt; 0" class="text-danger">View Permissions will be ignored unless Edit Permissions are set.</p>
+  <ui-select ng-model="editor.dashboardWrapper.viewers" multiple="" class="permission-selector">
+    <ui-select-match placeholder="Users or Groups"> <span ng-switch="$item.category" class="ui-select-prefix-icon"><i ng-switch-when="Security Group" class="fa fa-users"></i><i ng-switch-when="Group" class="fa fa-users"></i><i ng-switch-when="Distribution List" class="fa fa-envelope"></i><i ng-switch-when="User" class="fa fa-user"></i><i ng-switch-default="ng-switch-default" class="fa fa-life-ring"></i></span><span>{{ $item.displayName || $item.givenName }}</span></ui-select-match>
+    <ui-select-choices repeat="result in ldapSearch.viewers.results" refresh="searchLdap($select.search, &quot;viewers&quot;)" refresh-delay="500"><span ng-switch="result.category" class="ui-select-prefix-icon"><i ng-switch-when="Security Group" class="fa fa-users"></i><i ng-switch-when="Group" class="fa fa-users"></i><i ng-switch-when="Distribution List" class="fa fa-envelope"></i><i ng-switch-when="User" class="fa fa-user"></i><i ng-switch-default="ng-switch-default" class="fa fa-life-ring"></i></span><span ng-bind-html="result.displayName | highlight: $select.search"></span>
+      <div><small class="category">{{ result.category }}</small><small class="text-muted">  {{ result.mail }}</small></div>
+    </ui-select-choices>
+  </ui-select>
+</div>
+<div model="editor.dashboard" definition="dashboardProperties" excludes="dashboardExcludes" class="editor-property-set"></div>

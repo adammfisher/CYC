@@ -1,0 +1,48 @@
+
+<h3>QRCode Widget</h3>
+<p>
+  The QR Code Widget generates a QR code out of the current Dashboard URL or some arbitrary text content.
+  When using text content, the text can either be hardcoded or loaded from the first row of a Data Source.
+  
+</p>
+<p>
+  When using a Data Source, only the first row of the result set will be used.  Ideally, the Data 
+  Source would only return one row, but the <em>filters/sortBy </em>properties can be used to manipulate the result, removing unwanted rows and ordering the correct row 
+  at the front (ascending).  For example, if a Data Source returns daily data for the past month, sorting 
+  by "-date" would order by date descending, causing the row with the most recent data to appear first.
+</p>
+<h4>Properties</h4>
+<p>
+  These are the properties specific to this widget.  
+  General Cyclotron widget properties are not repeated here (e.g. layout properties).
+  
+</p>
+<property-table properties="config.widgets.qrcode.properties"></property-table>
+<h3>Examples</h3>
+<h4>Hard-coded QR Code</h4>
+<p>This widget generates a QR code from a hard-coded string.</p>
+<p>This example is available on the <a href="/example-qrcode">example-qrcode</a> dashboard</p>
+<pre class="code">{
+    "text": "Hello World",
+    "widget": "qrcode"
+}
+</pre>
+<h4>Current Dashboard URL</h4>
+<p>This widget generates a QR code with the current URL.</p>
+<p>This example is available on the <a href="/example-qrcode">example-qrcode</a> dashboard</p>
+<pre class="code">{
+    "useUrl": true,
+    "widget": "qrcode"
+}
+</pre>
+<h4>Data Source-based QR Code</h4>
+<p>
+  This widget uses a dynamic value from a Data Source to generate the QR code.  
+  If the Data Source automatically refreshes, the QR code will update automatically.
+</p>
+<p>This example is available on the <a href="/example-qrcode">example-qrcode</a> dashboard</p>
+<pre class="code">{
+    "dataSource": "datasource_0",
+    "text": "",
+    "widget": "qrcode"
+}</pre>

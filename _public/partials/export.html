@@ -1,0 +1,58 @@
+
+<div class="export-page container-fluid">
+  <div class="row cyclotron-header">
+    <h1 ui-sref="home" ui-sref-opts="{reload: true}"><img src="/img/favicon64.png" alt="Logo" class="logo"/>Cyclotron</h1>
+    <div class="links"><a ui-sref="home" title="Return to Home" class="home"><i class="fa fa-home"></i></a><a ng-href="/edit/" target="_self" title="Create a new Dashboard" class="new"><i class="fa fa-file-o"></i></a><a ui-sref="help" target="_blank" title="Documentation for Cyclotron" class="documentation"><i class="fa fa-question-circle"></i></a><a ng-if="analyticsEnabled()" ui-sref="analytics" title="Analytics for Cyclotron" class="analytics"><i class="fa fa-bar-chart"></i></a><a requires-auth="requires-auth" ng-click="login()" ng-if="!isLoggedIn()" title="Login" class="login"><i class="fa fa-unlock"></i></a><span requires-auth="requires-auth" ng-if="isLoggedIn()" class="dropdown"><a title="{{ userTooltip() }}" data-toggle="dropdown" class="user dropdown-toggle"><i ng-if="!currentUser().emailHash" class="fa fa-user"></i><img ng-if="currentUser().emailHash" ng-src="{{ userGravatar() }}"/></a>
+        <ul role="menu" class="dropdown-menu">
+          <li role="presentation" class="dropdown-header"><a>{{ currentUser().name }}</a></li>
+          <li ng-if="isAdmin()"><a title="Admin" class="admin">Is Admin <i class="fa fa-key"></i></a></li>
+          <li ng-if="isAdmin()" role="presentation" class="divider"><a></a></li>
+          <li><a ng-click="logout()" title="Logout" class="logout">Logout <i class="fa fa-lock"></i></a></li>
+        </ul></span></div>
+  </div>
+  <div class="row header">
+    <div class="well well-sm">
+      <div class="button-bar"><a ng-href="/{{ dashboardName }}">
+          <button class="btn btn-default"><i class="fa fa-angle-left"></i> Return to Dashboard</button></a></div>
+      <h1>Export Dashboard</h1>
+    </div>
+  </div>
+  <form class="row well well-sm">
+    <div class="col-md-3 col-md-offset-1">
+      <div class="form-group">
+        <label class="control-label">Dashboard Name</label>
+        <input type="text" ng-model="dashboardName" placeholder="Dashboard Name" required="required" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Format</label>
+        <select ng-options="format.label for format in exportFormats" ng-model="exportFormat" class="form-control"></select>
+      </div>
+      <div class="form-group">
+        <button type="submit" ng-click="export()" ng-disabled="exporting" class="btn btn-primary">Export</button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label">Dashboard Parameters</label>
+        <editor-view-hash model="parameters"></editor-view-hash>
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-md-7 col-md-offset-1">
+      <div ng-if="exportStatus" class="results">
+        <div class="pull-left"><i ng-show="exportStatus.status == &quot;running&quot;" class="fa fa-refresh"></i><i ng-show="exportStatus.status == &quot;complete&quot;" class="fa fa-check text-success"></i><span> Status: {{ exportStatus.status }}</span></div>
+        <div class="pull-right">{{ exportStatus.duration / 1000 }} seconds</div>
+        <div ng-show="exportStatus.png.length &gt; 0">
+          <h5>Images</h5>
+          <div ng-repeat="png in exportStatus.png" class="resultType"><a ng-href="{{ png }}" target="_blank"><i class="fa fa-file-image-o"></i><span>Page {{ $index + 1 }}</span></a></div>
+        </div>
+        <div ng-show="exportStatus.pdf.length &gt; 0">
+          <h5>PDF</h5>
+          <div ng-repeat="pdf in exportStatus.pdf" class="resultType"><a ng-href="{{ pdf }}" target="_blank"><i class="fa fa-file-pdf-o"></i></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row footer"></div>
+</div>

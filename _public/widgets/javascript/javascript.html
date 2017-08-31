@@ -1,0 +1,7 @@
+
+<div ng-controller="JavascriptWidget" class="javascript-widget">
+  <h1 ng-if="::widget.title" class="title">{{ widgetTitle() }}</h1>
+  <div spinjs="spinjs" ng-if="isLoading()" class="widget-loading"></div>
+  <div ng-if="widgetContext.dataSourceError == true &amp;&amp; !isLoading()" class="widget-error"></div>
+  <div data="widgetContext.data" refresh="widget.refresh" js-object="jsObject" class="js-container"></div>
+</div>

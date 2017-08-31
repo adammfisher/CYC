@@ -1,0 +1,10 @@
+
+<div ng-controller="ClockWidget" class="clock-widget">
+  <h1 ng-if="::widget.title" class="title">{{ widgetTitle() }}</h1>
+  <div class="widget-body">
+    <div ng-if="widgetContext.dataSourceError" class="widget-error"></div>
+    <div number-count="1" is-horizontal="&quot;false&quot;" ng-if="widgetContext.dataSourceError == false" class="the-number">
+      <h1 class="big">{{ currentTime }}</h1>
+    </div>
+  </div>
+</div>

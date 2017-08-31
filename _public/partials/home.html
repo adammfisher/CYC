@@ -1,0 +1,71 @@
+
+<div ng-class="{ &quot;with-splash&quot;: showSplash, &quot;with-results&quot;: !showSplash }" class="home-page container-fluid">
+  <div ng-hide="showSplash">
+    <div class="row cyclotron-header">
+      <h1 ui-sref="home" ui-sref-opts="{reload: true}"><img src="/img/favicon64.png" alt="Logo" class="logo"/>Cyclotron</h1>
+      <div class="links"><a ui-sref="home" title="Return to Home" class="home"><i class="fa fa-home"></i></a><a ng-href="/edit/" target="_self" title="Create a new Dashboard" class="new"><i class="fa fa-file-o"></i></a><a ui-sref="help" target="_blank" title="Documentation for Cyclotron" class="documentation"><i class="fa fa-question-circle"></i></a><a ng-if="analyticsEnabled()" ui-sref="analytics" title="Analytics for Cyclotron" class="analytics"><i class="fa fa-bar-chart"></i></a><a requires-auth="requires-auth" ng-click="login()" ng-if="!isLoggedIn()" title="Login" class="login"><i class="fa fa-unlock"></i></a><span requires-auth="requires-auth" ng-if="isLoggedIn()" class="dropdown"><a title="{{ userTooltip() }}" data-toggle="dropdown" class="user dropdown-toggle"><i ng-if="!currentUser().emailHash" class="fa fa-user"></i><img ng-if="currentUser().emailHash" ng-src="{{ userGravatar() }}"/></a>
+          <ul role="menu" class="dropdown-menu">
+            <li role="presentation" class="dropdown-header"><a>{{ currentUser().name }}</a></li>
+            <li ng-if="isAdmin()"><a title="Admin" class="admin">Is Admin <i class="fa fa-key"></i></a></li>
+            <li ng-if="isAdmin()" role="presentation" class="divider"><a></a></li>
+            <li><a ng-click="logout()" title="Logout" class="logout">Logout <i class="fa fa-lock"></i></a></li>
+          </ul></span></div>
+    </div>
+  </div>
+  <new-user-message></new-user-message>
+  <header ng-show="showSplash">
+    <h1>Cyclotron</h1>
+  </header>
+  <section ng-class="{active: !showSplash}" class="search">
+    <ui-select ng-model="search.query" multiple="" tagging="" tagging-label="(new)" tagging-tokens="SPACE|ENTER">
+      <ui-select-match placeholder="Search by Name or Tags..."><i ng-if="isTag($item)" class="fa fa-tag"></i><i ng-if="isAdvanced($item)" class="fa fa-filter"></i><span> {{ $item }}</span></ui-select-match>
+      <ui-select-choices repeat="hint in search.hints | filter:$select.search | limitTo:100"><i ng-if="isTag(hint)" class="fa fa-tag"></i><i ng-if="isAdvanced(hint)" class="fa fa-filter"></i><span> {{ hint }}</span></ui-select-choices>
+    </ui-select>
+    <p ng-if="showSplash"><a href="?q=is:liked&amp;s=-likeCount"><i class="fa fa-lightbulb-o"></i> Browse Dashboards</a></p>
+  </section>
+  <section ng-show="showSplash" class="main-links"><a title="You must login before creating a Dashboard" ng-if="!canEdit()" ng-click="loginAlert()" class="disabled"><i class="fa fa-file-o"></i><span>New Dashboard</span></a><a ng-href="/edit/" target="_self" title="Create a new Dashboard" ng-if="canEdit()" class="new"><i class="fa fa-file-o"></i><span>New Dashboard</span></a><a ui-sref="help" title="Documentation for Cyclotron" class="documentation"><i class="fa fa-question-circle"></i><span>Help</span></a><a ng-if="analyticsEnabled()" ui-sref="analytics" title="Analytics for Cyclotron" class="login"><i class="fa fa-bar-chart"></i><span>Analytics</span></a><a requires-auth="requires-auth" ng-if="!isLoggedIn()" ng-click="login()" title="Login" class="login"><i class="fa fa-unlock"></i><span>Login</span></a><a requires-login="requires-login" ng-click="logout()" title="Logout" class="logout"><i class="fa fa-lock"></i><span>Logout</span></a></section>
+  <section ng-hide="showSplash" class="results">
+    <div ng-show="loading" class="loading"><span class="spinjs"></span></div>
+    <div ng-show="dashboards.length == 0" class="no-results well well-sm"><span>No matching Dashboards were found</span></div>
+    <div ng-show="dashboards.length &gt; 0">
+      <table class="table">
+        <thead>
+          <tr>
+            <th requires-auth="requires-auth"><a ng-click="sortBy(&quot;_liked&quot;, true)"> <i class="fa fa-thumbs-up"></i></a></th>
+            <th><a ng-click="sortBy(&quot;name&quot;, false)" ng-class="{ selected: sortByField == &quot;name&quot; }">Name</a><span> / </span><a ng-click="sortBy(tagSorter, false)" ng-class="{ selected: sortByField == tagSorter }">Tags</a><span> / </span><a ng-click="sortBy(&quot;date&quot;, true)" ng-class="{ selected: sortByField == &quot;date&quot; }">Last Modified</a></th>
+            <th class="dashboard-analytics"><a ng-click="sortBy(&quot;visits&quot;, true)" ng-class="{ selected: sortByField == &quot;visits&quot; }">Visits</a><span requires-auth="requires-auth"> / </span><a requires-auth="requires-auth" ng-click="sortBy(&quot;likeCount&quot;, true)" ng-class="{ selected: sortByField == &quot;likeCount&quot; }">Likes</a></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tr ng-repeat="dashboard in dashboards | orderBy:sortByField:sortByReverse | limitTo:itemsPerPage:(currentPage-1)*itemsPerPage" ng-class="{&quot;dashboard-item-unviewable&quot;: !dashboard._canView, &quot;dashboard-item-deleted&quot;: dashboard.deleted }" class="dashboard-item">
+          <td requires-auth="requires-auth" class="like"><a ng-click="toggleLike(dashboard)"><i ng-if="dashboard._liked" title="Unlike this Dashboard" class="fa fa-thumbs-up"></i><i ng-if="!dashboard._liked" title="Like this Dashboard" class="fa fa-thumbs-o-up"></i></a></td>
+          <td><span ng-if="dashboard.deleted" class="name">{{ dashboard.name }}<i title="This Dashboard has been deleted." class="fa fa-trash-o"></i></span><span ng-if="!dashboard._canView" class="name">{{ dashboard.name }}<i title="You don't have permission to edit this Dashboard." class="fa fa-lock"></i><i title="You don't have permission to view this Dashboard." class="fa fa-eye-slash"></i></span><a ng-if="dashboard._canView &amp;&amp; !dashboard.deleted" ng-href="/{{ dashboard.name }}" target="_blank" title="Open the Dashboard" class="name">{{ dashboard.name }}<i ng-if="isLoggedIn() &amp;&amp; !dashboard._canEdit" title="You don't have permission to edit this Dashboard." class="fa fa-lock"></i><i class="fa fa-external-link"></i></a>
+            <div title="Description of dashboard" ng-if="dashboard.description" class="description"> <i class="fa fa-quote-left"></i> {{ dashboard.description }} <i class="fa fa-quote-right"></i></div>
+            <div class="info"><span title="Latest Editor">{{ dashboard.lastUpdatedBy.name }}</span><span ng-if="dashboard.lastUpdatedBy.name"> - </span><span title="Latest revision number">rev {{ dashboard.rev }}</span><span> -  </span><span title="Latest revision date">{{ dashboard.date | date:"short" }}</span></div>
+            <div ng-repeat="tag in dashboard.tags" ng-click="selectTag(tag)" title="Add to search" class="label label-default">{{ tag }}</div>
+          </td>
+          <td class="dashboard-analytics">
+            <div ng-if="dashboard.visits &gt; 0" class="info"><a ui-sref="dashboardAnalytics({ dashboardName: dashboard.name })" title="View Analytics for this Dashboard"><i class="fa {{ dashboard.visitCategory.icon }}"></i><span> {{ dashboard.visitCategory.text }} 
+                  <ng-pluralize count="dashboard.visits" when="{&quot;one&quot;: &quot;visit&quot;,&quot;other&quot;: &quot;visits&quot;}"></ng-pluralize></span></a></div>
+            <div requires-auth="requires-auth" ng-if="dashboard.likeCount &gt; 0" class="info"><i class="fa fa-thumbs-up"></i><span> {{ dashboard.likeCount }} 
+                <ng-pluralize count="dashboard.likeCount" when="{&quot;one&quot;: &quot;like&quot;,&quot;other&quot;: &quot;likes&quot;}"></ng-pluralize></span></div>
+          </td>
+          <td class="dashboard-links">
+            <div><a ui-sref="edit.details({ dashboardName: dashboard.name })" title="Edit this Dashboard" ng-if="canEdit(dashboard)"><i class="fa fa-edit"></i> Edit</a></div>
+            <div><a ng-click="delete(dashboard.name)" title="Delete this Dashboard" ng-if="canDelete(dashboard)" class="text-muted"><i class="fa fa-trash-o"></i> Delete</a></div>
+          </td>
+        </tr>
+      </table>
+      <div class="paging">
+        <uib-pagination total-items="resultsCount" ng-model="currentPage" items-per-page="itemsPerPage" max-size="5" boundary-links="true" class="pagination-sm"></uib-pagination>
+        <div>
+          <button ng-if="itemsPerPage &lt; 1000000" ng-click="setPageSize(1000000)" class="btn btn-link">Show All</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="footer">
+    <p><span>v{{ cyclotronVersion }}</span><span ng-if="changelogLink" class="separator">|</span><a ng-if="changelogLink" ng-href="{{ changelogLink }}">Changelog</a>
+    </p>
+  </section>
+</div>

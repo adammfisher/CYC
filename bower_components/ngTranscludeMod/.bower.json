@@ -1,0 +1,13 @@
+{
+  "name": "ngTranscludeMod",
+  "homepage": "https://github.com/izhaki/ngTranscludeMod",
+  "_release": "e9acde5132",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "e9acde5132fb46019106ff0e374e14994805d7ff"
+  },
+  "_source": "https://github.com/izhaki/ngTranscludeMod.git",
+  "_target": "*",
+  "_originalSource": "izhaki/ngTranscludeMod"
+}

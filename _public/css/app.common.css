@@ -1,0 +1,404 @@
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+/**
+ * Alertify theme for Cyclotron.
+ *
+ * Based on Alertify Default Look and Feel
+ */
+.alertify,
+.alertify-log {
+  font-family: sans-serif;
+}
+.alertify {
+  background: #FFF;
+  border: 10px solid #333;
+  /* browsers that don't support rgba */
+  border: 10px solid rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+  -webkit-background-clip: padding;
+  /* Safari 4? Chrome 6? */
+  -moz-background-clip: padding;
+  /* Firefox 3.6 */
+  background-clip: padding-box;
+  /* Firefox 4, Safari 5, Opera 10, IE 9 */
+}
+.alertify-text {
+  border: 1px solid #CCC;
+  padding: 10px;
+  border-radius: 4px;
+}
+.alertify-button {
+  border-radius: 4px;
+  color: #FFF;
+  font-weight: bold;
+  padding: 6px 15px;
+  text-decoration: none;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+}
+.alertify-button:hover,
+.alertify-button:focus {
+  outline: none;
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+  background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+}
+.alertify-button:focus {
+  -webkit-box-shadow: 0 0 5px #51cbee;
+  -moz-box-shadow: 0 0 5px #51cbee;
+  box-shadow: 0 0 5px #51cbee;
+  color: #FFF;
+}
+.alertify-button:active {
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.alertify-button-cancel,
+.alertify-button-cancel:hover,
+.alertify-button-cancel:focus {
+  background-color: #aaa;
+  border: 1px solid #222;
+  color: #FFF;
+}
+.alertify-button-ok,
+.alertify-button-ok:hover,
+.alertify-button-ok:focus {
+  background-color: #666;
+  border: 1px solid #222;
+  color: #FFF;
+}
+.alertify-log {
+  border: 1px solid #000;
+  background: rgba(90, 90, 90, 0.85);
+  padding: 15px;
+  border-radius: 4px;
+  color: #FFF;
+}
+.alertify-log-error {
+  border: 1px solid #FF4040;
+  background-color: #F7ABAB;
+  color: #660000;
+  opacity: .9;
+}
+.alertify-log-success {
+  background: #47a447;
+}
+
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/* Customize scrollbar (webkit) */
+/* Restyle links */
+/* Dashboard Sidebar */
+.login-modal input:invalid {
+  box-shadow: none;
+}
+.login-modal .login-message {
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.modal-error {
+  padding: 0.5rem;
+  margin-top: 1rem;
+}
+
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/* Customize scrollbar (webkit) */
+/* Restyle links */
+/* Dashboard Sidebar */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Courier New", Courier, monospace;
+}
+h1 {
+  font-weight: 600;
+  font-size: 2rem;
+  margin: 14px 0px;
+}
+h2 {
+  font-weight: 300;
+  font-size: 1.6rem;
+  margin: 10px 0px;
+}
+h3 {
+  font-weight: bold;
+  margin-top: 32px;
+}
+h4 {
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+html,
+button,
+input,
+select,
+textarea {
+  color: #222;
+}
+a {
+  color: #222;
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+}
+a:hover {
+  color: #000000;
+  text-decoration: none;
+  border-bottom: 1px dotted #888;
+}
+img {
+  vertical-align: middle;
+  border: 0;
+}
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+textarea {
+  resize: vertical;
+}
+table {
+  border-collapse: collapse;
+}
+.form-control {
+  height: inherit;
+}
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+.invisible {
+  visibility: hidden;
+}
+.hidden {
+  display: none;
+}
+.inline {
+  display: inline;
+}
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+.clearfix:after {
+  clear: both;
+}
+.centered {
+  text-align: center;
+  margin: auto;
+}
+.fullscreen {
+  height: 100%;
+}
+.superwide {
+  width: 100%;
+}
+.errorPage {
+  background-color: black;
+}
+/* Occupy space but make invisible */
+.invisible {
+  opacity: 0;
+}
+.code {
+  border: 1px dashed #999;
+  overflow: auto;
+  padding: 4px;
+}
+.ng-cloak {
+  display: none !important;
+}
+.actionable {
+  cursor: pointer;
+}
+.switch {
+  box-sizing: content-box !important;
+}
+#browserError {
+  width: 60%;
+  max-width: 500px;
+  margin: auto;
+  margin-top: 3rem;
+  padding: 1.7rem;
+  border: 1px dashed #999;
+  color: #777;
+}
+#browserError table {
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+}
+#browserError table a:hover {
+  border-bottom: 0px;
+}
+/*
+ * Styling for the angular-tablesort directive
+ */
+table th.tablesort-sortable {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+table th.tablesort-sortable:after {
+  content: "";
+  float: right;
+  margin-top: 7px;
+  visibility: hidden;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: none;
+  border-bottom: 4px solid #000;
+}
+table th.tablesort-desc:after {
+  border-top: 4px solid #000;
+  border-bottom: none;
+}
+table .tablesort-sortable:hover:after,
+table .tablesort-asc:after,
+table .tablesort-desc:after {
+  visibility: visible;
+}
+/* The row is always added as the first row in a table
+   Hide it by default */
+.showIfLast {
+  display: none;
+  /* Only show it if it is also the last row of the table. */
+}
+.showIfLast:last-child {
+  display: table-row;
+}
+.showIfLast td {
+  text-align: center;
+}
+.showIfLast td:after {
+  content: "No data";
+}
+
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License. 
+ */
+/* Customize scrollbar (webkit) */
+/* Restyle links */
+/* Dashboard Sidebar */

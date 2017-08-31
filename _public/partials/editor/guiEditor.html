@@ -1,0 +1,75 @@
+
+<div class="editor-gui container-fluid">
+  <div class="row cyclotron-header">
+    <h1 ui-sref="home" ui-sref-opts="{reload: true}"><img src="/img/favicon64.png" alt="Logo" class="logo"/>Cyclotron</h1>
+    <div class="links"><a ui-sref="home" title="Return to Home" class="home"><i class="fa fa-home"></i></a><a ng-href="/edit/" target="_self" title="Create a new Dashboard" class="new"><i class="fa fa-file-o"></i></a><a ui-sref="help" target="_blank" title="Documentation for Cyclotron" class="documentation"><i class="fa fa-question-circle"></i></a><a ng-if="analyticsEnabled()" ui-sref="analytics" title="Analytics for Cyclotron" class="analytics"><i class="fa fa-bar-chart"></i></a><a requires-auth="requires-auth" ng-click="login()" ng-if="!isLoggedIn()" title="Login" class="login"><i class="fa fa-unlock"></i></a><span requires-auth="requires-auth" ng-if="isLoggedIn()" class="dropdown"><a title="{{ userTooltip() }}" data-toggle="dropdown" class="user dropdown-toggle"><i ng-if="!currentUser().emailHash" class="fa fa-user"></i><img ng-if="currentUser().emailHash" ng-src="{{ userGravatar() }}"/></a>
+        <ul role="menu" class="dropdown-menu">
+          <li role="presentation" class="dropdown-header"><a>{{ currentUser().name }}</a></li>
+          <li ng-if="isAdmin()"><a title="Admin" class="admin">Is Admin <i class="fa fa-key"></i></a></li>
+          <li ng-if="isAdmin()" role="presentation" class="divider"><a></a></li>
+          <li><a ng-click="logout()" title="Logout" class="logout">Logout <i class="fa fa-lock"></i></a></li>
+        </ul></span></div>
+  </div>
+  <div class="row header">
+    <div class="dashboard-well">
+      <div ng-if="editor.initialized" class="button-bar">
+        <button ng-class="{&quot;btn-default&quot;: !canSave(), &quot;btn-success&quot;: canSave()}" ng-click="save()" class="btn"><i ng-hide="isSaving" class="fa fa-check-square-o"></i><span ng-show="isSaving"><i class="fa fa-cog fa-spin"></i></span> Save</button>
+        <div uib-dropdown="uib-dropdown" ng-if="canPreview()" class="btn-group"><a ng-href="{{ dashboardUrl(true) }}" target="cyclotron-preview" title="View Dashboard with Live mode enabled" class="btn btn-primary"><i class="fa fa-external-link"></i> {{ previewButtonText() }}</a>
+          <button type="button" uib-dropdown-toggle="uib-dropdown-toggle" class="btn btn-primary"><i class="fa fa-caret-down"></i></button>
+          <ul role="menu" uib-dropdown-menu="uib-dropdown-menu" class="pull-right">
+            <li role="menuitem"><a ng-href="{{ dashboardUrl(false) }}" target="cyclotron-preview" title="View Dashboard without Live mode"><i class="fa fa-external-link"></i> View Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+      <h1 ng-show="editor.dashboard.name">{{ editor.dashboard.name }}</h1>
+      <h1 ng-hide="$stateParams.dashboardName || editor.dashboard.name">New Dashboard</h1>
+      <h2 ng-hide="editor.isNew" title="Click to view revision history" ng-click="editor.showRevisions = true" class="text-muted revision-control"><i ng-show="editor.showRevisions" ng-click="moveRevisionLeft()" title="View Previous Revision" class="fa fa-angle-double-left"></i><i class="fa fa-clock-o"></i><span>  revision {{ editor.dashboardWrapper.rev }}</span><span requires-auth="requires-auth"> by {{ editor.dashboardWrapper.lastUpdatedBy.name || '?' }}</span><span ng-show="editor.showRevisions"> - {{ editor.revisionDate}}</span><i ng-show="editor.showRevisions &amp;&amp; editor.latestRevision &gt; editor.revision" ng-click="moveRevisionRight()" title="View Next Revision" class="fa fa-angle-double-right"></i></h2>
+      <h2 ng-hide="editor.isNew || !isLatestRevision()" ui-sref="dashboardAnalytics({ dashboardName: editor.dashboard.name })" title="{{ editor.dashboardWrapper.visits }} total visits, {{ editor.dashboardWrapper.pageViews }} total page views" class="text-muted analytics-control"><i class="fa {{ getVisitCategory().icon }}"></i><span> {{ getVisitCategory().text }} 
+          <ng-pluralize count="getVisitCategory().text" when="{&quot;one&quot;: &quot;visit&quot;, &quot;other&quot;: &quot;visits&quot;}"></ng-pluralize></span></h2>
+      <h2 requires-auth="requires-auth" ng-hide="editor.isNew || !isLatestRevision() || !editor.likeCount" title="{{ editor.likeCount }} likes" class="text-muted likes-control"><i class="fa fa-thumbs-up"></i><span> {{ editor.likeCount }} 
+          <ng-pluralize count="editor.likeCount" when="{1: &quot;like&quot;, &quot;other&quot;: &quot;likes&quot;}"></ng-pluralize></span></h2>
+      <h4 ng-if="editor.dashboard.description" class="small text-muted"><i class="fa fa-quote-left"></i> {{ editor.dashboard.description }}<i class="fa fa-quote-right"></i></h4>
+      <h4 ng-if="editor.dashboardWrapper.deleted" class="small text-danger"><i class="fa fa-exclamation-triangle"></i> This Dashboard has been deleted.  Saving a new revision will undelete it.</h4>
+      <h4 ng-if="!isLoggedIn()" class="small text-warning"><i class="fa fa-exclamation-triangle"></i> Dashboards cannot be created or edited without being logged in.</h4>
+      <h4 ng-if="isLoggedIn() &amp;&amp; !editor.hasEditPermission" class="small text-warning"><i class="fa fa-exclamation-triangle"></i> You don't have permission to edit this Dashboard.</h4>
+      <h4 ng-if="hasDuplicateDataSourceName()" class="small text-warning"><i class="fa fa-exclamation-triangle"></i> One or more Data Source names has been repeated.  All Data Source names must be unique to the Dashboard.</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="sidebar col-sm-4">
+      <ul class="nav nav-pills nav-stacked">
+        <li ng-class="{active: editor.currentEditor==&quot;edit.details&quot;}"><a id="editor-details" ng-click="goToSubState(&quot;edit.details&quot;, editor.dashboard)"><i class="fa fa-home"></i> Details</a></li>
+        <li ng-class="{active: editor.currentEditor==&quot;edit.dataSources&quot;}"><a id="editor-dataSources" ng-click="goToSubState(&quot;edit.dataSources&quot;, editor.dashboard.dataSources)"> <i class="fa fa-cloud-download"></i> Data Sources<span ng-show="editor.dashboard.dataSources.length &gt; 0" class="text-muted"> ({{ editor.dashboard.dataSources.length }})</span></a></li>
+        <li ng-show="editor.currentEditor == &quot;edit.dataSources&quot; || editor.currentEditor == &quot;edit.dataSource&quot;" ng-repeat="dataSource in editor.dashboard.dataSources" ng-class="{active: editor.selectedItem == dataSource &amp;&amp; editor.currentEditor==&quot;edit.dataSource&quot;}" class="indent"><a ng-click="goToSubState(&quot;edit.dataSource&quot;, dataSource, $index)" id="editor-dataSource-{{ dataSource.name }}"><i class="fa fa-angle-right"></i> {{ getDataSourceName(dataSource) }}<i ng-if="isDuplicateDataSourceName(dataSource)" title="This Data Source has a conflicting Name property." class="fa fa-exclamation-triangle right-hand-icon"></i></a></li>
+        <li ng-class="{active: editor.currentEditor==&quot;edit.pages&quot;}"><a id="editor-pages" ng-click="goToSubState(&quot;edit.pages&quot;, editor.dashboard.pages)"><i class="fa fa-file-o"></i> Pages<span ng-show="editor.dashboard.pages.length &gt; 0" class="text-muted"> ({{ editor.dashboard.pages.length }})</span></a></li>
+        <li ng-show="editor.currentEditor==&quot;edit.pages&quot; || editor.currentEditor==&quot;edit.page&quot; || editor.currentEditor==&quot;edit.widget&quot;" ng-repeat="page in editor.dashboard.pages" ng-class="{active: editor.selectedPageIndex == $index &amp;&amp; $state.name==&quot;edit.page&quot;}" class="indent"><a ng-click="goToSubState(&quot;edit.page&quot;, page, $index)" id="editor-page-{{ $index }}"><i class="fa fa-angle-right"></i> {{ getPageName(page, $index) }}</a>
+          <ul ng-show="(editor.currentEditor==&quot;edit.page&quot; &amp;&amp; editor.selectedItem == page) || (editor.currentEditor==&quot;edit.widget&quot; &amp;&amp; editor.selectedPageIndex == $index)" class="nav nav-pills nav-stacked">
+            <li ng-repeat="widget in page.widgets" ng-class="{active: $state.name==&quot;edit.widget&quot; &amp;&amp; editor.selectedItemIndex == $index}" class="indent"><a ng-click="goToSubState(&quot;edit.widget&quot;, widget, $index)" id="editor-widget-{{ $index }}"><i class="fa fa-angle-right"></i> {{ getWidgetName(widget, $index) }}</a></li>
+          </ul>
+        </li>
+        <li ng-class="{active: editor.currentEditor==&quot;edit.parameters&quot;}"><a id="editor-parameters" ng-click="goToSubState(&quot;edit.parameters&quot;, editor.dashboard.parameters)"><i class="fa fa-wrench"></i> Parameters<span ng-show="editor.dashboard.parameters.length &gt; 0" class="text-muted"> ({{ editor.dashboard.parameters.length }})</span></a></li>
+        <li ng-show="editor.currentEditor == &quot;edit.parameters&quot; || editor.currentEditor == &quot;edit.parameter&quot;" ng-repeat="parameter in editor.dashboard.parameters" ng-class="{active: editor.selectedItem == parameter &amp;&amp; editor.currentEditor==&quot;edit.parameter&quot;}" class="indent"><a ng-click="goToSubState(&quot;edit.parameter&quot;, parameter, $index)" id="editor-parameter-{{ $index }}"><i class="fa fa-angle-right"></i> {{ getParameterName(parameter, $index) }}</a></li>
+        <li ng-class="{active: editor.currentEditor==&quot;edit.scripts&quot;}"><a id="editor-scripts" ng-click="goToSubState(&quot;edit.scripts&quot;, editor.dashboard.scripts)"><i class="fa fa-gears"></i> Scripts<span ng-show="editor.dashboard.scripts.length &gt; 0" class="text-muted"> ({{ editor.dashboard.scripts.length }})</span></a></li>
+        <li ng-show="editor.currentEditor == &quot;edit.scripts&quot; || editor.currentEditor == &quot;edit.script&quot;" ng-repeat="script in editor.dashboard.scripts" ng-class="{active: editor.selectedItem == script &amp;&amp; editor.currentEditor==&quot;edit.script&quot;}" class="indent"><a ng-click="goToSubState(&quot;edit.script&quot;, script, $index)" id="editor-script-{{ $index }}"><i class="fa fa-angle-right"></i> {{ getScriptOrStyleName(script, $index, 'Script') }}</a></li>
+        <li ng-class="{active: editor.currentEditor==&quot;edit.styles&quot;}"><a id="editor-styles" ng-click="goToSubState(&quot;edit.styles&quot;, editor.dashboard.styles)"><i class="fa fa-font"></i> Styles<span ng-show="editor.dashboard.styles.length &gt; 0" class="text-muted"> ({{ editor.dashboard.styles.length }})</span></a></li>
+        <li ng-show="editor.currentEditor == &quot;edit.styles&quot; || editor.currentEditor == &quot;edit.style&quot;" ng-repeat="style in editor.dashboard.styles" ng-class="{active: editor.selectedItem == style &amp;&amp; editor.currentEditor==&quot;edit.style&quot;}" class="indent"><a ng-click="goToSubState(&quot;edit.style&quot;, style, $index)" id="editor-style-{{ $index }}"><i class="fa fa-angle-right"></i> {{ getScriptOrStyleName(style, $index, 'Style') }}</a></li>
+        <li ng-show="canEncrypt() || canClone() || canPush() || canDelete() || canExport()" class="divider"></li>
+        <li ng-show="canClone()"><a id="editor-clone" ng-click="clone()" title="Clone this Dashboard"><i class="fa fa-code-fork"></i> Clone Dashboard</a></li>
+        <li ng-show="canPush()"><a id="editor-push" ng-click="push()"><i class="fa fa-send-o"></i> Push to Environment</a></li>
+        <li ng-show="canDelete()"><a id="editor-delete" ng-click="delete()" title="Delete this Dashboard"><i class="fa fa-trash-o"></i> Delete</a></li>
+        <li ng-show="canExport()"><a id="editor-export" ui-sref="export({ dashboardName: editor.dashboard.name })" title="Export this Dashboard"><i class="fa fa-download"></i> Export</a></li>
+        <li ng-show="canEncrypt()"><a id="editor-export" ng-click="encrypt()" title="Generate Encrypted String"><i class="fa fa-lock"></i> Encrypt ...</a></li>
+        <li class="divider"></li>
+        <li><a id="editor-history" ui-sref="dashboardHistory({ dashboardName: editor.dashboard.name })" title="View Dashboard History"><i class="fa fa-clock-o"></i> History</a></li>
+        <li><a id="editor-analytics" ui-sref="dashboardAnalytics({ dashboardName: editor.dashboard.name })" title="View Dashboard Analytics"><i class="fa fa-bar-chart"></i> Analytics</a></li>
+        <li><a id="editor-help" ng-href="/help" target="help" title="Documentation for Cyclotron"><i class="fa fa-question-circle"></i> Documentation</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-8">
+      <div ng-show="canJsonEdit()" class="pull-right"><a ng-hide="$state.name==&quot;edit.json&quot;" ui-sref="edit.json">
+          <button class="btn btn-default"><i class="fa fa-edit"></i> Edit JSON</button></a></div>
+      <ui-view class="editor-contents"></ui-view>
+    </div>
+  </div>
+  <div class="row footer"></div>
+</div>

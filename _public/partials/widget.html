@@ -1,0 +1,11 @@
+
+<div class="widget-control-bar"><i ng-if="widgetContext.helpText" uib-tooltip="{{ ::widgetContext.helpText }}" tooltip-placement="auto-right" tooltip-trigger="outsideClick" class="widget-control widget-helptext fa fa-question-circle"></i>
+  <div ng-if="showDropdown()" uib-dropdown="" class="widget-control widget-dropdown-menu btn-group"><i uib-dropdown-toggle="" class="fa fa-caret-down"></i>
+    <ul uib-dropdown-menu="" role="menu" class="dropdown-menu-right">
+      <li role="menuitem"><a ng-click="exportData(&quot;csv&quot;)"> <i class="fa fa-file-o"></i> Export data as CSV</a></li>
+      <li role="menuitem"><a ng-click="exportData(&quot;json&quot;)"><i class="fa fa-file-code-o"></i> Export data as JSON</a></li>
+      <li role="menuitem"><a ng-click="exportData(&quot;xlsx&quot;)"><i class="fa fa-file-excel-o"></i> Export data as Excel</a></li>
+    </ul>
+  </div><i ng-if="widgetContext.allowFullscreen" title="Click to view fullscreen" class="widget-control widget-fullscreen fa fa-expand"></i>
+</div>
+<div ng-include="widgetTemplateUrl" class="dashboard-widget {{ widgetClass }}"></div>
