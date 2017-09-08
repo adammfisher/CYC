@@ -1,7 +1,7 @@
 
 <div class="help-page container-fluid">
   <div class="row cyclotron-header">
-    <h1 ui-sref="home" ui-sref-opts="{reload: true}"><img src="/img/favicon64.png" alt="Logo" class="logo"/>AIG DIGITAL WALL</h1>
+    <h1 ui-sref="home" ui-sref-opts="{reload: true}"><img src="/img/logo.png" alt="Logo" class="logo"/></h1>
     <div class="links"><a ui-sref="home" title="Return to Home" class="home"><i class="fa fa-home"></i></a><a ng-href="/edit/" target="_self" title="Create a new Dashboard" class="new"><i class="fa fa-file-o"></i></a><a ui-sref="help" target="_blank" title="Documentation for DIGITAL WALL" class="documentation"><i class="fa fa-question-circle"></i></a><a ng-if="analyticsEnabled()" ui-sref="analytics" title="Analytics for DIGITAL WALL" class="analytics"><i class="fa fa-bar-chart"></i></a><a requires-auth="requires-auth" ng-click="login()" ng-if="!isLoggedIn()" title="Login" class="login"><i class="fa fa-unlock"></i></a><span requires-auth="requires-auth" ng-if="isLoggedIn()" class="dropdown"><a title="{{ userTooltip() }}" data-toggle="dropdown" class="user dropdown-toggle"><i ng-if="!currentUser().emailHash" class="fa fa-user"></i><img ng-if="currentUser().emailHash" ng-src="{{ userGravatar() }}"/></a>
         <ul role="menu" class="dropdown-menu">
           <li role="presentation" class="dropdown-header"><a>{{ currentUser().name }}</a></li>
