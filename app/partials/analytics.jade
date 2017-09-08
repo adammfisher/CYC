@@ -1,56 +1,56 @@
 .analytics-page
     include header
 
-    h1 Cyclotron Analytics
+    h1 Digital Wall Analytics
     .sidebar
         h2 Dashboards
         dl(title='Total number of Dashboards, including deleted Dashboards')
-            dt {{ statistics.dashboards.total.count | numeraljs:'0,0' }} 
-            dd total 
+            dt {{ statistics.dashboards.total.count | numeraljs:'0,0' }}
+            dd total
                 ng-pluralize(count='statistics.dashboards.total.count', when='{"one": "Dashboard", "other": "Dashboards"}')
         dl(title='Number of viewed Dashboards in the last 30 days')
-            dt {{ statistics.dashboards.active.activePastThirtyDayCount | numeraljs:'0,0' }} 
-            dd 30-day active 
+            dt {{ statistics.dashboards.active.activePastThirtyDayCount | numeraljs:'0,0' }}
+            dd 30-day active
                 ng-pluralize(count='statistics.dashboards.active.activePastThirtyDayCount', when='{"one": "Dashboard", "other": "Dashboards"}')
         dl(title='Total number of deleted Dashboards')
-            dt {{ statistics.dashboards.deletedDashboards.count | numeraljs:'0,0' }} 
-            dd deleted 
+            dt {{ statistics.dashboards.deletedDashboards.count | numeraljs:'0,0' }}
+            dd deleted
                 ng-pluralize(count='statistics.dashboards.deletedDashboards.count', when='{"one": "Dashboard", "other": "Dashboards"}')
         dl(title='Total number of Dashboards modified within the last 30 days')
-            dt {{ statistics.dashboards.total.editedPastThirtyDayCount | numeraljs:'0,0' }} 
+            dt {{ statistics.dashboards.total.editedPastThirtyDayCount | numeraljs:'0,0' }}
             dd modified in the last 30 days
         dl(title='Total number of Dashboards deleted within the last 30 days')
-            dt {{ statistics.dashboards.deletedDashboards.editedPastThirtyDayCount | numeraljs:'0,0' }} 
+            dt {{ statistics.dashboards.deletedDashboards.editedPastThirtyDayCount | numeraljs:'0,0' }}
             dd deleted in the last 30 days
-        
+
         dl(title='Total number of Revisions, including those for deleted Dashboards')
-            dt {{ statistics.revisions.count | numeraljs:'0,0' }} 
-            dd total 
+            dt {{ statistics.revisions.count | numeraljs:'0,0' }}
+            dd total
                 ng-pluralize(count='statistics.revisions.count', when='{"one": "Revision", "other": "Revisions"}')
-        
+
         dl(title='Average number of Revisions per Dashboard, including those for deleted Dashboards')
-            dt {{ statistics.revisions.avgRevisionCount | numeraljs:'0.0' }} 
-            dd  
+            dt {{ statistics.revisions.avgRevisionCount | numeraljs:'0.0' }}
+            dd
                 ng-pluralize(count='statistics.revisions.avgRevisionCount', when='{"one": "Revision", "other": "Revisions"}')
                 |  per Dashboard
 
         h2 Likes
         dl(title='Total number of likes for all active Dashboards (currently)')
-            dt {{ statistics.likes.count | numeraljs:'0,0' }} 
+            dt {{ statistics.likes.count | numeraljs:'0,0' }}
             dd current Likes
         dl(title='Total number of times Dashboards have been liked (or re-liked)')
-            dt {{ statistics.likeEvents.count | numeraljs:'0,0' }} 
+            dt {{ statistics.likeEvents.count | numeraljs:'0,0' }}
             dd all-time Likes (including repeats)
         dl(title='Total number of Dashboard Likes within the past day')
-            dt {{ statistics.likeEvents.occurredPastDayCount | numeraljs:'0,0' }} 
+            dt {{ statistics.likeEvents.occurredPastDayCount | numeraljs:'0,0' }}
             dd Likes in the past day
         dl(title='Total number of Dashboard Likes within the last 30 days')
-            dt {{ statistics.likeEvents.occurredPastThirtyDayCount | numeraljs:'0,0' }} 
+            dt {{ statistics.likeEvents.occurredPastThirtyDayCount | numeraljs:'0,0' }}
             dd Likes in the last 30 days
         dl(title='Total number of times a Dashboard was unliked')
-            dt {{ statistics.unlikeEvents.count | numeraljs:'0,0' }} 
+            dt {{ statistics.unlikeEvents.count | numeraljs:'0,0' }}
             dd Unlikes
-        
+
         h2 Visits
         dl(title='Total number of times any Dashboard was visited')
             dt {{ statistics.pageViews.totalVisits | numeraljs:'0,0' }}
@@ -71,31 +71,31 @@
         h2 Users
         dl(title='Number of unique logged-in users')
             dt {{ statistics.users.count | numeraljs:'0,0' }}
-            dd registered 
+            dd registered
                 ng-pluralize(count='statistics.users.count', when='{"one": "user", "other": "users"}')
         dl(title='Number of users who have logged in during the past 24 hours')
             dt {{ statistics.users.activePastDayCount | numeraljs:'0,0' }}
-            dd daily active 
+            dd daily active
                 ng-pluralize(count='statistics.users.activePastDayCount', when='{"one": "user", "other": "users"}')
         dl(title='Number of users who have logged in during the last 30 days')
             dt {{ statistics.users.activePastThirtyDayCount | numeraljs:'0,0' }}
-            dd 30-day active 
+            dd 30-day active
                 ng-pluralize(count='statistics.users.activePastThirtyDayCount', when='{"one": "user", "other": "users"}')
         dl(title='Average number of times users have logged in')
             dt {{ statistics.users.avgLoginsPerUser | numeraljs: '0.0' }}
-            dd logins per user 
+            dd logins per user
         //-dl(title='Number of users who have edited a Dashboard')
             dt {{ statistics.users.editingUserCount | numeraljs: '0,0' }}
-            dd  
+            dd
                 ng-pluralize(count='statistics.users.editingUserCount', when='{"one": "user", "other": "users"}')
                 |  have modified a Dashboard
         dl(title='Number of unique user cookies (may not be authenticated)')
             dt {{ statistics.pageViews.uniqueUids | numeraljs:'0,0' }}
-            dd unique 
+            dd unique
                 ng-pluralize(count='statistics.pageViews.uniqueUids', when='{"one": "UID", "other": "UIDs"}')
         dl(title='Number of unique user cookies active over the last 30 days (may not be authenticated)')
             dt {{ statistics.users.uidsPastSixMonthsCount | numeraljs:'0,0' }}
-            dd 30-day active 
+            dd 30-day active
                 ng-pluralize(count='statistics.users.uidsPastSixMonthsCount', when='{"one": "UID", "other": "UIDs"}')
     .content
         .container-fluid
@@ -134,7 +134,7 @@
                                 th(ts-criteria='pageViews|parseInt') Page Views
                         tbody
                             tr(ng-repeat='dashboard in topDashboards | tablesort | limitTo:topDashboardsLimit', ts-repeat)
-                                td 
+                                td
                                     a(href='/{{ dashboard.name }}', target='_blank', title='Open this Dashboard in a new window') {{ dashboard.name }}
                                 td {{ dashboard.visits | numeraljs:'0,0' }}
                                 td {{ dashboard.pageViews | numeraljs:'0,0' }}
@@ -159,7 +159,7 @@
 
             .row
                 .col-md-4.col-sm-6
-                    h2 Data Sources Used 
+                    h2 Data Sources Used
                     div.c3chart(data='dataSourcesPie', options='dataSourceTypesOptions')
                 .col-md-4.col-sm-6
                     h2 Widgets Used
@@ -167,7 +167,7 @@
                 .col-md-4.col-sm-6
                     h2 Browser Usage
                     div.c3chart(data='browsersPie', options='browserOptions')
-            
+
             .row
                 .col-md-4.col-sm-6.right-border
                     span.more(ng-click='toggleLimit("dataSourceTypeLimit")', ng-show='dataSourceTypeLimit == smallLimit')
@@ -245,11 +245,10 @@
                                 th(ts-criteria='avgDuration|parseFloat') Duration (ms)
                         tbody
                             tr(ng-repeat='dataSource in dataSources | tablesort | limitTo:dataSourcesLimit', ts-repeat)
-                                td 
+                                td
                                     a(href='/{{ dataSource.dashboardName }}', target='_blank', title='Open this Dashboard in a new window') {{ dataSource.dashboardName }}
                                 td {{ dataSource.dataSourceName }}
                                 td {{ dataSource.dataSourceType }}
                                 td {{ dataSource.count | numeraljs:'0,0' }}
                                 td {{ dataSource.successRate | numeraljs:'0.0%' }}
                                 td {{ dataSource.avgDuration | numeraljs:'0.0' }}
-            

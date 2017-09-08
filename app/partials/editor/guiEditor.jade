@@ -14,7 +14,7 @@
                     a.btn.btn-primary(ng-href='{{ dashboardUrl(true) }}', target='cyclotron-preview', title='View Dashboard with Live mode enabled')
                         i.fa.fa-external-link
                         |  {{ previewButtonText() }}
-                        
+
                     button.btn.btn-primary(type='button', uib-dropdown-toggle)
                         i.fa.fa-caret-down
                     ul.pull-right(role='menu', uib-dropdown-menu)
@@ -37,14 +37,14 @@
             h2.text-muted.analytics-control(ng-hide='editor.isNew || !isLatestRevision()', ui-sref='dashboardAnalytics({ dashboardName: editor.dashboard.name })',
                 title='{{ editor.dashboardWrapper.visits }} total visits, {{ editor.dashboardWrapper.pageViews }} total page views')
                 i(class='fa {{ getVisitCategory().icon }}')
-                span  {{ getVisitCategory().text }} 
+                span  {{ getVisitCategory().text }}
                     ng-pluralize(count='getVisitCategory().text', when='{"one": "visit", "other": "visits"}')
 
-            h2.text-muted.likes-control(requires-auth, 
-                ng-hide='editor.isNew || !isLatestRevision() || !editor.likeCount', 
+            h2.text-muted.likes-control(requires-auth,
+                ng-hide='editor.isNew || !isLatestRevision() || !editor.likeCount',
                 title='{{ editor.likeCount }} likes')
                 i.fa.fa-thumbs-up
-                span  {{ editor.likeCount }} 
+                span  {{ editor.likeCount }}
                     ng-pluralize(count='editor.likeCount', when='{1: "like", "other": "likes"}')
 
             h4.small.text-muted(ng-if='editor.dashboard.description')
@@ -77,7 +77,7 @@
                         |  Details
 
                 li(ng-class='{active: editor.currentEditor=="edit.dataSources"}')
-                    a#editor-dataSources(ng-click='goToSubState("edit.dataSources", editor.dashboard.dataSources)') 
+                    a#editor-dataSources(ng-click='goToSubState("edit.dataSources", editor.dashboard.dataSources)')
                         i.fa.fa-cloud-download
                         |  Data Sources
                         span.text-muted(ng-show='editor.dashboard.dataSources.length > 0')  ({{ editor.dashboard.dataSources.length }})
@@ -181,13 +181,13 @@
                     a#editor-history(ui-sref='dashboardHistory({ dashboardName: editor.dashboard.name })', title='View Dashboard History')
                         i.fa.fa-clock-o
                         |  History
-                
+
                 li
                     a#editor-analytics(ui-sref='dashboardAnalytics({ dashboardName: editor.dashboard.name })', title='View Dashboard Analytics')
                         i.fa.fa-bar-chart
                         |  Analytics
                 li
-                    a#editor-help(ng-href='/help', target='help', title='Documentation for Cyclotron')
+                    a#editor-help(ng-href='/help', target='help', title='Documentation for Digital Wall')
                         i.fa.fa-question-circle
                         |  Documentation
 

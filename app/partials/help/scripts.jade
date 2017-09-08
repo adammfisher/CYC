@@ -1,14 +1,14 @@
 h3 Scripts
 
-p The 
-    em scripts 
-    | property is an optional list of Javascript code to run when the Dashboard is being initialized.  
-    | Each item in the array either points to an externally-hosted Javascript file, or it contains inline Javascript.  
+p The
+    em scripts
+    | property is an optional list of Javascript code to run when the Dashboard is being initialized.
+    | Each item in the array either points to an externally-hosted Javascript file, or it contains inline Javascript.
     | In both cases, the list of scripts will be executed top-down when the dashboard loads.  Specifically, the scripts
-    | load after the Cyclotron code and vendor files (e.g. jQuery) are loaded, but before any of the Widgets start to render.
+    | load after the Digital Wall code and vendor files (e.g. jQuery) are loaded, but before any of the Widgets start to render.
 
-p This example shows two scripts: the first is an external Javascript library, D3.js.  The second is a fragment of Javascript 
-    | code that uses D3.js to create a color gradient function.  This could be used in a Chart widget to apply a 
+p This example shows two scripts: the first is an external Javascript library, D3.js.  The second is a fragment of Javascript
+    | code that uses D3.js to create a color gradient function.  This could be used in a Chart widget to apply a
     | gradient color to each point, also shown below:
 
 pre.code.

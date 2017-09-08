@@ -1,14 +1,14 @@
 h3 Quick Start
 
-p Before you start building a Dashboard with Cyclotron, make sure you know two things:
+p Before you start building a Dashboard with Digital Wall, make sure you know two things:
 ol
     li What data do you want to display, and is it available?
     li How do you want to visualize it?
 
-p Knowing the answer to these questions will make it easier to get started with Cyclotron and avoid
+p Knowing the answer to these questions will make it easier to get started with Digital Wall and avoid
     | unnecessary effort.  It's also recommended to review the
     a(href='/?q=cyclotron-examples')  Example Dashboards
-    | , to get a idea of what Cyclotron's capabilities are.
+    | , to get a idea of what Digital Wall's capabilities are.
 
 
 h4 Creating a Dashboard
@@ -16,7 +16,7 @@ h4 Creating a Dashboard
 p(ng-if='config.authentication.enable')
     | Before creating a Dashboard, you must login.  Click on the
     strong  Login
-    |  button on the home page, or on the top-right of the header.  After logging in, 
+    |  button on the home page, or on the top-right of the header.  After logging in,
     | the header will show the login status, and display your
     a(href='https://en.gravatar.com/', target='_blank')  Gravatar
     |  image (if configured).
@@ -24,38 +24,38 @@ p(ng-if='config.authentication.enable')
 p
     | Click on the
     strong  New Dashboard
-    |  button on the home page, or on the top-right of the header.  The Dashboard Editor 
+    |  button on the home page, or on the top-right of the header.  The Dashboard Editor
     | will open with an empty configuration.
 
-h5 Name 
+h5 Name
 
 .bg-warning
-    i.fa.fa-warning 
+    i.fa.fa-warning
     .inner
         span Dashboards cannot be renamed after they have been created.  Choose a name wisely.
 p
-    | Enter a name for the dashboard in the 
+    | Enter a name for the dashboard in the
     em  Name
     |  textbox.  This name will be used in the URL to access the Dashboard. The name must be
-    | unique and alphanumeric&mdash;special characters are not allowed, and spaces will be 
+    | unique and alphanumeric&mdash;special characters are not allowed, and spaces will be
     | converted automatically into dashes.
 
 h5 Tags
-p 
-    | Tags are keywords used to organize and search for Dashboards.  For example, example Cyclotron
-    | dashboards are all tagged with 
-    strong  cyclotron-examples
-    |  so they can be easily discovered.  In the 
+p
+    | Tags are keywords used to organize and search for Dashboards.  For example, example Digital Wall
+    | dashboards are all tagged with
+    strong  Digital Wall-examples
+    |  so they can be easily discovered.  In the
     em  Tags
-    |  box, select one or more existing Tags, or enter a new Tag.  This step is optional, and 
+    |  box, select one or more existing Tags, or enter a new Tag.  This step is optional, and
     | more tags can be added or removed later.
 
 div(ng-if='config.authentication.enable')
     h5 Edit Permissions and View Permissions
     p
-        | By default, Cyclotron dashboards are open to everyone for viewing and editing.  These two 
-        | properties provide the means to restrict editing or viewing to specific user(s) and group(s).  
-        | For more information, see the help section 
+        | By default, Digital Wall dashboards are open to everyone for viewing and editing.  These two
+        | properties provide the means to restrict editing or viewing to specific user(s) and group(s).
+        | For more information, see the help section
         strong  Permissions
         | .
 
@@ -67,15 +67,15 @@ p
 
 h5 Theme
 p
-    | Several predefined themes are available, which change the color and styling of the 
-    | Dashboard and Widgets.  If left unset, Cyclotron will use the default theme
+    | Several predefined themes are available, which change the color and styling of the
+    | Dashboard and Widgets.  If left unset, Digital Wall will use the default theme
     strong  ({{ config.dashboard.properties.theme.default }})
-    | . Pages and Widgets can override the 
+    | . Pages and Widgets can override the
     | Dashboard theme, but will inherit this property by default.
 
 h5 Additional Properties
-p 
-    | Cyclotron has many optional properties, so the
+p
+    | Digital Wall has many optional properties, so the
     em  Additional Properties
     |  dropdown contains those less-frequently needed.  Selecting any of the properties in this
     | dropdown adds to the Dashboard so it can be configured.
@@ -84,12 +84,12 @@ p
 h4 Saving the Dashboard
 
 p
-    | At this point, click the green 
+    | At this point, click the green
     strong.no-wrap
         i.fa.fa-check-square-o
         |  Save
     |  button at the top of the page.  This will create the first revision of the new Dashboard.  At
-    | this point, the Dashboard is available for anyone to view.  Click the blue 
+    | this point, the Dashboard is available for anyone to view.  Click the blue
     strong.no-wrap
         i.fa.fa-external-link
         |  Preview
@@ -97,12 +97,12 @@ p
 
 h5 Revisions
 p
-    | Each time the Dashboard is modified and saved, the Revision number increments.  This is displayed 
+    | Each time the Dashboard is modified and saved, the Revision number increments.  This is displayed
     | at the top of the Dashboard Editor. A copy of the Dashboard is saved as well, so older Revisions
     | can be viewed or restored.  To view older Revisions, click on the
     strong  Revision number
     |  link at the top of the Dashboard Editor.  This enables scrolling backward/forward through the
-    | Revision history.  The 
+    | Revision history.  The
     strong.no-wrap
         i.fa.fa-external-link
         |  Preview
@@ -110,7 +110,7 @@ p
 
 p
     | To restore an older Revision, scroll backwards in the history to select the correct Revision, then
-    | click 
+    | click
     strong.no-wrap
         i.fa.fa-check-square-o
         |  Save
@@ -123,8 +123,8 @@ p The Dashboard can be viewed in several ways:
 
 ul
     li Searching for the Dashboard by name or Tags, and selecting the Dashboard
-    li Clicking the 
-        strong.no-wrap 
+    li Clicking the
+        strong.no-wrap
             i.fa.fa-external-link
             |  Preview
         |  link in the Dashboard Editor
@@ -139,27 +139,27 @@ p
     |  arrow buttons.
 
 .bg-info
-    i.fa.fa-info-circle 
+    i.fa.fa-info-circle
     .inner
         span  The Dashboard can be saved and previewed at any time during development, and as frequently as needed.
 
 h4 Adding a Data Source
 
 p
-    | Before the Dashboard will display anything, it needs to load some data via 
-    | a Data Source.  Open the Dashboard Editor and click on 
+    | Before the Dashboard will display anything, it needs to load some data via
+    | a Data Source.  Open the Dashboard Editor and click on
     strong.no-wrap
         i.fa.fa-cloud-download
         |  Data Sources
     |  in the sidebar.
 
 p
-    | This page lists all the Data Sources in the Dashboard. Click 
+    | This page lists all the Data Sources in the Dashboard. Click
     strong.no-wrap
         i.fa.fa-plus
         |  Add Data Source
     |  to create a new, empty Data Source.  The Data Source type and name
-    | will be shown in the list on this page.  The sidebar also lists each Data Source for 
+    | will be shown in the list on this page.  The sidebar also lists each Data Source for
     | rapid navigation.
 
 p
@@ -171,10 +171,10 @@ p
     | To edit the new Data Source, click on its name, or select it in the sidebar menu.
 
 h5 Type
-p 
+p
     | The
     em  type
-    |  property has a dropdown with all supported Data Source types.  Changing the 
+    |  property has a dropdown with all supported Data Source types.  Changing the
     | selected type will change what properties are available in the editor.  Select the
     strong  json
     |  Data Source type, which is used to load JSON documents.
@@ -182,8 +182,8 @@ p
 p
     | The
     em  url
-    |  property is required, and specifies the web location to download; it can be a static 
-    | file or a web service.  Here's a sample JSON file: 
+    |  property is required, and specifies the web location to download; it can be a static
+    | file or a web service.  Here's a sample JSON file:
     a(href='http://pastebin.com/raw.php?i=4yCbDza4', target='_blank')
         | http://pastebin.com/raw.php?i=4yCbDza4
 
@@ -194,32 +194,32 @@ p
     |  property.
 
 h5 Name
-p 
-    | The name is used by Widgets to reference this Data Source, so it should be a 
+p
+    | The name is used by Widgets to reference this Data Source, so it should be a
     | unique, meaningful name.
 
 h5 Data Source Configuration
 p
     | The remaining configuration will be largely specific to which Data Source type is
-    | selected.  For more information on Data Sources, refer to the help section on 
+    | selected.  For more information on Data Sources, refer to the help section on
     strong  Data Sources
 
 h4 Adding a Page
 
-p After the Data Source is added, a new Page must be added to display the data.  In the 
-    | Dashboard Editor, click on 
+p After the Data Source is added, a new Page must be added to display the data.  In the
+    | Dashboard Editor, click on
     strong.no-wrap
         i.fa.fa-file-o
         |  Pages
     |  in the sidebar.
 
 p
-    | This page lists all the Pages in the Dashboard. Click 
+    | This page lists all the Pages in the Dashboard. Click
     strong.no-wrap
         i.fa.fa-plus
         |  Add Page
     |  to create a new, empty Page.  The Page name and list of widgets
-    | will be shown in the list on this page.  The sidebar also lists each Page for 
+    | will be shown in the list on this page.  The sidebar also lists each Page for
     | rapid navigation.
 
 p
@@ -237,10 +237,10 @@ p
 
 h5 Layout
 p
-    | The Page Layout is important for determining how Widgets appear on the Dashboard.  Cyclotron
-    | uses a grid-based layout, so each page has a configurable number of rows and columns.  
-    | Widgets can span one or more rows/columns, and thesize of each row and column will be 
-    | adjusted to fit in the browser. 
+    | The Page Layout is important for determining how Widgets appear on the Dashboard.  Digital Wall
+    | uses a grid-based layout, so each page has a configurable number of rows and columns.
+    | Widgets can span one or more rows/columns, and thesize of each row and column will be
+    | adjusted to fit in the browser.
 
 p
     | The Page Layour defaults to a
@@ -254,12 +254,12 @@ p
 
 h5 Widgets
 p
-    | By default, the Page has no Widgets on it.  Click the blue 
+    | By default, the Page has no Widgets on it.  Click the blue
     strong.no-wrap
         i.fa.fa-plus
         |  Add Widget
-    |  to create a new Widget on this page.  The Widget type (and title) will be shown in 
-    | the list on this page.  The sidebar also lists each Widget in the current Page for 
+    |  to create a new Widget on this page.  The Widget type (and title) will be shown in
+    | the list on this page.  The sidebar also lists each Widget in the current Page for
     | rapid navigation.
 
 p
@@ -269,16 +269,16 @@ h4 Adding a Widget
 
 h5 Type
 p
-    | Each Widget on the Dashboard must be one of several supported Widget Types. By default, 
+    | Each Widget on the Dashboard must be one of several supported Widget Types. By default,
     | a Widget has no Type.  In the Widget Type dropdown, select
     strong  Table
-    | .  Changing the 
+    | .  Changing the
     | selected Widget Type will change what properties are available in the editor.
 
 p
     strong Table
     |  is a good Widget to begin with, because its default behavior is to show all
-    | the rows and columns of the Data Source, without needing any configuration. 
+    | the rows and columns of the Data Source, without needing any configuration.
 
 h5 Data Source
 p
@@ -299,7 +299,7 @@ p
 h5 Save and Preview Dashboard
 
 p
-    | At this point, the Dashboard should have a Data Source and a connected Table Widget. 
+    | At this point, the Dashboard should have a Data Source and a connected Table Widget.
     | Save and Preview the Dashboard now, to see the result.
 
 h4 Continuing Development
@@ -309,7 +309,7 @@ p
     | Sources or Widgets can be added and configured.
 
 p
-    | For more information on Widgets in general or specific Widgets, 
-    | refer to the help section on 
+    | For more information on Widgets in general or specific Widgets,
+    | refer to the help section on
     strong  Widgets
     | .

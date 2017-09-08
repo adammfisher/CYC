@@ -2,21 +2,21 @@
 # Copyright (c) 2013-2016 the original author or authors.
 #
 # Licensed under the MIT License (the "License");
-# you may not use this file except in compliance with the License. 
+# you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
 #     http://www.opensource.org/licenses/mit-license.php
 #
-# Unless required by applicable law or agreed to in writing, 
-# software distributed under the License is distributed on an 
-# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
-# either express or implied. See the License for the specific 
-# language governing permissions and limitations under the License. 
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
 ###
 
-# Browser compatibility based on Modernizr 
+# Browser compatibility based on Modernizr
 # Requires jQuery, so this doesn't work for IE8.. (with jQuery 2.x)
-$ -> 
+$ ->
     browserCompatible = true
 
     # Disable browser check with ?browsercheck=false
@@ -105,14 +105,14 @@ cyclotronApp.config ($stateProvider, $urlRouterProvider, $locationProvider, $con
 
                 load = (list) ->
                     if _.isEmpty list
-                        $rootScope.$apply -> 
+                        $rootScope.$apply ->
                             deferred.resolve()
                     else
                         currentScript = _.head(list)
                         nextInvocation = _.wrap(_.tail(list), load)
 
                         $script(currentScript, nextInvocation)
-                        
+
                 # Load external scripts
                 load(unloadedScripts)
             else
@@ -146,7 +146,7 @@ cyclotronApp.config ($stateProvider, $urlRouterProvider, $locationProvider, $con
             templateUrl: '/partials/home.html'
             controller: 'HomeController'
             data:
-                title: 'Cyclotron'
+                title: 'AIG DIGITAL'
             resolve:
                 session: loadExistingSession
                 deps: lazyLoad ['/js/app.mgmt.js'], ['/css/app.mgmt.css']
@@ -156,7 +156,7 @@ cyclotronApp.config ($stateProvider, $urlRouterProvider, $locationProvider, $con
             templateUrl: '/partials/help.html'
             controller: 'HelpController'
             data:
-                title: 'Cyclotron | Help'
+                title: 'AIG DIGITAL | Help'
             resolve:
                 deps: lazyLoad ['/js/app.mgmt.js'], ['/css/app.mgmt.css']
         })
@@ -165,7 +165,7 @@ cyclotronApp.config ($stateProvider, $urlRouterProvider, $locationProvider, $con
             templateUrl: '/partials/analytics.html'
             controller: 'AnalyticsController'
             data:
-                title: 'Cyclotron | Analytics'
+                title: 'AIG DIGITAL | Analytics'
             resolve:
                 session: loadExistingSession
                 deps: lazyLoad ['/js/app.mgmt.js'], ['/css/app.mgmt.css']
@@ -175,7 +175,7 @@ cyclotronApp.config ($stateProvider, $urlRouterProvider, $locationProvider, $con
             templateUrl: '/partials/dashboardAnalytics.html'
             controller: 'DashboardAnalyticsController'
             data:
-                title: 'Cyclotron | Dashboard Analytics'
+                title: 'AIG DIGITAL | Dashboard Analytics'
             resolve:
                 session: loadExistingSession
                 deps: lazyLoad ['/js/app.mgmt.js'], ['/css/app.mgmt.css']
@@ -185,7 +185,7 @@ cyclotronApp.config ($stateProvider, $urlRouterProvider, $locationProvider, $con
             templateUrl: '/partials/export.html'
             controller: 'ExportController'
             data:
-                title: 'Cyclotron | Export'
+                title: 'AIG DIGITAL | Export'
             resolve:
                 session: loadExistingSession
                 deps: lazyLoad ['/js/app.mgmt.js'], ['/css/app.mgmt.css']
@@ -196,7 +196,7 @@ cyclotronApp.config ($stateProvider, $urlRouterProvider, $locationProvider, $con
             templateUrl: '/partials/editor/guiEditor.html'
             controller: 'GuiEditorController'
             data:
-                title: 'Cyclotron | Edit'    
+                title: 'AIG DIGITAL | Edit'
             resolve:
                 session: loadExistingSession
                 deps: lazyLoad ['/js/app.mgmt.js'], ['/css/app.mgmt.css']
@@ -205,85 +205,85 @@ cyclotronApp.config ($stateProvider, $urlRouterProvider, $locationProvider, $con
             url: ''
             templateUrl: '/partials/editor/details.html'
             data:
-                title: 'Cyclotron | Edit | Details'
+                title: 'AIG DIGITAL | Edit | Details'
         })
         .state('edit.json', {
             url: ''
             templateUrl: '/partials/editor/jsonEditor.html'
             data:
-                title: 'Cyclotron | Edit | JSON'
+                title: 'AIG DIGITAL | Edit | JSON'
         })
         .state('edit.dataSources', {
             url: ''
             templateUrl: '/partials/editor/dataSources.html'
             data:
-                title: 'Cyclotron | Edit | Data Sources'
+                title: 'AIG DIGITAL | Edit | Data Sources'
         })
         .state('edit.dataSource', {
             url: ''
             templateUrl: '/partials/editor/dataSource.html'
             controller: 'DataSourceEditorController'
             data:
-                title: 'Cyclotron | Edit | Data Sources'
+                title: 'AIG DIGITAL | Edit | Data Sources'
         })
         .state('edit.pages', {
             templateUrl: '/partials/editor/pages.html'
             data:
-                title: 'Cyclotron | Edit | Pages'
+                title: 'AIG DIGITAL | Edit | Pages'
         })
         .state('edit.page', {
             templateUrl: '/partials/editor/page.html'
             controller: 'PageEditorController'
             data:
-                title: 'Cyclotron | Edit | Pages'
+                title: 'AIG DIGITAL | Edit | Pages'
         })
         .state('edit.widget', {
             templateUrl: '/partials/editor/widget.html'
             data:
-                title: 'Cyclotron | Edit | Widget'
+                title: 'AIG DIGITAL | Edit | Widget'
         })
         .state('edit.parameters', {
             url: ''
             templateUrl: '/partials/editor/parameters.html'
             data:
-                title: 'Cyclotron | Edit | Parameters'
+                title: 'AIG DIGITAL | Edit | Parameters'
         })
         .state('edit.parameter', {
             url: ''
             templateUrl: '/partials/editor/parameter.html'
             data:
-                title: 'Cyclotron | Edit | Parameters'
+                title: 'AIG DIGITAL | Edit | Parameters'
         })
         .state('edit.scripts', {
             url: ''
             templateUrl: '/partials/editor/scripts.html'
             data:
-                title: 'Cyclotron | Edit | Scripts'
+                title: 'AIG DIGITAL | Edit | Scripts'
         })
         .state('edit.script', {
             url: ''
             templateUrl: '/partials/editor/script.html'
             data:
-                title: 'Cyclotron | Edit | Scripts'
+                title: 'AIG DIGITAL | Edit | Scripts'
         })
         .state('edit.styles', {
             url: ''
             templateUrl: '/partials/editor/styles.html'
             data:
-                title: 'Cyclotron | Edit | Styles'
+                title: 'AIG DIGITAL | Edit | Styles'
         })
         .state('edit.style', {
             url: ''
             templateUrl: '/partials/editor/style.html'
             data:
-                title: 'Cyclotron | Edit | Styles'
+                title: 'AIG DIGITAL | Edit | Styles'
         })
         .state('dashboardHistory', {
             url: '/history/{dashboardName:.*}'
             templateUrl: '/partials/dashboardHistory.html'
             controller: 'DashboardHistoryController'
             data:
-                title: 'Cyclotron | Dashboard History'
+                title: 'AIG DIGITAL | Dashboard History'
             resolve:
                 session: loadExistingSession
                 deps: lazyLoad ['/js/app.mgmt.js'], ['/css/app.mgmt.css']
@@ -293,7 +293,7 @@ cyclotronApp.config ($stateProvider, $urlRouterProvider, $locationProvider, $con
             templateUrl: '/partials/dashboard.html'
             controller: 'DashboardController'
             data:
-                title: 'Cyclotron'
+                title: 'AIG DIGITAL'
                 reloadOnSearch: false
             resolve:
                 session: loadExistingSessionWithoutAlerts
@@ -340,7 +340,7 @@ cyclotronApp.run ($rootScope, $urlRouter, $location, $state, $stateParams, $uibM
 
     $rootScope.$on 'logout', (event) ->
         analyticsService.recordEvent 'logout', {  }
-        
+
     $rootScope.userTooltip = ->
         return '' unless userService.authEnabled
         'Logged In: ' + userService.currentUser().name
@@ -354,7 +354,7 @@ cyclotronApp.run ($rootScope, $urlRouter, $location, $state, $stateParams, $uibM
     $rootScope.$stateParams = $stateParams
 
     # Set the page title based on the route.
-    $rootScope.page_title = 'Cyclotron'
+    $rootScope.page_title = 'AIG DIGITAL'
     $rootScope.$on '$stateChangeSuccess', (event, toState, fromState) ->
         if toState?
             $rootScope.$state = toState

@@ -1,7 +1,7 @@
 h3 Data Sources
 
 p.
-    Cyclotron provides several Data Source Types, each of which connects to an external service to 
+    Digital Wall provides several Data Source Types, each of which connects to an external service to
     pull in data for the Dashboard. Data Sources and Widgets consume a common row/column interface, so Widgets and Data Sources are interchangeable. Each Data Source handles converting data into this format automatically.
 
 p.
@@ -17,28 +17,28 @@ pre.code.
     ]
 
 p.
-    Cyclotron is case-sensitive, which is especially significant when working with Data Sources.  When referencing column names in the Data Source, the correct capitalization must be used to match the upstream source.  Cyclotron itself does not modify the original capitalization of columns.
+    Digital Wall is case-sensitive, which is especially significant when working with Data Sources.  When referencing column names in the Data Source, the correct capitalization must be used to match the upstream source.  Cyclotron itself does not modify the original capitalization of columns.
 p.
     The easiest way to verify that a Data Source is working is to use the Table Widget.  By default, the Table Widget will display all columns and rows, so it can be used to quickly view and verify the data available from a Data Source. Be aware that the Table Widget will automatically camel-case the column headers, but the correct capitalization must be used elsewhere to reference the columns.
 
 h4 Common Properties
 
-p These properties are common to all Data Sources.  Each Data Source type has additional properties 
+p These properties are common to all Data Sources.  Each Data Source type has additional properties
     | that are specific to that type.
 
 property-table(properties='config.dashboard.properties.dataSources.properties')
 
-p Both properties 
-    em filters 
-    | and 
-    em sortBy 
+p Both properties
+    em filters
+    | and
+    em sortBy
     | can also be placed on Data Sources and/or Widgets.  So a shared Data Source can have one set of filters, and it can be consumed by two Widgets, each
     | of which have their own unique filters, which are applied after the common filter.
 
 h4 Auto-Refresh
 
 p
-    | By default, Data Sources run only once and send data to dependent Widgets.  However, all 
+    | By default, Data Sources run only once and send data to dependent Widgets.  However, all
     | Data Source types have the ability to automatically refresh their data periodically,
     | updating the Widgets as well.  The
     em  refresh
@@ -47,11 +47,11 @@ p
 
 h4 Filters
 
-p Examples of Filters and Sorting are available on the 
+p Examples of Filters and Sorting are available on the
     a(href='/example-filters-sort') example-filters-sort
     |  dashboard
 
-p Filters are used to remove rows from a Data Source, implemented as a hash of key/value pairs.  
+p Filters are used to remove rows from a Data Source, implemented as a hash of key/value pairs.
     | Here's an example which matches only rows of type "Independent State":
 
 pre.code.
@@ -67,7 +67,7 @@ pre.code.
         "Type": "Dependency"
     }
 
-p Each Filter value can also be an array of multiple values.  In this scenario, a row will match if the given column has any of the values in the array.  
+p Each Filter value can also be an array of multiple values.  In this scenario, a row will match if the given column has any of the values in the array.
 
 p.bg-warning
     i.fa.fa-exclamation-triangle
@@ -91,15 +91,15 @@ pre.code.
     "filters": {
         "Sub Type": "/.*Territory/",
         "Type": "Dependency"
-    } 
+    }
 
 h4 Sorting
 
-p Examples of Filters and Sorting are available on the 
+p Examples of Filters and Sorting are available on the
     a(href='/example-filters-sort') example-filters-sort
     |  dashboard
 
-p After rows have been filtered, they can be sorted by one or more columns (or functions).  
+p After rows have been filtered, they can be sorted by one or more columns (or functions).
     | This simple example sorts by the "Type" column, in ascending order:
 
 pre.code.
@@ -127,7 +127,7 @@ pre.code.
         }
     }
 
-p The first two parameters are two rows, and the return value indicates which of the two rows comes first, following the definition of 
+p The first two parameters are two rows, and the return value indicates which of the two rows comes first, following the definition of
     a(href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort') Array.sort
     |  in Javascript.
 
@@ -145,8 +145,8 @@ p This is identical to the following, shorter version:
 pre.code.
     "sortBy": "value"
 
-p Additionally, the 
-    em postProcessor 
+p Additionally, the
+    em postProcessor
     |  property of some Data Sources can be used to implement custom sort logic in Javascript, if the default alphanumerical sort is not sufficient.
 
 h4 Pre-Processor
@@ -159,28 +159,28 @@ p All Data Sources support an optional pre-processor function that will be calle
 h4 Post-Processors
 
 p Most Data Sources support an optional post-processor function that will be called after
-    | data is loaded, and optionally filtered and/or sorted.  The post-processor can either 
-    | modify the original result object, or it can return a non-null array to replace it.  
-    | The Post-Processor function is invoked for each Result Set (if the Data Source returns multiple Result Sets), 
+    | data is loaded, and optionally filtered and/or sorted.  The post-processor can either
+    | modify the original result object, or it can return a non-null array to replace it.
+    | The Post-Processor function is invoked for each Result Set (if the Data Source returns multiple Result Sets),
     | and the Result Set name is passed as the second argument.
 
 p Here is an example of a post-processor that modifies the data set:
 pre.code.
-    function(dataSet, resultSetName) { 
-        _.each(dataSet, function(row) { 
+    function(dataSet, resultSetName) {
+        _.each(dataSet, function(row) {
             row.col1 += 1000;
-        }); 
+        });
     }
 
 p Here is an example of a post-processor that returns a new data set:
 pre.code.
-    function(dataSet, resultSetName) { 
-        return _.map(dataSet, function(row) { 
-            return { newCol: row.col1 + 1000 }; 
-        }); 
+    function(dataSet, resultSetName) {
+        return _.map(dataSet, function(row) {
+            return { newCol: row.col1 + 1000 };
+        });
     }
 
-p Post-Processors can also perform side effects, such as updating global JavaScript variables, or executing functions. 
+p Post-Processors can also perform side effects, such as updating global JavaScript variables, or executing functions.
     | Since they are triggered by the completion of a Data Source, they are the most-reliable method of running some
     | JavaScript after the Data Source has finished loading.
 pre.code.

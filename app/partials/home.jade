@@ -7,7 +7,7 @@
     new-user-message
 
     header(ng-show='showSplash')
-        h1 Cyclotron
+        h1 AIG DIGITAL WALL
 
     section.search(ng-class='{active: !showSplash}')
 
@@ -26,7 +26,7 @@
             a(href='?q=is:liked&s=-likeCount')
                 i.fa.fa-lightbulb-o
                 |  Browse Dashboards
-                
+
     section.main-links(ng-show='showSplash')
         a.disabled(title='You must login before creating a Dashboard', ng-if='!canEdit()', ng-click='loginAlert()')
             i.fa.fa-file-o
@@ -60,20 +60,20 @@
                 thead
                     tr
                         th(requires-auth)
-                            a(ng-click='sortBy("_liked", true)') 
+                            a(ng-click='sortBy("_liked", true)')
                                 i.fa.fa-thumbs-up
                         th
                             a(ng-click='sortBy("name", false)', ng-class='{ selected: sortByField == "name" }') Name
-                            span  / 
+                            span  /
                             a(ng-click='sortBy(tagSorter, false)', ng-class='{ selected: sortByField == tagSorter }') Tags
-                            span  / 
+                            span  /
                             a(ng-click='sortBy("date", true)', ng-class='{ selected: sortByField == "date" }') Last Modified
                         th.dashboard-analytics
                             a(ng-click='sortBy("visits", true)', ng-class='{ selected: sortByField == "visits" }') Visits
-                            span(requires-auth)  / 
+                            span(requires-auth)  /
                             a(requires-auth, ng-click='sortBy("likeCount", true)', ng-class='{ selected: sortByField == "likeCount" }') Likes
                         th
-                tr.dashboard-item(ng-repeat='dashboard in dashboards | orderBy:sortByField:sortByReverse | limitTo:itemsPerPage:(currentPage-1)*itemsPerPage', 
+                tr.dashboard-item(ng-repeat='dashboard in dashboards | orderBy:sortByField:sortByReverse | limitTo:itemsPerPage:(currentPage-1)*itemsPerPage',
                     ng-class='{"dashboard-item-unviewable": !dashboard._canView, "dashboard-item-deleted": dashboard.deleted }')
                     td.like(requires-auth)
                         a(ng-click='toggleLike(dashboard)')
@@ -91,31 +91,31 @@
                             i.fa.fa-lock(ng-if='isLoggedIn() && !dashboard._canEdit', title="You don't have permission to edit this Dashboard.")
                             i.fa.fa-external-link
 
-                        .description(title='Description of dashboard', ng-if='dashboard.description') 
+                        .description(title='Description of dashboard', ng-if='dashboard.description')
                             i.fa.fa-quote-left
-                            |  {{ dashboard.description }} 
+                            |  {{ dashboard.description }}
                             i.fa.fa-quote-right
 
                         .info
                             span(title='Latest Editor') {{ dashboard.lastUpdatedBy.name }}
-                            span(ng-if='dashboard.lastUpdatedBy.name')  - 
+                            span(ng-if='dashboard.lastUpdatedBy.name')  -
                             span(title='Latest revision number') rev {{ dashboard.rev }}
-                            span  -  
+                            span  -
                             span(title='Latest revision date') {{ dashboard.date | date:"short" }}
 
-                        .label.label-default(ng-repeat='tag in dashboard.tags', 
+                        .label.label-default(ng-repeat='tag in dashboard.tags',
                             ng-click='selectTag(tag)', title='Add to search') {{ tag }}
 
                     td.dashboard-analytics
                         .info(ng-if='dashboard.visits > 0')
-                            a(ui-sref='dashboardAnalytics({ dashboardName: dashboard.name })', 
+                            a(ui-sref='dashboardAnalytics({ dashboardName: dashboard.name })',
                                 title='View Analytics for this Dashboard')
                                 i(class='fa {{ dashboard.visitCategory.icon }}')
-                                span  {{ dashboard.visitCategory.text }} 
+                                span  {{ dashboard.visitCategory.text }}
                                     ng-pluralize(count='dashboard.visits', when='{"one": "visit","other": "visits"}')
                         .info(requires-auth, ng-if='dashboard.likeCount > 0')
                             i.fa.fa-thumbs-up
-                            span  {{ dashboard.likeCount }} 
+                            span  {{ dashboard.likeCount }}
                                     ng-pluralize(count='dashboard.likeCount', when='{"one": "like","other": "likes"}')
 
                     td.dashboard-links
@@ -129,7 +129,7 @@
                                 |  Delete
 
             .paging
-                uib-pagination.pagination-sm(total-items='resultsCount', ng-model='currentPage', 
+                uib-pagination.pagination-sm(total-items='resultsCount', ng-model='currentPage',
                     items-per-page='itemsPerPage', max-size='5', boundary-links='true')
                 div
                     button.btn.btn-link(ng-if='itemsPerPage < 1000000', ng-click='setPageSize(1000000)') Show All

@@ -1,23 +1,23 @@
 
 <h3>Permissions</h3>
 <p>
-  Cyclotron has integration with LDAP or Active Directory for user authentication.
-  Users can login with their domain username/password.  Sessions are kept active by using Cyclotron, 
+  Digital Wall has integration with LDAP or Active Directory for user authentication.
+  Users can login with their domain username/password.  Sessions are kept active by using Digital Wall,
   but will periodically expire for security reasons.
   
 </p>
 <p>
-  Dashboards are unsecured by default, but can optionally be secured to a list of Editors and/or Viewers.  
-  These are both optional, and if omitted, allow everyone to edit and view, respectively.  
+  Dashboards are unsecured by default, but can optionally be secured to a list of Editors and/or Viewers.
+  These are both optional, and if omitted, allow everyone to edit and view, respectively.
   Viewing of Dashboards cannot be restricted unless editing has also been restricted.
   
 </p>
 <h4>Permission model</h4>
 <p>
-  Both Editor and Viewer permissions are based on LDAP/Active Directory Users and/or Groups.  In both cases, one or more Users and/or Groups can be added to the 
+  Both Editor and Viewer permissions are based on LDAP/Active Directory Users and/or Groups.  In both cases, one or more Users and/or Groups can be added to the
   Dashboard, restricting permissions to the specific Users listed, or Users that are members of the specific Groups listed.  Nested Groups are not supported!
 </p>
-<p>There are several types of Groups: Security Groups, Distribution Lists, Groups.  Any of them can be used interchangeably in Cyclotron.</p>
+<p>There are several types of Groups: Security Groups, Distribution Lists, Groups.  Any of them can be used interchangeably in Digital Wall.</p>
 <h4>Edit Permissions</h4>
 <p>
   Creating and Editing Dashboards requires the current user to be logged in.  This is for audit purposes and tracking who made which Dashboard changes.
@@ -27,11 +27,11 @@
 <p>Editing can be restricted by adding one or more<strong> Editors</strong> to the<em> Edit Permissions</em> box on the Details page of the Dashboard Editor.  Auto-complete is enabled after typing three characters.</p>
 <h4>View Permissions</h4>
 <p>
-  View Permissions covers the ability to see a Dashboard, including viewing the Dashboard definition, exporting the Dashboard, etc.  By default, all users 
+  View Permissions covers the ability to see a Dashboard, including viewing the Dashboard definition, exporting the Dashboard, etc.  By default, all users
   have view permission for all Dashboards, even if they cannot edit the Dashboards.
 </p>
 <p>Viewing can be restricted by adding one or more<strong> Viewers</strong> to the<em> View Permissions</em> box on the Details page of the Dashboard Editor.  Auto-complete is enabled after typing three characters.</p>
-<p>Anyone with <em> Edit Permissions</em> automatically inherits <em> View Permissions</em>.  Note that this means<em> View Permissions</em> are ignored unless<em> Edit Permissions</em> are set, as everyone can edit by default, and thus everyone can view as well.</p>
+<p>Anyone with<em> Edit Permissions</em> automatically inherits<em> View Permissions</em>.  Note that this means<em> View Permissions</em> are ignored unless<em> Edit Permissions</em> are set, as everyone can edit by default, and thus everyone can view as well.</p>
 <h4>Summary of Actions</h4>
 <table>
   <thead>
@@ -45,44 +45,45 @@
   <tbody>
     <tr>
       <td>Searching for Dashboards</td>
-      <td> </td>
+      <td></td>
       <td>Everyone</td>
       <td>N/A</td>
     </tr>
     <tr>
       <td>Creating a Dashboard</td>
-      <td> <i class="fa fa-check"></i></td>
+      <td><i class="fa fa-check"></i></td>
       <td>Logged In</td>
       <td>N/A</td>
     </tr>
     <tr>
       <td>Editing a Dashboard (Saving Changes)</td>
-      <td> <i class="fa fa-check"></i></td>
+      <td><i class="fa fa-check"></i></td>
       <td>Everyone</td>
       <td>Users and/or Groups</td>
     </tr>
     <tr>
       <td>Viewing Dashboard Editor</td>
-      <td>Only if View restricted</td>
-      <td>Everyone</td>
-      <td>Users and/or Groups</td>
-    </tr>
-    <tr>
-      <td>Viewing a Dashboard</td>
-      <td>Only if View restricted</td>
-      <td>Everyone</td>
-      <td>Users and/or Groups</td>
-    </tr>
-    <tr>
-      <td>Exporting a Dashboard</td>
-      <td>Only if View restricted</td>
-      <td>Everyone</td>
-      <td>Users and/or Groups</td>
     </tr>
   </tbody>
+  <Digital>Wallnly if View restricted
+    <td>Everyone</td>
+    <td>Users and/or Groups</td>
+  </Digital>
+  <tr>
+    <td>Viewing a Dashboard</td>
+    <td>Only if View restricted</td>
+    <td>Everyone</td>
+    <td>Users and/or Groups</td>
+  </tr>
+  <tr>
+    <td>Exporting a Dashboard</td>
+    <td>Only if View restricted</td>
+    <td>Everyone</td>
+    <td>Users and/or Groups</td>
+  </tr>
 </table>
 <h4>REST API</h4>
 <p>
-  The REST API implements the same permission model as the UI, 
+  The REST API implements the same permission model as the UI,
   requiring login and session keys on all endpoints requiring authentication.
 </p>

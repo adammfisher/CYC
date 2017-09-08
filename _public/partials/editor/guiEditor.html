@@ -1,13 +1,13 @@
 
 <div class="editor-gui container-fluid">
   <div class="row cyclotron-header">
-    <h1 ui-sref="home" ui-sref-opts="{reload: true}"><img src="/img/favicon64.png" alt="Logo" class="logo"/>Cyclotron</h1>
-    <div class="links"><a ui-sref="home" title="Return to Home" class="home"><i class="fa fa-home"></i></a><a ng-href="/edit/" target="_self" title="Create a new Dashboard" class="new"><i class="fa fa-file-o"></i></a><a ui-sref="help" target="_blank" title="Documentation for Cyclotron" class="documentation"><i class="fa fa-question-circle"></i></a><a ng-if="analyticsEnabled()" ui-sref="analytics" title="Analytics for Cyclotron" class="analytics"><i class="fa fa-bar-chart"></i></a><a requires-auth="requires-auth" ng-click="login()" ng-if="!isLoggedIn()" title="Login" class="login"><i class="fa fa-unlock"></i></a><span requires-auth="requires-auth" ng-if="isLoggedIn()" class="dropdown"><a title="{{ userTooltip() }}" data-toggle="dropdown" class="user dropdown-toggle"><i ng-if="!currentUser().emailHash" class="fa fa-user"></i><img ng-if="currentUser().emailHash" ng-src="{{ userGravatar() }}"/></a>
+    <h1 ui-sref="home" ui-sref-opts="{reload: true}"><img src="/img/favicon64.png" alt="Logo" class="logo"/>AIG DIGITAL WALL</h1>
+    <div class="links"><a ui-sref="home" title="Return to Home" class="home"><i class="fa fa-home"></i></a><a ng-href="/edit/" target="_self" title="Create a new Dashboard" class="new"><i class="fa fa-file-o"></i></a><a ui-sref="help" target="_blank" title="Documentation for DIGITAL WALL" class="documentation"><i class="fa fa-question-circle"></i></a><a ng-if="analyticsEnabled()" ui-sref="analytics" title="Analytics for DIGITAL WALL" class="analytics"><i class="fa fa-bar-chart"></i></a><a requires-auth="requires-auth" ng-click="login()" ng-if="!isLoggedIn()" title="Login" class="login"><i class="fa fa-unlock"></i></a><span requires-auth="requires-auth" ng-if="isLoggedIn()" class="dropdown"><a title="{{ userTooltip() }}" data-toggle="dropdown" class="user dropdown-toggle"><i ng-if="!currentUser().emailHash" class="fa fa-user"></i><img ng-if="currentUser().emailHash" ng-src="{{ userGravatar() }}"/></a>
         <ul role="menu" class="dropdown-menu">
           <li role="presentation" class="dropdown-header"><a>{{ currentUser().name }}</a></li>
-          <li ng-if="isAdmin()"><a title="Admin" class="admin">Is Admin <i class="fa fa-key"></i></a></li>
+          <li ng-if="isAdmin()"><a title="Admin" class="admin">Is Admin<i class="fa fa-key"></i></a></li>
           <li ng-if="isAdmin()" role="presentation" class="divider"><a></a></li>
-          <li><a ng-click="logout()" title="Logout" class="logout">Logout <i class="fa fa-lock"></i></a></li>
+          <li><a ng-click="logout()" title="Logout" class="logout">Logout<i class="fa fa-lock"></i></a></li>
         </ul></span></div>
   </div>
   <div class="row header">
@@ -24,9 +24,9 @@
       <h1 ng-show="editor.dashboard.name">{{ editor.dashboard.name }}</h1>
       <h1 ng-hide="$stateParams.dashboardName || editor.dashboard.name">New Dashboard</h1>
       <h2 ng-hide="editor.isNew" title="Click to view revision history" ng-click="editor.showRevisions = true" class="text-muted revision-control"><i ng-show="editor.showRevisions" ng-click="moveRevisionLeft()" title="View Previous Revision" class="fa fa-angle-double-left"></i><i class="fa fa-clock-o"></i><span>  revision {{ editor.dashboardWrapper.rev }}</span><span requires-auth="requires-auth"> by {{ editor.dashboardWrapper.lastUpdatedBy.name || '?' }}</span><span ng-show="editor.showRevisions"> - {{ editor.revisionDate}}</span><i ng-show="editor.showRevisions &amp;&amp; editor.latestRevision &gt; editor.revision" ng-click="moveRevisionRight()" title="View Next Revision" class="fa fa-angle-double-right"></i></h2>
-      <h2 ng-hide="editor.isNew || !isLatestRevision()" ui-sref="dashboardAnalytics({ dashboardName: editor.dashboard.name })" title="{{ editor.dashboardWrapper.visits }} total visits, {{ editor.dashboardWrapper.pageViews }} total page views" class="text-muted analytics-control"><i class="fa {{ getVisitCategory().icon }}"></i><span> {{ getVisitCategory().text }} 
+      <h2 ng-hide="editor.isNew || !isLatestRevision()" ui-sref="dashboardAnalytics({ dashboardName: editor.dashboard.name })" title="{{ editor.dashboardWrapper.visits }} total visits, {{ editor.dashboardWrapper.pageViews }} total page views" class="text-muted analytics-control"><i class="fa {{ getVisitCategory().icon }}"></i><span> {{ getVisitCategory().text }}
           <ng-pluralize count="getVisitCategory().text" when="{&quot;one&quot;: &quot;visit&quot;, &quot;other&quot;: &quot;visits&quot;}"></ng-pluralize></span></h2>
-      <h2 requires-auth="requires-auth" ng-hide="editor.isNew || !isLatestRevision() || !editor.likeCount" title="{{ editor.likeCount }} likes" class="text-muted likes-control"><i class="fa fa-thumbs-up"></i><span> {{ editor.likeCount }} 
+      <h2 requires-auth="requires-auth" ng-hide="editor.isNew || !isLatestRevision() || !editor.likeCount" title="{{ editor.likeCount }} likes" class="text-muted likes-control"><i class="fa fa-thumbs-up"></i><span> {{ editor.likeCount }}
           <ng-pluralize count="editor.likeCount" when="{1: &quot;like&quot;, &quot;other&quot;: &quot;likes&quot;}"></ng-pluralize></span></h2>
       <h4 ng-if="editor.dashboard.description" class="small text-muted"><i class="fa fa-quote-left"></i> {{ editor.dashboard.description }}<i class="fa fa-quote-right"></i></h4>
       <h4 ng-if="editor.dashboardWrapper.deleted" class="small text-danger"><i class="fa fa-exclamation-triangle"></i> This Dashboard has been deleted.  Saving a new revision will undelete it.</h4>
@@ -39,7 +39,7 @@
     <div class="sidebar col-sm-4">
       <ul class="nav nav-pills nav-stacked">
         <li ng-class="{active: editor.currentEditor==&quot;edit.details&quot;}"><a id="editor-details" ng-click="goToSubState(&quot;edit.details&quot;, editor.dashboard)"><i class="fa fa-home"></i> Details</a></li>
-        <li ng-class="{active: editor.currentEditor==&quot;edit.dataSources&quot;}"><a id="editor-dataSources" ng-click="goToSubState(&quot;edit.dataSources&quot;, editor.dashboard.dataSources)"> <i class="fa fa-cloud-download"></i> Data Sources<span ng-show="editor.dashboard.dataSources.length &gt; 0" class="text-muted"> ({{ editor.dashboard.dataSources.length }})</span></a></li>
+        <li ng-class="{active: editor.currentEditor==&quot;edit.dataSources&quot;}"><a id="editor-dataSources" ng-click="goToSubState(&quot;edit.dataSources&quot;, editor.dashboard.dataSources)"><i class="fa fa-cloud-download"></i> Data Sources<span ng-show="editor.dashboard.dataSources.length &gt; 0" class="text-muted"> ({{ editor.dashboard.dataSources.length }})</span></a></li>
         <li ng-show="editor.currentEditor == &quot;edit.dataSources&quot; || editor.currentEditor == &quot;edit.dataSource&quot;" ng-repeat="dataSource in editor.dashboard.dataSources" ng-class="{active: editor.selectedItem == dataSource &amp;&amp; editor.currentEditor==&quot;edit.dataSource&quot;}" class="indent"><a ng-click="goToSubState(&quot;edit.dataSource&quot;, dataSource, $index)" id="editor-dataSource-{{ dataSource.name }}"><i class="fa fa-angle-right"></i> {{ getDataSourceName(dataSource) }}<i ng-if="isDuplicateDataSourceName(dataSource)" title="This Data Source has a conflicting Name property." class="fa fa-exclamation-triangle right-hand-icon"></i></a></li>
         <li ng-class="{active: editor.currentEditor==&quot;edit.pages&quot;}"><a id="editor-pages" ng-click="goToSubState(&quot;edit.pages&quot;, editor.dashboard.pages)"><i class="fa fa-file-o"></i> Pages<span ng-show="editor.dashboard.pages.length &gt; 0" class="text-muted"> ({{ editor.dashboard.pages.length }})</span></a></li>
         <li ng-show="editor.currentEditor==&quot;edit.pages&quot; || editor.currentEditor==&quot;edit.page&quot; || editor.currentEditor==&quot;edit.widget&quot;" ng-repeat="page in editor.dashboard.pages" ng-class="{active: editor.selectedPageIndex == $index &amp;&amp; $state.name==&quot;edit.page&quot;}" class="indent"><a ng-click="goToSubState(&quot;edit.page&quot;, page, $index)" id="editor-page-{{ $index }}"><i class="fa fa-angle-right"></i> {{ getPageName(page, $index) }}</a>
@@ -62,7 +62,7 @@
         <li class="divider"></li>
         <li><a id="editor-history" ui-sref="dashboardHistory({ dashboardName: editor.dashboard.name })" title="View Dashboard History"><i class="fa fa-clock-o"></i> History</a></li>
         <li><a id="editor-analytics" ui-sref="dashboardAnalytics({ dashboardName: editor.dashboard.name })" title="View Dashboard Analytics"><i class="fa fa-bar-chart"></i> Analytics</a></li>
-        <li><a id="editor-help" ng-href="/help" target="help" title="Documentation for Cyclotron"><i class="fa fa-question-circle"></i> Documentation</a></li>
+        <li><a id="editor-help" ng-href="/help" target="help" title="Documentation for Digital Wall"><i class="fa fa-question-circle"></i> Documentation</a></li>
       </ul>
     </div>
     <div class="col-sm-8">

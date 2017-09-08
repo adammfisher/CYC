@@ -793,6 +793,125 @@ cyclotronApp.controller('ClockWidget', ['$scope', '$interval', 'configService', 
 
 
 /*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License.
+ */
+cyclotronDirectives.directive('htmlRepeater', ['$compile', 'layoutService', function($compile, layoutService) {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+      scope.$watch(attrs.htmlRepeater, function(htmlStrings) {
+        var compiledValue, template;
+        template = '';
+        _.each(htmlStrings, function(html) {
+          return template += html;
+        });
+        compiledValue = $compile(template)(scope);
+        element.contents().remove();
+        return element.append(compiledValue);
+      });
+    }
+  };
+}]);
+
+
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License.
+ */
+cyclotronApp.controller('HtmlWidget', ['$scope', 'dashboardService', 'dataService', function($scope, dashboardService, dataService) {
+  var dsDefinition;
+  $scope.htmlStrings = [];
+  if ($scope.widget.preHtml != null) {
+    $scope.preHtml = _.jsExec($scope.widget.preHtml);
+  }
+  if ($scope.widget.postHtml != null) {
+    $scope.postHtml = _.jsExec($scope.widget.postHtml);
+  }
+  $scope.reload = function() {
+    return $scope.dataSource.execute(true);
+  };
+  dsDefinition = dashboardService.getDataSource($scope.dashboard, $scope.widget);
+  $scope.dataSource = dataService.get(dsDefinition);
+  if ($scope.dataSource != null) {
+    $scope.dataVersion = 0;
+    $scope.widgetContext.loading = true;
+    $scope.$on('dataSource:' + dsDefinition.name + ':data', function(event, eventData) {
+      var data, dataCopy;
+      if (!(eventData.version > $scope.dataVersion)) {
+        return;
+      }
+      $scope.dataVersion = eventData.version;
+      $scope.widgetContext.dataSourceError = false;
+      $scope.widgetContext.dataSourceErrorMessage = null;
+      data = eventData.data[dsDefinition.resultSet].data;
+      data = $scope.filterAndSortWidgetData(data);
+      if ($scope.widgetContext.nodata === true) {
+        $scope.htmlStrings = [];
+      } else {
+        dataCopy = _.cloneDeep(data);
+        _.each(dataCopy, function(row, index) {
+          return row.__index = index;
+        });
+        $scope.htmlStrings = _.map(dataCopy, _.partial(_.compile, $scope.widget.html));
+        if ($scope.preHtml != null) {
+          $scope.htmlStrings.unshift($scope.preHtml);
+        }
+        if ($scope.postHtml != null) {
+          $scope.htmlStrings.push($scope.postHtml);
+        }
+      }
+      return $scope.widgetContext.loading = false;
+    });
+    $scope.$on('dataSource:' + dsDefinition.name + ':error', function(event, data) {
+      $scope.widgetContext.dataSourceError = true;
+      $scope.widgetContext.dataSourceErrorMessage = data.error;
+      $scope.widgetContext.nodata = null;
+      $scope.widgetContext.loading = false;
+      return $scope.htmlStrings = [];
+    });
+    $scope.$on('dataSource:' + dsDefinition.name + ':loading', function() {
+      return $scope.widgetContext.loading = true;
+    });
+    return $scope.dataSource.init(dsDefinition);
+  } else {
+    $scope.widgetContext.allowExport = false;
+    if ($scope.widget.html != null) {
+      if ($scope.preHtml != null) {
+        $scope.htmlStrings.push($scope.preHtml);
+      }
+      $scope.htmlStrings.push(_.jsExec($scope.widget.html));
+      if ($scope.postHtml != null) {
+        return $scope.htmlStrings.push($scope.postHtml);
+      }
+    }
+  }
+}]);
+
+
+/*
  * Copyright (c) 2016 the original author or authors.
  *
  * Licensed under the MIT License (the "License");
@@ -943,193 +1062,6 @@ cyclotronApp.controller('HeaderWidget', ['$scope', '$sce', 'configService', func
       }
     };
   }
-}]);
-
-
-/*
- * Copyright (c) 2013-2015 the original author or authors.
- *
- * Licensed under the MIT License (the "License");
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at
- *
- *     http://www.opensource.org/licenses/mit-license.php
- *
- * Unless required by applicable law or agreed to in writing, 
- * software distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
- * either express or implied. See the License for the specific 
- * language governing permissions and limitations under the License.
- */
-cyclotronDirectives.directive('htmlRepeater', ['$compile', 'layoutService', function($compile, layoutService) {
-  return {
-    restrict: 'A',
-    link: function(scope, element, attrs) {
-      scope.$watch(attrs.htmlRepeater, function(htmlStrings) {
-        var compiledValue, template;
-        template = '';
-        _.each(htmlStrings, function(html) {
-          return template += html;
-        });
-        compiledValue = $compile(template)(scope);
-        element.contents().remove();
-        return element.append(compiledValue);
-      });
-    }
-  };
-}]);
-
-
-/*
- * Copyright (c) 2013-2015 the original author or authors.
- *
- * Licensed under the MIT License (the "License");
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at
- *
- *     http://www.opensource.org/licenses/mit-license.php
- *
- * Unless required by applicable law or agreed to in writing, 
- * software distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
- * either express or implied. See the License for the specific 
- * language governing permissions and limitations under the License.
- */
-cyclotronApp.controller('HtmlWidget', ['$scope', 'dashboardService', 'dataService', function($scope, dashboardService, dataService) {
-  var dsDefinition;
-  $scope.htmlStrings = [];
-  if ($scope.widget.preHtml != null) {
-    $scope.preHtml = _.jsExec($scope.widget.preHtml);
-  }
-  if ($scope.widget.postHtml != null) {
-    $scope.postHtml = _.jsExec($scope.widget.postHtml);
-  }
-  $scope.reload = function() {
-    return $scope.dataSource.execute(true);
-  };
-  dsDefinition = dashboardService.getDataSource($scope.dashboard, $scope.widget);
-  $scope.dataSource = dataService.get(dsDefinition);
-  if ($scope.dataSource != null) {
-    $scope.dataVersion = 0;
-    $scope.widgetContext.loading = true;
-    $scope.$on('dataSource:' + dsDefinition.name + ':data', function(event, eventData) {
-      var data, dataCopy;
-      if (!(eventData.version > $scope.dataVersion)) {
-        return;
-      }
-      $scope.dataVersion = eventData.version;
-      $scope.widgetContext.dataSourceError = false;
-      $scope.widgetContext.dataSourceErrorMessage = null;
-      data = eventData.data[dsDefinition.resultSet].data;
-      data = $scope.filterAndSortWidgetData(data);
-      if ($scope.widgetContext.nodata === true) {
-        $scope.htmlStrings = [];
-      } else {
-        dataCopy = _.cloneDeep(data);
-        _.each(dataCopy, function(row, index) {
-          return row.__index = index;
-        });
-        $scope.htmlStrings = _.map(dataCopy, _.partial(_.compile, $scope.widget.html));
-        if ($scope.preHtml != null) {
-          $scope.htmlStrings.unshift($scope.preHtml);
-        }
-        if ($scope.postHtml != null) {
-          $scope.htmlStrings.push($scope.postHtml);
-        }
-      }
-      return $scope.widgetContext.loading = false;
-    });
-    $scope.$on('dataSource:' + dsDefinition.name + ':error', function(event, data) {
-      $scope.widgetContext.dataSourceError = true;
-      $scope.widgetContext.dataSourceErrorMessage = data.error;
-      $scope.widgetContext.nodata = null;
-      $scope.widgetContext.loading = false;
-      return $scope.htmlStrings = [];
-    });
-    $scope.$on('dataSource:' + dsDefinition.name + ':loading', function() {
-      return $scope.widgetContext.loading = true;
-    });
-    return $scope.dataSource.init(dsDefinition);
-  } else {
-    $scope.widgetContext.allowExport = false;
-    if ($scope.widget.html != null) {
-      if ($scope.preHtml != null) {
-        $scope.htmlStrings.push($scope.preHtml);
-      }
-      $scope.htmlStrings.push(_.jsExec($scope.widget.html));
-      if ($scope.postHtml != null) {
-        return $scope.htmlStrings.push($scope.postHtml);
-      }
-    }
-  }
-}]);
-
-
-/*
- * Copyright (c) 2013-2015 the original author or authors.
- *
- * Licensed under the MIT License (the "License");
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at
- *
- *     http://www.opensource.org/licenses/mit-license.php
- *
- * Unless required by applicable law or agreed to in writing, 
- * software distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
- * either express or implied. See the License for the specific 
- * language governing permissions and limitations under the License.
- */
-cyclotronDirectives.directive('iframerefresh', ['$interval', function($interval) {
-  return {
-    restrict: 'A',
-    link: function(scope, element, attrs) {
-      var intervalFn, intervalPromise, refresh;
-      refresh = parseInt(attrs.iframerefresh);
-      if (!isNaN(refresh)) {
-        intervalFn = function() {
-          return $(element).attr('src', function(i, val) {
-            return val;
-          });
-        };
-        intervalPromise = $interval(intervalFn, 1000 * attrs.iframerefresh, 0, false);
-        return scope.$on('$destroy', function() {
-          return $interval.cancel(intervalPromise);
-        });
-      }
-    }
-  };
-}]);
-
-
-/*
- * Copyright (c) 2013-2015 the original author or authors.
- *
- * Licensed under the MIT License (the "License");
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at
- *
- *     http://www.opensource.org/licenses/mit-license.php
- *
- * Unless required by applicable law or agreed to in writing, 
- * software distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
- * either express or implied. See the License for the specific 
- * language governing permissions and limitations under the License.
- */
-cyclotronApp.controller('IframeWidget', ['$scope', function($scope) {
-  $scope.widgetContext.allowExport = false;
-  return $scope.getUrl = function() {
-    var url;
-    if (_.isEmpty($scope.widget.url)) {
-      return '';
-    }
-    url = $scope.widget.url;
-    if (url.indexOf('http') !== 0) {
-      url = 'http://' + url;
-    }
-    return $scope.$sce.trustAsResourceUrl(url);
-  };
 }]);
 
 
@@ -1385,128 +1317,23 @@ cyclotronApp.controller('ImageWidget', ['$scope', '$interval', function($scope, 
  * either express or implied. See the License for the specific 
  * language governing permissions and limitations under the License.
  */
-cyclotronDirectives.directive('theNumber', ['$timeout', function($timeout) {
+cyclotronDirectives.directive('iframerefresh', ['$interval', function($interval) {
   return {
-    restrict: 'C',
-    scope: {
-      numberCount: '=',
-      isHorizontal: '=',
-      index: '=',
-      autoSize: '='
-    },
+    restrict: 'A',
     link: function(scope, element, attrs) {
-      var $element, $widgetBody, resizeFunction, sizer;
-      $element = $(element);
-      $widgetBody = $element.parent();
-      sizer = function() {
-        var currentHeight, currentWidth, fontSize, h1, iterations, numberHeight, numberWidth, sizeMe, sizePrefixSuffix, spanFontSize, spans, totalHeight, widgetBodyHeight, widgetBodyWidth;
-        widgetBodyHeight = $widgetBody.height();
-        widgetBodyWidth = $widgetBody.width();
-        if (widgetBodyHeight === 0) {
-          return;
-        }
-        numberWidth = widgetBodyWidth;
-        numberHeight = widgetBodyHeight;
-        if (scope.numberCount === 2) {
-          if (scope.isHorizontal) {
-            numberWidth = widgetBodyWidth / 2;
-            numberHeight = widgetBodyHeight;
-          } else {
-            numberWidth = widgetBodyWidth;
-            numberHeight = widgetBodyHeight / 2;
-          }
-        } else if (scope.numberCount === 3) {
-          if (scope.index < 2) {
-            numberWidth = widgetBodyWidth / 2;
-            numberHeight = widgetBodyHeight / 2;
-          } else {
-            numberWidth = widgetBodyWidth;
-            numberHeight = widgetBodyHeight / 2;
-          }
-        } else if (scope.numberCount === 4) {
-          numberWidth = widgetBodyWidth / 2;
-          numberHeight = widgetBodyHeight / 2;
-        }
-        if (scope.numberCount <= 4 && scope.autoSize !== false) {
-          $element.addClass('auto-sized');
-          $element.css('width', Math.floor(numberWidth) + 'px');
-          $element.css('height', Math.floor(numberHeight) + 'px');
-          $widgetBody.css('overflow-y', 'hidden');
-          h1 = $element.find('h1');
-          spans = $element.find('span');
-          if (scope.isHorizontal) {
-            h1.css('display', 'inline-block');
-            spans.css('display', 'inline-block');
-          }
-          fontSize = Math.min(102, numberHeight / 2);
-          iterations = 0;
-          currentWidth = 0;
-          currentHeight = 0;
-          sizeMe = function() {
-            h1.css('font-size', fontSize + 'px');
-            h1.css('line-height', fontSize + 'px');
-            spans.css('font-size', fontSize * 0.75 + 'px');
-            iterations++;
-            currentWidth = 0;
-            if (scope.isHorizontal) {
-              currentWidth = h1.width();
-            } else {
-              $element.children().each(function() {
-                return currentWidth += $(this).width();
-              });
-            }
-            currentHeight = 0;
-            if (scope.isHorizontal) {
-              return $element.children().each(function() {
-                return currentHeight += $(this).height();
-              });
-            } else {
-              return currentHeight = h1.height();
-            }
-          };
-          sizeMe();
-          while (((currentWidth + 25 >= numberWidth || h1.height() > fontSize * 2) || currentHeight > numberHeight) && iterations < 25) {
-            fontSize -= 4;
-            sizeMe();
-          }
-          if (scope.isHorizontal) {
-            iterations = 0;
-            spanFontSize = Math.min(fontSize * 0.70, 40);
-            sizePrefixSuffix = function() {
-              spans.css('font-size', spanFontSize + 'px');
-              iterations++;
-              spanFontSize -= 4;
-              currentWidth = 0;
-              return spans.each(function() {
-                return currentWidth = Math.max(currentWidth, $(this).width());
-              });
-            };
-            sizePrefixSuffix();
-            while (currentWidth + 15 >= numberWidth && iterations < 15) {
-              sizePrefixSuffix();
-            }
-            h1.css('display', 'block');
-            totalHeight = 0;
-            $element.children().each(function() {
-              return totalHeight += $(this).height();
-            });
-            return $element.css('padding-top', (numberHeight - totalHeight) / 2.0 + 'px');
-          } else {
-            return h1.css('line-height', numberHeight - fontSize / 2.0 + 'px');
-          }
-        } else {
-
-        }
-      };
-      resizeFunction = _.debounce(sizer, 100, {
-        leading: false,
-        maxWait: 300
-      });
-      $widgetBody.on('resize', resizeFunction);
-      $timeout(sizer, 10);
-      return scope.$on('$destroy', function() {
-        $widgetBody.off('resize', resizeFunction);
-      });
+      var intervalFn, intervalPromise, refresh;
+      refresh = parseInt(attrs.iframerefresh);
+      if (!isNaN(refresh)) {
+        intervalFn = function() {
+          return $(element).attr('src', function(i, val) {
+            return val;
+          });
+        };
+        intervalPromise = $interval(intervalFn, 1000 * attrs.iframerefresh, 0, false);
+        return scope.$on('$destroy', function() {
+          return $interval.cancel(intervalPromise);
+        });
+      }
     }
   };
 }]);
@@ -1527,112 +1354,19 @@ cyclotronDirectives.directive('theNumber', ['$timeout', function($timeout) {
  * either express or implied. See the License for the specific 
  * language governing permissions and limitations under the License.
  */
-cyclotronApp.controller('NumberWidget', ['$scope', 'dashboardService', 'dataService', function($scope, dashboardService, dataService) {
-  var dsDefinition, ref, ref1;
-  $scope.orientation = (ref = $scope.widget.orientation) != null ? ref : 'vertical';
-  $scope.numberCount = ((ref1 = $scope.widget.numbers) != null ? ref1.length : void 0) || 0;
-  $scope.isHorizontal = $scope.widget.orientation === 'horizontal';
-  if ($scope.numberCount <= 4 && $scope.widget.autoSize !== false) {
-    $scope.isHorizontal = !$scope.isHorizontal;
-  }
-  $scope.linkTarget = function() {
-    if ($scope.dashboard.openLinksInNewWindow === false) {
-      return '_self';
-    } else {
-      return '_blank';
-    }
-  };
-  $scope.getClass = function(number) {
-    var c;
-    c = '';
-    if ($scope.isHorizontal) {
-      c = 'orientation-horizontal';
-    } else {
-      c = 'orientation-vertical';
-    }
-    if (_.isFunction(number.onClick)) {
-      c += ' actionable';
-    }
-    return c;
-  };
-  $scope.getUrl = function() {
+cyclotronApp.controller('IframeWidget', ['$scope', function($scope) {
+  $scope.widgetContext.allowExport = false;
+  return $scope.getUrl = function() {
     var url;
-    if (_.isEmpty($scope.widget.link)) {
+    if (_.isEmpty($scope.widget.url)) {
       return '';
     }
-    url = $scope.widget.link;
-    if ($scope.widget.link.indexOf('http') !== 0) {
+    url = $scope.widget.url;
+    if (url.indexOf('http') !== 0) {
       url = 'http://' + url;
     }
     return $scope.$sce.trustAsResourceUrl(url);
   };
-  $scope.compileNumbers = function(row) {
-    var numbers;
-    numbers = _.map($scope.widget.numbers, function(item, index) {
-      return {
-        number: _.compile(item.number, row),
-        prefix: _.compile(item.prefix, row),
-        suffix: _.compile(item.suffix, row),
-        color: _.compile(item.color, row),
-        tooltip: _.compile(item.tooltip, row),
-        icon: _.compile(item.icon, row),
-        iconColor: _.compile(item.iconColor, row),
-        iconTooltip: _.compile(item.iconTooltip, row),
-        onClick: _.jsEval(_.compile(item.onClick, row))
-      };
-    });
-    if ($scope.numbers != null) {
-      return _.each(numbers, function(number, index) {
-        return _.assign($scope.numbers[index], number);
-      });
-    } else {
-      return $scope.numbers = numbers;
-    }
-  };
-  $scope.onClickEvent = function(number) {
-    if (_.isFunction(number.onClick)) {
-      return number.onClick({
-        number: number
-      });
-    }
-  };
-  $scope.reload = function() {
-    return $scope.dataSource.execute(true);
-  };
-  dsDefinition = dashboardService.getDataSource($scope.dashboard, $scope.widget);
-  $scope.dataSource = dataService.get(dsDefinition);
-  if ($scope.dataSource != null) {
-    $scope.dataVersion = 0;
-    $scope.widgetContext.loading = true;
-    $scope.$on('dataSource:' + dsDefinition.name + ':data', function(event, eventData) {
-      var data;
-      if (!(eventData.version > $scope.dataVersion)) {
-        return;
-      }
-      $scope.dataVersion = eventData.version;
-      $scope.widgetContext.dataSourceError = false;
-      $scope.widgetContext.dataSourceErrorMessage = null;
-      data = eventData.data[dsDefinition.resultSet].data;
-      data = $scope.filterAndSortWidgetData(data);
-      if (data != null) {
-        $scope.compileNumbers(data[0]);
-      }
-      return $scope.widgetContext.loading = false;
-    });
-    $scope.$on('dataSource:' + dsDefinition.name + ':error', function(event, data) {
-      $scope.widgetContext.dataSourceError = true;
-      $scope.widgetContext.dataSourceErrorMessage = data.error;
-      $scope.widgetContext.nodata = null;
-      return $scope.widgetContext.loading = false;
-    });
-    $scope.$on('dataSource:' + dsDefinition.name + ':loading', function() {
-      return $scope.widgetContext.loading = true;
-    });
-    return $scope.dataSource.init(dsDefinition);
-  } else {
-    $scope.widgetContext.allowExport = false;
-    return $scope.compileNumbers({});
-  }
 }]);
 
 
@@ -1950,6 +1684,329 @@ cyclotronApp.controller('StoplightWidget', ['$scope', 'dashboardService', 'dataS
   } else {
     $scope.widgetContext.allowExport = false;
     return $scope.evalColors({});
+  }
+}]);
+
+
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License.
+ */
+cyclotronDirectives.directive('theNumber', ['$timeout', function($timeout) {
+  return {
+    restrict: 'C',
+    scope: {
+      numberCount: '=',
+      isHorizontal: '=',
+      index: '=',
+      autoSize: '='
+    },
+    link: function(scope, element, attrs) {
+      var $element, $widgetBody, resizeFunction, sizer;
+      $element = $(element);
+      $widgetBody = $element.parent();
+      sizer = function() {
+        var currentHeight, currentWidth, fontSize, h1, iterations, numberHeight, numberWidth, sizeMe, sizePrefixSuffix, spanFontSize, spans, totalHeight, widgetBodyHeight, widgetBodyWidth;
+        widgetBodyHeight = $widgetBody.height();
+        widgetBodyWidth = $widgetBody.width();
+        if (widgetBodyHeight === 0) {
+          return;
+        }
+        numberWidth = widgetBodyWidth;
+        numberHeight = widgetBodyHeight;
+        if (scope.numberCount === 2) {
+          if (scope.isHorizontal) {
+            numberWidth = widgetBodyWidth / 2;
+            numberHeight = widgetBodyHeight;
+          } else {
+            numberWidth = widgetBodyWidth;
+            numberHeight = widgetBodyHeight / 2;
+          }
+        } else if (scope.numberCount === 3) {
+          if (scope.index < 2) {
+            numberWidth = widgetBodyWidth / 2;
+            numberHeight = widgetBodyHeight / 2;
+          } else {
+            numberWidth = widgetBodyWidth;
+            numberHeight = widgetBodyHeight / 2;
+          }
+        } else if (scope.numberCount === 4) {
+          numberWidth = widgetBodyWidth / 2;
+          numberHeight = widgetBodyHeight / 2;
+        }
+        if (scope.numberCount <= 4 && scope.autoSize !== false) {
+          $element.addClass('auto-sized');
+          $element.css('width', Math.floor(numberWidth) + 'px');
+          $element.css('height', Math.floor(numberHeight) + 'px');
+          $widgetBody.css('overflow-y', 'hidden');
+          h1 = $element.find('h1');
+          spans = $element.find('span');
+          if (scope.isHorizontal) {
+            h1.css('display', 'inline-block');
+            spans.css('display', 'inline-block');
+          }
+          fontSize = Math.min(102, numberHeight / 2);
+          iterations = 0;
+          currentWidth = 0;
+          currentHeight = 0;
+          sizeMe = function() {
+            h1.css('font-size', fontSize + 'px');
+            h1.css('line-height', fontSize + 'px');
+            spans.css('font-size', fontSize * 0.75 + 'px');
+            iterations++;
+            currentWidth = 0;
+            if (scope.isHorizontal) {
+              currentWidth = h1.width();
+            } else {
+              $element.children().each(function() {
+                return currentWidth += $(this).width();
+              });
+            }
+            currentHeight = 0;
+            if (scope.isHorizontal) {
+              return $element.children().each(function() {
+                return currentHeight += $(this).height();
+              });
+            } else {
+              return currentHeight = h1.height();
+            }
+          };
+          sizeMe();
+          while (((currentWidth + 25 >= numberWidth || h1.height() > fontSize * 2) || currentHeight > numberHeight) && iterations < 25) {
+            fontSize -= 4;
+            sizeMe();
+          }
+          if (scope.isHorizontal) {
+            iterations = 0;
+            spanFontSize = Math.min(fontSize * 0.70, 40);
+            sizePrefixSuffix = function() {
+              spans.css('font-size', spanFontSize + 'px');
+              iterations++;
+              spanFontSize -= 4;
+              currentWidth = 0;
+              return spans.each(function() {
+                return currentWidth = Math.max(currentWidth, $(this).width());
+              });
+            };
+            sizePrefixSuffix();
+            while (currentWidth + 15 >= numberWidth && iterations < 15) {
+              sizePrefixSuffix();
+            }
+            h1.css('display', 'block');
+            totalHeight = 0;
+            $element.children().each(function() {
+              return totalHeight += $(this).height();
+            });
+            return $element.css('padding-top', (numberHeight - totalHeight) / 2.0 + 'px');
+          } else {
+            return h1.css('line-height', numberHeight - fontSize / 2.0 + 'px');
+          }
+        } else {
+
+        }
+      };
+      resizeFunction = _.debounce(sizer, 100, {
+        leading: false,
+        maxWait: 300
+      });
+      $widgetBody.on('resize', resizeFunction);
+      $timeout(sizer, 10);
+      return scope.$on('$destroy', function() {
+        $widgetBody.off('resize', resizeFunction);
+      });
+    }
+  };
+}]);
+
+
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License.
+ */
+cyclotronApp.controller('NumberWidget', ['$scope', 'dashboardService', 'dataService', function($scope, dashboardService, dataService) {
+  var dsDefinition, ref, ref1;
+  $scope.orientation = (ref = $scope.widget.orientation) != null ? ref : 'vertical';
+  $scope.numberCount = ((ref1 = $scope.widget.numbers) != null ? ref1.length : void 0) || 0;
+  $scope.isHorizontal = $scope.widget.orientation === 'horizontal';
+  if ($scope.numberCount <= 4 && $scope.widget.autoSize !== false) {
+    $scope.isHorizontal = !$scope.isHorizontal;
+  }
+  $scope.linkTarget = function() {
+    if ($scope.dashboard.openLinksInNewWindow === false) {
+      return '_self';
+    } else {
+      return '_blank';
+    }
+  };
+  $scope.getClass = function(number) {
+    var c;
+    c = '';
+    if ($scope.isHorizontal) {
+      c = 'orientation-horizontal';
+    } else {
+      c = 'orientation-vertical';
+    }
+    if (_.isFunction(number.onClick)) {
+      c += ' actionable';
+    }
+    return c;
+  };
+  $scope.getUrl = function() {
+    var url;
+    if (_.isEmpty($scope.widget.link)) {
+      return '';
+    }
+    url = $scope.widget.link;
+    if ($scope.widget.link.indexOf('http') !== 0) {
+      url = 'http://' + url;
+    }
+    return $scope.$sce.trustAsResourceUrl(url);
+  };
+  $scope.compileNumbers = function(row) {
+    var numbers;
+    numbers = _.map($scope.widget.numbers, function(item, index) {
+      return {
+        number: _.compile(item.number, row),
+        prefix: _.compile(item.prefix, row),
+        suffix: _.compile(item.suffix, row),
+        color: _.compile(item.color, row),
+        tooltip: _.compile(item.tooltip, row),
+        icon: _.compile(item.icon, row),
+        iconColor: _.compile(item.iconColor, row),
+        iconTooltip: _.compile(item.iconTooltip, row),
+        onClick: _.jsEval(_.compile(item.onClick, row))
+      };
+    });
+    if ($scope.numbers != null) {
+      return _.each(numbers, function(number, index) {
+        return _.assign($scope.numbers[index], number);
+      });
+    } else {
+      return $scope.numbers = numbers;
+    }
+  };
+  $scope.onClickEvent = function(number) {
+    if (_.isFunction(number.onClick)) {
+      return number.onClick({
+        number: number
+      });
+    }
+  };
+  $scope.reload = function() {
+    return $scope.dataSource.execute(true);
+  };
+  dsDefinition = dashboardService.getDataSource($scope.dashboard, $scope.widget);
+  $scope.dataSource = dataService.get(dsDefinition);
+  if ($scope.dataSource != null) {
+    $scope.dataVersion = 0;
+    $scope.widgetContext.loading = true;
+    $scope.$on('dataSource:' + dsDefinition.name + ':data', function(event, eventData) {
+      var data;
+      if (!(eventData.version > $scope.dataVersion)) {
+        return;
+      }
+      $scope.dataVersion = eventData.version;
+      $scope.widgetContext.dataSourceError = false;
+      $scope.widgetContext.dataSourceErrorMessage = null;
+      data = eventData.data[dsDefinition.resultSet].data;
+      data = $scope.filterAndSortWidgetData(data);
+      if (data != null) {
+        $scope.compileNumbers(data[0]);
+      }
+      return $scope.widgetContext.loading = false;
+    });
+    $scope.$on('dataSource:' + dsDefinition.name + ':error', function(event, data) {
+      $scope.widgetContext.dataSourceError = true;
+      $scope.widgetContext.dataSourceErrorMessage = data.error;
+      $scope.widgetContext.nodata = null;
+      return $scope.widgetContext.loading = false;
+    });
+    $scope.$on('dataSource:' + dsDefinition.name + ':loading', function() {
+      return $scope.widgetContext.loading = true;
+    });
+    return $scope.dataSource.init(dsDefinition);
+  } else {
+    $scope.widgetContext.allowExport = false;
+    return $scope.compileNumbers({});
+  }
+}]);
+
+
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License.
+ */
+cyclotronDirectives.directive('tableauWidget', function() {
+  return {
+    restrict: 'CA',
+    link: function($scope, element, $attrs) {
+      var $element;
+      $element = $(element);
+      $scope.actualHeight = $element.height();
+      return $scope.actualWidth = $element.width();
+    }
+  };
+});
+
+
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License.
+ */
+cyclotronApp.controller('TableauWidget', ['$scope', function($scope) {
+  $scope.widgetContext.allowExport = false;
+  $scope.params = [];
+  if (!_.isUndefined($scope.widget.params)) {
+    return $scope.params = _.map(_.keys($scope.widget.params), function(key) {
+      return {
+        name: key,
+        value: $scope.widget.params[key]
+      };
+    });
   }
 }]);
 
@@ -2582,63 +2639,6 @@ cyclotronApp.controller('TableWidget', ['$scope', '$location', '$window', 'dashb
       return $scope.calculateItemsPerPage(height);
     }
   }, true);
-}]);
-
-
-/*
- * Copyright (c) 2013-2015 the original author or authors.
- *
- * Licensed under the MIT License (the "License");
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at
- *
- *     http://www.opensource.org/licenses/mit-license.php
- *
- * Unless required by applicable law or agreed to in writing, 
- * software distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
- * either express or implied. See the License for the specific 
- * language governing permissions and limitations under the License.
- */
-cyclotronDirectives.directive('tableauWidget', function() {
-  return {
-    restrict: 'CA',
-    link: function($scope, element, $attrs) {
-      var $element;
-      $element = $(element);
-      $scope.actualHeight = $element.height();
-      return $scope.actualWidth = $element.width();
-    }
-  };
-});
-
-
-/*
- * Copyright (c) 2013-2015 the original author or authors.
- *
- * Licensed under the MIT License (the "License");
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at
- *
- *     http://www.opensource.org/licenses/mit-license.php
- *
- * Unless required by applicable law or agreed to in writing, 
- * software distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
- * either express or implied. See the License for the specific 
- * language governing permissions and limitations under the License.
- */
-cyclotronApp.controller('TableauWidget', ['$scope', function($scope) {
-  $scope.widgetContext.allowExport = false;
-  $scope.params = [];
-  if (!_.isUndefined($scope.widget.params)) {
-    return $scope.params = _.map(_.keys($scope.widget.params), function(key) {
-      return {
-        name: key,
-        value: $scope.widget.params[key]
-      };
-    });
-  }
 }]);
 
 

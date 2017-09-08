@@ -1,10 +1,10 @@
 
 <h3>JavaScript API</h3>
 <p>
-  Cyclotron provides a JavaScript API that Dashboards can leverage. They make it easier to extend Cyclotron with custom functionality and add additional interactivity to a Dashboard. Basically, it exposes various actions in the Dashboard (e.g. execute a Data Source, show/hide a Widget), or to provide information about the Dashboard.
+  Digital Wall provides a JavaScript API that Dashboards can leverage. They make it easier to extend Digital Wall with custom functionality and add additional interactivity to a Dashboard. Basically, it exposes various actions in the Dashboard (e.g. execute a Data Source, show/hide a Widget), or to provide information about the Dashboard.
   
 </p>
-<p>In addition to the Cyclotron API, there are a handful of 3rd party JavaScript libraries which are bundled with Cyclotron. Theese are the libraries that Cyclotron itself is built on, making them available for use by Dashboards as well. More information about these libraries can be found at <a ng-click="findItem(&quot;3rd Party Libraries&quot;)" href="?q=3rd Party Libraries">3rd Party Libraries</a></p>
+<p>In addition to the Digital Wall API, there are a handful of 3rd party JavaScript libraries which are bundled with Digital Wall. Theese are the libraries that Digital Wall itself is built on, making them available for use by Dashboards as well. More information about these libraries can be found at<a ng-click="findItem(&quot;3rd Party Libraries&quot;)" href="?q=3rd Party Libraries">3rd Party Libraries</a></p>
 <h4>Dashboard Information</h4>
 <table>
   <tr>
@@ -12,56 +12,56 @@
     <th>Description</th>
   </tr>
   <tr>
-    <td>Cyclotron.version</td>
-    <td>Property that returns the current version of Cyclotron</td>
+    <td>Digital Wall.version</td>
+    <td>Property that returns the current version of Digital Wall</td>
   </tr>
   <tr>
-    <td>Cyclotron.dashboard</td>
+    <td>Digital Wall.dashboard</td>
     <td>Property that returns the current Dashboard as an object</td>
   </tr>
   <tr>
-    <td>Cyclotron.dashboardOverrides</td>
+    <td>Digital Wall.dashboardOverrides</td>
     <td>Property that returns an object of user-specific overrides for the current Dashboard</td>
   </tr>
   <tr>
-    <td>Cyclotron.dashboardName</td>
+    <td>Digital Wall.dashboardName</td>
     <td>Property that returns the name of the current Dashboard</td>
   </tr>
   <tr>
-    <td>Cyclotron.pageName</td>
+    <td>Digital Wall.pageName</td>
     <td>Property that returns the name of the currently-displayed Page</td>
   </tr>
   <tr>
-    <td>Cyclotron.currentUser</td>
+    <td>Digital Wall.currentUser</td>
     <td>Property containing an object of information about the logged-in user. If authentication is not enabled, or if the user is not logged in, it will return null.</td>
   </tr>
   <tr>
-    <td>Cyclotron.goToPage(pageNumber)</td>
+    <td>Digital Wall.goToPage(pageNumber)</td>
     <td>Navigates to a specific page in the Dashboard (starting with page 1)</td>
   </tr>
   <tr>
-    <td>Cyclotron.getDeeplink()</td>
+    <td>Digital Wall.getDeeplink()</td>
     <td>Returns a deeplink URL to the current Dashboard, including the values of all Parameters</td>
   </tr>
 </table>
 <h4>Functions</h4>
-<p>These functions are hooks into Cyclotron that can be leveraged by Dashboards</p>
+<p>These functions are hooks into Digital Wall that can be leveraged by Dashboards</p>
 <table>
   <tr>
     <th>Function</th>
     <th>Description</th>
   </tr>
   <tr>
-    <td>Cyclotron.functions.forceUpdate()</td>
-    <td>Forces Cyclotron to do an internal update of Dashboard state, e.g. syncing parameters to the URL. In general, this should not be needed, but can be used to immediately trigger an update cycle after running custom JavaScript.</td>
+    <td>Digital Wall.functions.forceUpdate()</td>
+    <td>Forces Digital Wall to do an internal update of Dashboard state, e.g. syncing parameters to the URL. In general, this should not be needed, but can be used to immediately trigger an update cycle after running custom JavaScript.</td>
   </tr>
   <tr>
-    <td>Cyclotron.functions.exportData(format, data)</td>
-    <td>Downloads the provided data in one of the following formats: 'json', 'csv', 'xlsx'. CSV and XLSX are both tabular formats and may not be correctly formatted with nested data. See also <em> Cyclotron.currentPage.widgets['widgetName'].exportData(format)</em>.</td>
+    <td>Digital Wall.functions.exportData(format, data)</td>
+    <td>Downloads the provided data in one of the following formats: 'json', 'csv', 'xlsx'. CSV and XLSX are both tabular formats and may not be correctly formatted with nested data. See also<em> Digital Wall.currentPage.widgets['widgetName'].exportData(format)</em>.</td>
   </tr>
   <tr>
-    <td>Cyclotron.functions.recordEvent(eventData)</td>
-    <td>Records a custom Dashboard event to Cyclotron's analytics database (if enabled). An object of custom key/value pairs can be provided, which are attached to the event. This function can be used to implement custom click tracking, error logging, etc.</td>
+    <td>Digital Wall.functions.recordEvent(eventData)</td>
+    <td>Records a custom Dashboard event to Digital Wall's analytics database (if enabled). An object of custom key/value pairs can be provided, which are attached to the event. This function can be used to implement custom click tracking, error logging, etc.</td>
   </tr>
 </table>
 <h4>Built-In Parameters</h4>
@@ -72,73 +72,73 @@
     <th>Description</th>
   </tr>
   <tr>
-    <td>Cyclotron.parameters.page</td>
+    <td>Digital Wall.parameters.page</td>
     <td>Set to the current page number (as an integer)</td>
   </tr>
   <tr>
-    <td>Cyclotron.parameters.rev</td>
+    <td>Digital Wall.parameters.rev</td>
     <td>Set to the Dashboard's revision number (as a string); this will be undefined when viewing the latest revision</td>
   </tr>
   <tr>
-    <td>Cyclotron.parameters.live</td>
+    <td>Digital Wall.parameters.live</td>
     <td>If true, causes the Dashboard to check for new Revisions more frequently. This Parameter can be set via URL only, when the Dashboard is loaded.</td>
   </tr>
   <tr>
-    <td>Cyclotron.parameters.autoRotate</td>
+    <td>Digital Wall.parameters.autoRotate</td>
     <td>True/false value that enables/disables rotation in the Dashboard, overriding the Dashboard's setting. This Parameter can be set via URL only, when the Dashboard is loaded.</td>
   </tr>
 </table>
 <h4>Data Sources</h4>
-<p>These functions allow interaction with the Data Sources in the Dashboard. The <em> Cyclotron.dataSource</em> object contains each Data Source name as a key, with an object of functions as the value.</p>
+<p>These functions allow interaction with the Data Sources in the Dashboard. The<em> Digital Wall.dataSource</em> object contains each Data Source name as a key, with an object of functions as the value.</p>
 <table>
   <tr>
     <th>Method</th>
     <th>Description</th>
   </tr>
   <tr>
-    <td>Cyclotron.dataSources['dataSourceName'].execute([showSpinners])</td>
+    <td>Digital Wall.dataSources['dataSourceName'].execute([showSpinners])</td>
     <td>Manually executes a Data Source.  If showSpinners is true, it will triggers Widgets to show a loading spinner while the Data Source is executing</td>
   </tr>
   <tr>
-    <td>Cyclotron.dataSources['dataSourceName'].getPromise()</td>
+    <td>Digital Wall.dataSources['dataSourceName'].getPromise()</td>
     <td>Returns the latest execution promise (may be completed).  The returned promise has two functions, promise.then(function) and promise.catch(function).  If the Data Source has already completed, then() will execute the given function immediately. This function returns an object of resultsets, each containing columns (optional) and data.</td>
   </tr>
   <tr>
-    <td>Cyclotron.dataSources['dataSourceName'].getCachedDataSet([resultSetName])</td>
+    <td>Digital Wall.dataSources['dataSourceName'].getCachedDataSet([resultSetName])</td>
     <td>Returns the latest resultset for the Data Source if it exists, else null. If no resultSet argument is provided, the default resultset name of '0' will be used. This function returns the result set data directly.</td>
   </tr>
   <tr>
-    <td>Cyclotron.dataSources['dataSourceName'].getData()</td>
+    <td>Digital Wall.dataSources['dataSourceName'].getData()</td>
     <td>Deprecated; do not use</td>
   </tr>
   <tr>
-    <td>Cyclotron.dataSources['dataSourceName'].init()</td>
+    <td>Digital Wall.dataSources['dataSourceName'].init()</td>
     <td>Initializes the Data Source and starts automatic refresh if configured. This method is used internally by Widgets; execute() is probably better suited to custom JavaScript scripting.</td>
   </tr>
 </table>
 <h4>Widgets</h4>
-<p>These functions apply overrides to Widgets in the Dashboard. In order to use these functions, the Widget needs to have the<em> name</em> property configured; the <em> Cyclotron.currentPage.widgets </em> object contains each Widget name as a key, with an object of functions as the value.</p>
+<p>These functions apply overrides to Widgets in the Dashboard. In order to use these functions, the Widget needs to have the<em> name</em> property configured; the<em> Digital Wall.currentPage.widgets</em> object contains each Widget name as a key, with an object of functions as the value.</p>
 <table>
   <tr>
     <th>Method</th>
     <th>Description</th>
   </tr>
   <tr>
-    <td>Cyclotron.currentPage.widgets['widgetName'].show()</td>
-    <td>Shows a Widget; overrides the Widget's <em>hidden</em> property</td>
+    <td>Digital Wall.currentPage.widgets['widgetName'].show()</td>
+    <td>Shows a Widget; overrides the Widget's<em>hidden</em> property</td>
   </tr>
   <tr>
-    <td>Cyclotron.currentPage.widgets['widgetName'].hide()</td>
-    <td>Hides a Widget; overrides the Widget's <em>hidden</em> property</td>
+    <td>Digital Wall.currentPage.widgets['widgetName'].hide()</td>
+    <td>Hides a Widget; overrides the Widget's<em>hidden</em> property</td>
   </tr>
   <tr>
-    <td>Cyclotron.currentPage.widgets['widgetName'].toggleVisibility()</td>
-    <td>Toggles the visibility of a Widget; overrides the Widget's <em>hidden</em> property</td>
+    <td>Digital Wall.currentPage.widgets['widgetName'].toggleVisibility()</td>
+    <td>Toggles the visibility of a Widget; overrides the Widget's<em>hidden</em> property</td>
   </tr>
   <tr>
-    <td>Cyclotron.currentPage.widgets['widgetName'].exportData(format)</td>
-    <td>Downloads the data behind a Widget in one of the following formats: 'json', 'csv', 'xlsx'.  CSV and XLSX are both tabular formats and may not be correctly formatted with nested data. See also<em> Cyclotron.functions.exportData()</em>.</td>
+    <td>Digital Wall.currentPage.widgets['widgetName'].exportData(format)</td>
+    <td>Downloads the data behind a Widget in one of the following formats: 'json', 'csv', 'xlsx'.  CSV and XLSX are both tabular formats and may not be correctly formatted with nested data. See also<em> Digital Wall.functions.exportData()</em>.</td>
   </tr>
 </table>
-<h4>CyclotronData</h4>
-<p>CyclotronData has a JavaScript API for reading/writing data. This is documented separately on the <a ng-click="findItem(&quot;CyclotronData&quot;)" href="?q=CyclotronData"> CyclotronData</a> page.</p>
+<h4>Digital WallData</h4>
+<p>Digital WallData has a JavaScript API for reading/writing data. This is documented separately on the<a ng-click="findItem(&quot;Digital WallData&quot;)" href="?q=Digital WallData"> Digital WallData</a> page.</p>

@@ -1,75 +1,75 @@
 
 <div class="analytics-page">
   <div class="row cyclotron-header">
-    <h1 ui-sref="home" ui-sref-opts="{reload: true}"><img src="/img/favicon64.png" alt="Logo" class="logo"/>Cyclotron</h1>
-    <div class="links"><a ui-sref="home" title="Return to Home" class="home"><i class="fa fa-home"></i></a><a ng-href="/edit/" target="_self" title="Create a new Dashboard" class="new"><i class="fa fa-file-o"></i></a><a ui-sref="help" target="_blank" title="Documentation for Cyclotron" class="documentation"><i class="fa fa-question-circle"></i></a><a ng-if="analyticsEnabled()" ui-sref="analytics" title="Analytics for Cyclotron" class="analytics"><i class="fa fa-bar-chart"></i></a><a requires-auth="requires-auth" ng-click="login()" ng-if="!isLoggedIn()" title="Login" class="login"><i class="fa fa-unlock"></i></a><span requires-auth="requires-auth" ng-if="isLoggedIn()" class="dropdown"><a title="{{ userTooltip() }}" data-toggle="dropdown" class="user dropdown-toggle"><i ng-if="!currentUser().emailHash" class="fa fa-user"></i><img ng-if="currentUser().emailHash" ng-src="{{ userGravatar() }}"/></a>
+    <h1 ui-sref="home" ui-sref-opts="{reload: true}"><img src="/img/favicon64.png" alt="Logo" class="logo"/>AIG DIGITAL WALL</h1>
+    <div class="links"><a ui-sref="home" title="Return to Home" class="home"><i class="fa fa-home"></i></a><a ng-href="/edit/" target="_self" title="Create a new Dashboard" class="new"><i class="fa fa-file-o"></i></a><a ui-sref="help" target="_blank" title="Documentation for DIGITAL WALL" class="documentation"><i class="fa fa-question-circle"></i></a><a ng-if="analyticsEnabled()" ui-sref="analytics" title="Analytics for DIGITAL WALL" class="analytics"><i class="fa fa-bar-chart"></i></a><a requires-auth="requires-auth" ng-click="login()" ng-if="!isLoggedIn()" title="Login" class="login"><i class="fa fa-unlock"></i></a><span requires-auth="requires-auth" ng-if="isLoggedIn()" class="dropdown"><a title="{{ userTooltip() }}" data-toggle="dropdown" class="user dropdown-toggle"><i ng-if="!currentUser().emailHash" class="fa fa-user"></i><img ng-if="currentUser().emailHash" ng-src="{{ userGravatar() }}"/></a>
         <ul role="menu" class="dropdown-menu">
           <li role="presentation" class="dropdown-header"><a>{{ currentUser().name }}</a></li>
-          <li ng-if="isAdmin()"><a title="Admin" class="admin">Is Admin <i class="fa fa-key"></i></a></li>
+          <li ng-if="isAdmin()"><a title="Admin" class="admin">Is Admin<i class="fa fa-key"></i></a></li>
           <li ng-if="isAdmin()" role="presentation" class="divider"><a></a></li>
-          <li><a ng-click="logout()" title="Logout" class="logout">Logout <i class="fa fa-lock"></i></a></li>
+          <li><a ng-click="logout()" title="Logout" class="logout">Logout<i class="fa fa-lock"></i></a></li>
         </ul></span></div>
   </div>
-  <h1>Cyclotron Analytics</h1>
+  <h1>Digital Wall Analytics</h1>
   <div class="sidebar">
     <h2>Dashboards</h2>
     <dl title="Total number of Dashboards, including deleted Dashboards">
-      <dt>{{ statistics.dashboards.total.count | numeraljs:'0,0' }} </dt>
-      <dd>total 
+      <dt>{{ statistics.dashboards.total.count | numeraljs:'0,0' }}</dt>
+      <dd>total
         <ng-pluralize count="statistics.dashboards.total.count" when="{&quot;one&quot;: &quot;Dashboard&quot;, &quot;other&quot;: &quot;Dashboards&quot;}"></ng-pluralize>
       </dd>
     </dl>
     <dl title="Number of viewed Dashboards in the last 30 days">
-      <dt>{{ statistics.dashboards.active.activePastThirtyDayCount | numeraljs:'0,0' }} </dt>
-      <dd>30-day active 
+      <dt>{{ statistics.dashboards.active.activePastThirtyDayCount | numeraljs:'0,0' }}</dt>
+      <dd>30-day active
         <ng-pluralize count="statistics.dashboards.active.activePastThirtyDayCount" when="{&quot;one&quot;: &quot;Dashboard&quot;, &quot;other&quot;: &quot;Dashboards&quot;}"></ng-pluralize>
       </dd>
     </dl>
     <dl title="Total number of deleted Dashboards">
-      <dt>{{ statistics.dashboards.deletedDashboards.count | numeraljs:'0,0' }} </dt>
-      <dd>deleted 
+      <dt>{{ statistics.dashboards.deletedDashboards.count | numeraljs:'0,0' }}</dt>
+      <dd>deleted
         <ng-pluralize count="statistics.dashboards.deletedDashboards.count" when="{&quot;one&quot;: &quot;Dashboard&quot;, &quot;other&quot;: &quot;Dashboards&quot;}"></ng-pluralize>
       </dd>
     </dl>
     <dl title="Total number of Dashboards modified within the last 30 days">
-      <dt>{{ statistics.dashboards.total.editedPastThirtyDayCount | numeraljs:'0,0' }} </dt>
+      <dt>{{ statistics.dashboards.total.editedPastThirtyDayCount | numeraljs:'0,0' }}</dt>
       <dd>modified in the last 30 days</dd>
     </dl>
     <dl title="Total number of Dashboards deleted within the last 30 days">
-      <dt>{{ statistics.dashboards.deletedDashboards.editedPastThirtyDayCount | numeraljs:'0,0' }} </dt>
+      <dt>{{ statistics.dashboards.deletedDashboards.editedPastThirtyDayCount | numeraljs:'0,0' }}</dt>
       <dd>deleted in the last 30 days</dd>
     </dl>
     <dl title="Total number of Revisions, including those for deleted Dashboards">
-      <dt>{{ statistics.revisions.count | numeraljs:'0,0' }} </dt>
-      <dd>total 
+      <dt>{{ statistics.revisions.count | numeraljs:'0,0' }}</dt>
+      <dd>total
         <ng-pluralize count="statistics.revisions.count" when="{&quot;one&quot;: &quot;Revision&quot;, &quot;other&quot;: &quot;Revisions&quot;}"></ng-pluralize>
       </dd>
     </dl>
     <dl title="Average number of Revisions per Dashboard, including those for deleted Dashboards">
-      <dt>{{ statistics.revisions.avgRevisionCount | numeraljs:'0.0' }} </dt>
-      <dd> 
+      <dt>{{ statistics.revisions.avgRevisionCount | numeraljs:'0.0' }}</dt>
+      <dd>
         <ng-pluralize count="statistics.revisions.avgRevisionCount" when="{&quot;one&quot;: &quot;Revision&quot;, &quot;other&quot;: &quot;Revisions&quot;}"></ng-pluralize> per Dashboard
       </dd>
     </dl>
     <h2>Likes</h2>
     <dl title="Total number of likes for all active Dashboards (currently)">
-      <dt>{{ statistics.likes.count | numeraljs:'0,0' }} </dt>
+      <dt>{{ statistics.likes.count | numeraljs:'0,0' }}</dt>
       <dd>current Likes</dd>
     </dl>
     <dl title="Total number of times Dashboards have been liked (or re-liked)">
-      <dt>{{ statistics.likeEvents.count | numeraljs:'0,0' }} </dt>
+      <dt>{{ statistics.likeEvents.count | numeraljs:'0,0' }}</dt>
       <dd>all-time Likes (including repeats)</dd>
     </dl>
     <dl title="Total number of Dashboard Likes within the past day">
-      <dt>{{ statistics.likeEvents.occurredPastDayCount | numeraljs:'0,0' }} </dt>
+      <dt>{{ statistics.likeEvents.occurredPastDayCount | numeraljs:'0,0' }}</dt>
       <dd>Likes in the past day</dd>
     </dl>
     <dl title="Total number of Dashboard Likes within the last 30 days">
-      <dt>{{ statistics.likeEvents.occurredPastThirtyDayCount | numeraljs:'0,0' }} </dt>
+      <dt>{{ statistics.likeEvents.occurredPastThirtyDayCount | numeraljs:'0,0' }}</dt>
       <dd>Likes in the last 30 days</dd>
     </dl>
     <dl title="Total number of times a Dashboard was unliked">
-      <dt>{{ statistics.unlikeEvents.count | numeraljs:'0,0' }} </dt>
+      <dt>{{ statistics.unlikeEvents.count | numeraljs:'0,0' }}</dt>
       <dd>Unlikes</dd>
     </dl>
     <h2>Visits</h2>
@@ -96,35 +96,35 @@
     <h2>Users</h2>
     <dl title="Number of unique logged-in users">
       <dt>{{ statistics.users.count | numeraljs:'0,0' }}</dt>
-      <dd>registered 
+      <dd>registered
         <ng-pluralize count="statistics.users.count" when="{&quot;one&quot;: &quot;user&quot;, &quot;other&quot;: &quot;users&quot;}"></ng-pluralize>
       </dd>
     </dl>
     <dl title="Number of users who have logged in during the past 24 hours">
       <dt>{{ statistics.users.activePastDayCount | numeraljs:'0,0' }}</dt>
-      <dd>daily active 
+      <dd>daily active
         <ng-pluralize count="statistics.users.activePastDayCount" when="{&quot;one&quot;: &quot;user&quot;, &quot;other&quot;: &quot;users&quot;}"></ng-pluralize>
       </dd>
     </dl>
     <dl title="Number of users who have logged in during the last 30 days">
       <dt>{{ statistics.users.activePastThirtyDayCount | numeraljs:'0,0' }}</dt>
-      <dd>30-day active 
+      <dd>30-day active
         <ng-pluralize count="statistics.users.activePastThirtyDayCount" when="{&quot;one&quot;: &quot;user&quot;, &quot;other&quot;: &quot;users&quot;}"></ng-pluralize>
       </dd>
     </dl>
     <dl title="Average number of times users have logged in">
       <dt>{{ statistics.users.avgLoginsPerUser | numeraljs: '0.0' }}</dt>
-      <dd>logins per user </dd>
+      <dd>logins per user</dd>
     </dl>
     <dl title="Number of unique user cookies (may not be authenticated)">
       <dt>{{ statistics.pageViews.uniqueUids | numeraljs:'0,0' }}</dt>
-      <dd>unique 
+      <dd>unique
         <ng-pluralize count="statistics.pageViews.uniqueUids" when="{&quot;one&quot;: &quot;UID&quot;, &quot;other&quot;: &quot;UIDs&quot;}"></ng-pluralize>
       </dd>
     </dl>
     <dl title="Number of unique user cookies active over the last 30 days (may not be authenticated)">
       <dt>{{ statistics.users.uidsPastSixMonthsCount | numeraljs:'0,0' }}</dt>
-      <dd>30-day active 
+      <dd>30-day active
         <ng-pluralize count="statistics.users.uidsPastSixMonthsCount" when="{&quot;one&quot;: &quot;UID&quot;, &quot;other&quot;: &quot;UIDs&quot;}"></ng-pluralize>
       </dd>
     </dl>
@@ -165,7 +165,7 @@
             </thead>
             <tbody>
               <tr ng-repeat="dashboard in topDashboards | tablesort | limitTo:topDashboardsLimit" ts-repeat="ts-repeat">
-                <td> <a href="/{{ dashboard.name }}" target="_blank" title="Open this Dashboard in a new window">{{ dashboard.name }}</a></td>
+                <td><a href="/{{ dashboard.name }}" target="_blank" title="Open this Dashboard in a new window">{{ dashboard.name }}</a></td>
                 <td>{{ dashboard.visits | numeraljs:'0,0' }}</td>
                 <td>{{ dashboard.pageViews | numeraljs:'0,0' }}</td>
               </tr>
@@ -192,7 +192,7 @@
       </div>
       <div class="row">
         <div class="col-md-4 col-sm-6">
-          <h2>Data Sources Used </h2>
+          <h2>Data Sources Used</h2>
           <div data="dataSourcesPie" options="dataSourceTypesOptions" class="c3chart"></div>
         </div>
         <div class="col-md-4 col-sm-6">
@@ -275,7 +275,7 @@
             </thead>
             <tbody>
               <tr ng-repeat="dataSource in dataSources | tablesort | limitTo:dataSourcesLimit" ts-repeat="ts-repeat">
-                <td> <a href="/{{ dataSource.dashboardName }}" target="_blank" title="Open this Dashboard in a new window">{{ dataSource.dashboardName }}</a></td>
+                <td><a href="/{{ dataSource.dashboardName }}" target="_blank" title="Open this Dashboard in a new window">{{ dataSource.dashboardName }}</a></td>
                 <td>{{ dataSource.dataSourceName }}</td>
                 <td>{{ dataSource.dataSourceType }}</td>
                 <td>{{ dataSource.count | numeraljs:'0,0' }}</td>

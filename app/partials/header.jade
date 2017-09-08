@@ -1,15 +1,15 @@
 .row.cyclotron-header
     h1(ui-sref='home' ui-sref-opts='{reload: true}')
         img.logo(src='/img/favicon64.png', alt='Logo')
-        | Cyclotron
+        | AIG DIGITAL WALL
     .links
         a.home(ui-sref='home', title='Return to Home')
             i.fa.fa-home
         a.new(ng-href='/edit/', target='_self', title='Create a new Dashboard')
             i.fa.fa-file-o
-        a.documentation(ui-sref='help', target='_blank' title='Documentation for Cyclotron')
+        a.documentation(ui-sref='help', target='_blank' title='Documentation for DIGITAL WALL')
             i.fa.fa-question-circle
-        a.analytics(ng-if='analyticsEnabled()', ui-sref='analytics', title='Analytics for Cyclotron')
+        a.analytics(ng-if='analyticsEnabled()', ui-sref='analytics', title='Analytics for DIGITAL WALL')
             i.fa.fa-bar-chart
         a.login(requires-auth, ng-click='login()', ng-if='!isLoggedIn()', title='Login')
             i.fa.fa-unlock
@@ -21,10 +21,10 @@
                 li.dropdown-header(role='presentation')
                     a {{ currentUser().name }}
                 li(ng-if='isAdmin()')
-                    a.admin(title='Admin') Is Admin 
+                    a.admin(title='Admin') Is Admin
                         i.fa.fa-key
                 li.divider(ng-if='isAdmin()', role='presentation')
                     a
                 li
-                    a.logout(ng-click='logout()', title='Logout') Logout 
+                    a.logout(ng-click='logout()', title='Logout') Logout
                         i.fa.fa-lock

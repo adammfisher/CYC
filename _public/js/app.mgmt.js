@@ -1564,130 +1564,6 @@ cyclotronApp.controller('PushDashboardController', ['$scope', '$uibModalInstance
  * either express or implied. See the License for the specific 
  * language governing permissions and limitations under the License.
  */
-cyclotronServices.factory('cryptoService', ['$http', '$q', 'configService', function($http, $q, configService) {
-  return {
-    encrypt: function(value) {
-      var deferred, q;
-      deferred = $q.defer();
-      q = $http.post(configService.restServiceUrl + '/crypto/encrypt', {
-        value: value
-      });
-      q.success(function(result) {
-        return deferred.resolve('!{' + result + '}');
-      });
-      q.error(function(error) {
-        alertify.error('Cannot connect to cyclotron-svc (encrypt)', 2500);
-        return deferred.reject(error);
-      });
-      return deferred.promise;
-    }
-  };
-}]);
-
-
-/*
- * Copyright (c) 2013-2015 the original author or authors.
- *
- * Licensed under the MIT License (the "License");
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at
- *
- *     http://www.opensource.org/licenses/mit-license.php
- *
- * Unless required by applicable law or agreed to in writing, 
- * software distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
- * either express or implied. See the License for the specific 
- * language governing permissions and limitations under the License.
- */
-cyclotronServices.factory('exportService', ['$http', 'configService', function($http, configService) {
-  return {
-    exportAsync: function(dashboardName, format, params, callback) {
-      var paramStrings, uri;
-      uri = configService.restServiceUrl + '/export/' + dashboardName + '/' + format;
-      if ((params != null) && _.keys(params).length > 0) {
-        paramStrings = _.map(_.pairs(params), function(pair) {
-          return pair[0] + '=' + pair[1];
-        });
-        uri += '?' + paramStrings.join('&');
-      }
-      return $http.post(uri).success(function(result) {
-        if (_.isFunction(callback)) {
-          return callback(result);
-        }
-      });
-    },
-    getStatus: function(statusUrl, callback) {
-      return $http.get(statusUrl).success(function(result) {
-        if (_.isFunction(callback)) {
-          return callback(result);
-        }
-      });
-    }
-  };
-}]);
-
-
-/*
- * Copyright (c) 2013-2015 the original author or authors.
- *
- * Licensed under the MIT License (the "License");
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at
- *
- *     http://www.opensource.org/licenses/mit-license.php
- *
- * Unless required by applicable law or agreed to in writing, 
- * software distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
- * either express or implied. See the License for the specific 
- * language governing permissions and limitations under the License.
- */
-cyclotronServices.factory('tagService', ['$http', 'configService', function($http, configService) {
-  return {
-    getTags: function(callback) {
-      var q;
-      q = $http.get(configService.restServiceUrl + '/tags');
-      q.success(function(tags) {
-        if (_.isFunction(callback)) {
-          return callback(tags);
-        }
-      });
-      return q.error(function() {
-        return alertify.error('Cannot connect to cyclotron-svc (getTags)', 2500);
-      });
-    },
-    getSearchHints: function(callback) {
-      var q;
-      q = $http.get(configService.restServiceUrl + '/searchhints');
-      q.success(function(searchhints) {
-        if (_.isFunction(callback)) {
-          return callback(searchhints);
-        }
-      });
-      return q.error(function() {
-        return alertify.error('Cannot connect to cyclotron-svc (getSearchHints)', 2500);
-      });
-    }
-  };
-}]);
-
-
-/*
- * Copyright (c) 2013-2015 the original author or authors.
- *
- * Licensed under the MIT License (the "License");
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at
- *
- *     http://www.opensource.org/licenses/mit-license.php
- *
- * Unless required by applicable law or agreed to in writing, 
- * software distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
- * either express or implied. See the License for the specific 
- * language governing permissions and limitations under the License.
- */
 cyclotronDirectives.directive('c3chart', function() {
   return {
     restrict: 'EAC',
@@ -2521,3 +2397,127 @@ cyclotronDirectives.directive('propertyTable', function() {
     link: function(scope, element, attrs) {}
   };
 });
+
+
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License.
+ */
+cyclotronServices.factory('cryptoService', ['$http', '$q', 'configService', function($http, $q, configService) {
+  return {
+    encrypt: function(value) {
+      var deferred, q;
+      deferred = $q.defer();
+      q = $http.post(configService.restServiceUrl + '/crypto/encrypt', {
+        value: value
+      });
+      q.success(function(result) {
+        return deferred.resolve('!{' + result + '}');
+      });
+      q.error(function(error) {
+        alertify.error('Cannot connect to cyclotron-svc (encrypt)', 2500);
+        return deferred.reject(error);
+      });
+      return deferred.promise;
+    }
+  };
+}]);
+
+
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License.
+ */
+cyclotronServices.factory('exportService', ['$http', 'configService', function($http, configService) {
+  return {
+    exportAsync: function(dashboardName, format, params, callback) {
+      var paramStrings, uri;
+      uri = configService.restServiceUrl + '/export/' + dashboardName + '/' + format;
+      if ((params != null) && _.keys(params).length > 0) {
+        paramStrings = _.map(_.pairs(params), function(pair) {
+          return pair[0] + '=' + pair[1];
+        });
+        uri += '?' + paramStrings.join('&');
+      }
+      return $http.post(uri).success(function(result) {
+        if (_.isFunction(callback)) {
+          return callback(result);
+        }
+      });
+    },
+    getStatus: function(statusUrl, callback) {
+      return $http.get(statusUrl).success(function(result) {
+        if (_.isFunction(callback)) {
+          return callback(result);
+        }
+      });
+    }
+  };
+}]);
+
+
+/*
+ * Copyright (c) 2013-2015 the original author or authors.
+ *
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at
+ *
+ *     http://www.opensource.org/licenses/mit-license.php
+ *
+ * Unless required by applicable law or agreed to in writing, 
+ * software distributed under the License is distributed on an 
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License.
+ */
+cyclotronServices.factory('tagService', ['$http', 'configService', function($http, configService) {
+  return {
+    getTags: function(callback) {
+      var q;
+      q = $http.get(configService.restServiceUrl + '/tags');
+      q.success(function(tags) {
+        if (_.isFunction(callback)) {
+          return callback(tags);
+        }
+      });
+      return q.error(function() {
+        return alertify.error('Cannot connect to cyclotron-svc (getTags)', 2500);
+      });
+    },
+    getSearchHints: function(callback) {
+      var q;
+      q = $http.get(configService.restServiceUrl + '/searchhints');
+      q.success(function(searchhints) {
+        if (_.isFunction(callback)) {
+          return callback(searchhints);
+        }
+      });
+      return q.error(function() {
+        return alertify.error('Cannot connect to cyclotron-svc (getSearchHints)', 2500);
+      });
+    }
+  };
+}]);
